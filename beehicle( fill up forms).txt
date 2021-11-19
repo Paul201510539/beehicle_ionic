@@ -1,0 +1,37 @@
+"sign-in"
+-username
+-password
+
+"sign-up"
+name
+age
+gender
+address
+email
+phone no.
+id verification
+username
+password
+
+
+"add vehicle"
+vehicle brand
+plate number
+vehicle type
+vehicle year
+chasis no.
+coding schedule
+notes
+pick image/photos
+
+"add services"
+service name
+amount
+next service
+service provider
+notes
+
+"vehicles"
+check-list
+services
+

@@ -1,0 +1,59 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color ="primary">
+    <ion-title class="ion-text-center">
+  Beehicle App
+    </ion-title>
+  <ion-buttons slot="start">
+    <ion-menu-button menuId="custom-menu"></ion-menu-button>
+  </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="presentAlert()">
+        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>  
+    </ion-buttons>
+  </ion-toolbar>
+
+  <div class="ion-padding" (ionChange)="segmentChanged($event)">
+    <ion-segment [(ngModel)]="type">
+        <ion-segment-button value="checklist">
+          <ion-label>checklist</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="services">
+          <ion-label>services</ion-label>
+        </ion-segment-button> 
+   </ion-segment>
+  </div>
+</ion-header>
+
+<ion-content [scrollEvents]="true" (ionScroll)="scroll($event)" #myContent>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+  <ion-list lines="none">
+    <ion-item-group>
+      <div [ngSwitch]="type">
+        <ion-list *ngSwitchCase="'checklist'">
+          <ion-item class="ion-padding-vertical popItem" *ngFor="let item of [].constructor(20); let i = index" (click)="checklistoptions(item)">
+            <ion-thumbnail slot="start">
+              <img src="assets/imgs/logo.gif">
+            </ion-thumbnail>
+            <h6>Checklist Sample - {{ i }}</h6>
+          </ion-item>
+        </ion-list>
+    
+        <ion-list *ngSwitchCase="'services'">
+          <ion-item class="ion-padding-vertical popItem" *ngFor="let item of [].constructor(20); let i = index" (click)="servicesoptions(item)">
+            <ion-thumbnail slot="start">
+              <img src="assets/imgs/logo.gif">
+            </ion-thumbnail>
+            <h6>Services Sample - {{ i }}</h6>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-item-group>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,165 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/welcome" color="dark"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/welcome/signin" fill="clear" strong="true" color="dark">Login</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="primary">
+
+  <ion-list lines="none">
+    <ion-item-group class="ion-padding">
+      <form [formGroup]="form">
+        <ion-item-group class="username">
+          <ion-item color="light">
+            <ion-input 
+              class="ion-margin-horizontal"
+              type="text"
+              placeholder="Name">
+            </ion-input>
+          </ion-item>
+          <!-- <ion-text class="error" color="danger" *ngIf="!form.get('name').valid && form.get('name').touched">
+            Please enter your Name
+          </ion-text> -->
+        </ion-item-group>
+
+        <ion-item-group class="formUser">
+          <ion-item color="light">
+            <ion-input class="ion-margin-horizontal" placeholder="Age" required type="number"></ion-input>
+          </ion-item>
+          <!-- <ion-text 
+              class="error" 
+              color="danger"
+              *ngIf="!form.get('age').valid && form.get('age').touched">
+            Please enter your Age
+          </ion-text>  -->
+        </ion-item-group>
+
+        <ion-item-group class="formUser">
+          <ion-item color="light">
+            <ion-select  
+                required 
+                placeholder="Gender (Select One)" 
+                class="ion-margin-horizontal" >
+              <ion-select-option value="f">Female</ion-select-option>
+              <ion-select-option value="m">Male</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <!-- <ion-text 
+              class="error" 
+              color="danger"
+              formControlName="gender" 
+              *ngIf="!form.get('gender').valid && form.get('gender').touched">
+            Please enter your Gender
+          </ion-text>  -->
+        </ion-item-group>
+
+        <ion-item-group class="formUser">
+          <ion-item color="light">
+            <ion-input 
+              class="ion-margin-horizontal"
+              required type="email"
+              formControlName="email"
+              placeholder="Email (test@test.com)">
+            </ion-input>
+          </ion-item>
+          <!-- <ion-text class="error" color="danger" *ngIf="!form.get('email').valid && form.get('email').touched">
+            Please enter your Email
+          </ion-text>  -->
+        </ion-item-group>
+
+        <ion-item-group class="formUser">
+          <ion-item color="light">
+            <ion-input 
+              class="ion-margin-horizontal" 
+              placeholder="Phone No." 
+              type="number" required>
+            </ion-input>
+          </ion-item>
+          <!-- <ion-text class="error" color="danger" *ngIf="!form.get('phoneno').valid && form.get('phoneno').touched">
+            Please enter your Number
+          </ion-text>  -->
+        </ion-item-group>
+
+        <ion-item-group class="formUser">
+          <ion-item color="light">
+            <ion-input 
+              class="ion-margin-horizontal"
+              type="text"
+              placeholder="Address" required>
+            </ion-input>
+          </ion-item>
+          <!-- <ion-text class="error" color="danger" *ngIf="!form.get('address').valid && form.get('address').touched">
+            Please enter your Address
+          </ion-text> -->
+        </ion-item-group>
+
+        <ion-item-group class="formUser">
+          <ion-item color="light">
+            <ion-input 
+              class="ion-margin-horizontal"
+              formControlName="username"
+              type="text"
+              placeholder="Username">
+            </ion-input>
+          </ion-item>
+          <ion-text class="error" color="danger" *ngIf="!form.get('username').valid && form.get('username').touched">
+            Please enter your Username
+          </ion-text>
+        </ion-item-group>
+
+        <ion-item-group class="ion-margin-bottom">
+          <ion-item color="light">
+            <ion-input 
+              class="ion-margin-horizontal"
+              formControlName="password"
+              type="password"
+              placeholder="Password">
+            </ion-input>
+          </ion-item>
+          <ion-text *ngIf="!form.get('password').valid && form.get('password').touched">
+            <ion-text class="error" color="danger"
+              *ngIf="form.get('password').hasError('required')">
+                Please enter the Password
+            </ion-text>
+            <ion-text class="error" color="danger"
+              *ngIf="form.get('password').hasError('minlength') 
+                && !form.get('password').hasError('required')">
+                Password must be of atleast 8 characters
+            </ion-text>
+          </ion-text>
+        </ion-item-group>
+
+        <ion-item-group class="formUser">
+          <ion-item>
+            <ion-button expand="full" color="white"> 
+              <ion-icon lazy="true" slot="start" name="image"></ion-icon>
+              <ion-label slot="end">Upload ID</ion-label>
+              <input 
+                type="file" 
+                (change)="loadImageFromDevice($event)" 
+                id="file-input"
+                accept="image/png, image/jpeg">
+            </ion-button>
+          </ion-item>
+          <!-- <ion-text class="error" color="danger" *ngIf="!form.get('uploadid').valid && form.get('uploadid').touched">
+            Please upload your ID
+          </ion-text> -->
+          
+        </ion-item-group>
+
+        <ion-button size="large" expand="block" shape="round" color="dark"
+          (click)="onSubmit()"[disabled]="!form?.valid">
+          
+          <ion-text>Sign Up</ion-text>
+        </ion-button>
+      </form>
+    </ion-item-group>
+
+  </ion-list>
+
+</ion-content>
