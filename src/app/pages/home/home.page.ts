@@ -70,6 +70,7 @@ export class HomePage implements OnInit {
     const actionSheet = await this.actionSheetCtrl.create({
       header: 'Options',
       cssClass: 'my-custom-class',
+      mode: 'ios',
       buttons: [
         {
         text: 'Add Checklist',
@@ -97,12 +98,21 @@ export class HomePage implements OnInit {
     const actionSheet = await this.actionSheetCtrl.create({
       header: 'Options',
       cssClass: 'my-custom-class',
+      mode: 'ios',
       buttons: [
         {
-        text: 'Add Services',
+        text: 'add services',
         icon: 'car',
         handler: () => {
           console.log('add services clicked');
+        },
+      },
+
+      {
+        text: 'checklist',
+        icon: 'checkbox-outline',
+        handler: () => {
+          console.log('add checklist clicked');
         },
       },
         

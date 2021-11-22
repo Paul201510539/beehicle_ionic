@@ -1,18 +1,102 @@
+
 <ion-header>
   <ion-toolbar color ="primary">
     <ion-title class="ion-text-center">
-  Add Vehicle
+  Add Services
     </ion-title>
+    
   <ion-buttons slot="start">
     <ion-menu-button menuId="custom-menu"></ion-menu-button>
   </ion-buttons>
+
     <ion-buttons slot="end">
       <ion-button fill="clear" (click)="presentAlert()">
         <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
-      </ion-button>  
+      </ion-button>        
     </ion-buttons>
+    
   </ion-toolbar>
+</ion-header>
 
-<ion-content>
 
+
+<ion-content >
+  <form [formGroup]="registrationForm">
+
+<ion-item>
+  <ion-label color="primary"position="floating">Vehicle brand</ion-label>
+  <ion-input ></ion-input>
+</ion-item>
+
+
+<ion-item>
+  <ion-label color="primary"position="floating">Plate number</ion-label>
+  <ion-input></ion-input>
+</ion-item>
+
+
+<ion-item>
+<p>
+  <ion-label color="primary">vehicle type</ion-label>
+</p>
+<ion-select value="4" slot="end">
+  <ion-select-option value="01">two wheels</ion-select-option>
+  <ion-select-option value="02">four wheels</ion-select-option>
+  <ion-select-option value="03">three wheels</ion-select-option>
+  
+ </ion-select>
+</ion-item>
+
+
+
+<ion-item >
+  <ion-label color="primary">Vehicle year</ion-label>
+  <ion-datetime slot="end" value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
+</ion-item>
+
+<ion-item>
+  <ion-label color="primary"position="floating">chasis no.</ion-label>
+  <ion-input></ion-input>
+</ion-item>
+
+
+
+<ion-item>
+ 
+  <p>
+    <ion-label color="primary">coding schedule</ion-label>
+  </p>
+  <ion-select value="4" slot="end">
+    <ion-select-option value="01">monday</ion-select-option>
+    <ion-select-option value="02">tuesday</ion-select-option>
+    <ion-select-option value="03">wednesday</ion-select-option>
+    <ion-select-option value="04">thursday</ion-select-option>
+    <ion-select-option value="04">friday</ion-select-option>
+    <ion-select-option value="04">saturday</ion-select-option>
+    <ion-select-option value="04">sunday</ion-select-option>
+   </ion-select>
+  </ion-item>
+
+ 
+
+  <ion-item>
+    <ion-label>Notes:</ion-label>
+    <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..."></ion-textarea>
+  </ion-item>
+
+  <div >
+    <p class="sukat" color="primary">Upload image of receipt/warranty</p>
+    <ion-button color="warning"><ion-label color="light">Pick File</ion-label></ion-button>
+    <div>
+      {{returnpath}}
+    </div>
+  </div>
+
+</form>
+
+  <ion-button  type="button" (click)="addbutton" color="warning" expand="block"> <ion-label color="light">ADD</ion-label>
+    <ion-icon slot="end" name="add"></ion-icon>
+  </ion-button>
 </ion-content>
+
+
