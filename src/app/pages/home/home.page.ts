@@ -103,13 +103,14 @@ export class HomePage implements OnInit {
       mode: 'ios',
       buttons: [
         {
-        text: 'Add Services',
+        text: 'add services',
         icon: 'car',
         handler: () => {
           this.router.navigate([''])
           console.log('add services clicked');
         },
       },
+<<<<<<< HEAD
       {
         text: 'Checklist',
         icon: 'checkbox-outline',
@@ -117,6 +118,17 @@ export class HomePage implements OnInit {
           this.router.navigate(['/addchecklist'])
           console.log('Checklist clicked');
         },},
+=======
+
+      {
+        text: 'Checklist',
+        icon: 'checkbox-outline',
+        handler: () => {
+          this.router.navigate(['/addchecklist'])
+          console.log('Checklist clicked');
+      },},
+        
+>>>>>>> 1fecd6330021e0377b8c44467da6b1bfa8af6ccb
         {
         text: 'Cancel',
         icon: 'close',

@@ -13,22 +13,13 @@
     </ion-buttons>
   </ion-toolbar>
 
-  <div class="ion-padding" (ionChange)="segmentChanged($event)">
-    <ion-segment [(ngModel)]="type">
-        <ion-segment-button value="checklist">
-          <ion-label>checklist</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="services">
-          <ion-label>services</ion-label>
-        </ion-segment-button> 
-   </ion-segment>
-  </div>
+  
 </ion-header>
 
 <ion-content [scrollEvents]="true" (ionScroll)="scroll($event)" #myContent>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
+    <ion-fab-button  routerLink="/addvehicle"> 
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
