@@ -24,20 +24,20 @@
   <form [formGroup]="registrationForm">
 
 <ion-item>
-  <ion-label color="primary"position="floating">Vehicle brand</ion-label>
+  <ion-label position="floating">Vehicle Brand</ion-label>
   <ion-input ></ion-input>
 </ion-item>
 
 
 <ion-item>
-  <ion-label color="primary"position="floating">Plate number</ion-label>
+  <ion-label position="floating">Plate Number</ion-label>
   <ion-input></ion-input>
 </ion-item>
 
 
 <ion-item>
 <p>
-  <ion-label color="primary">vehicle type</ion-label>
+  <ion-label>Vehicle Type</ion-label>
 </p>
 <ion-select value="4" slot="end">
   <ion-select-option value="01">two wheels</ion-select-option>
@@ -50,12 +50,12 @@
 
 
 <ion-item >
-  <ion-label color="primary">Vehicle year</ion-label>
+  <ion-label >Vehicle Year</ion-label>
   <ion-datetime slot="end" value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
 </ion-item>
 
 <ion-item>
-  <ion-label color="primary"position="floating">chasis no.</ion-label>
+  <ion-label position="floating">Chasis No.</ion-label>
   <ion-input></ion-input>
 </ion-item>
 
@@ -64,7 +64,7 @@
 <ion-item>
  
   <p>
-    <ion-label color="primary">coding schedule</ion-label>
+    <ion-label >Coding Schedule</ion-label>
   </p>
   <ion-select value="4" slot="end">
     <ion-select-option value="01">monday</ion-select-option>
@@ -85,7 +85,7 @@
   </ion-item>
 
   <div >
-    <p class="sukat" color="primary">Upload image of receipt/warranty</p>
+    <p class="sukat">Upload image of receipt/warranty</p>
     <ion-button color="warning"><ion-label color="light">Pick File</ion-label></ion-button>
     <div>
       {{returnpath}}
@@ -94,7 +94,7 @@
 
 </form>
 
-  <ion-button  type="button" (click)="addbutton" color="warning" expand="block"> <ion-label color="light">ADD</ion-label>
+  <ion-button  type="button" routerLink="/home" (click)="addbutton" color="warning" expand="block"> <ion-label color="light">ADD</ion-label>
     <ion-icon slot="end" name="add"></ion-icon>
   </ion-button>
 </ion-content>
