@@ -106,7 +106,7 @@ export class HomePage implements OnInit {
         text: 'add services',
         icon: 'car',
         handler: () => {
-          this.router.navigate([''])
+          this.router.navigate(['/addservices'])
           console.log('add services clicked');
         },
       },

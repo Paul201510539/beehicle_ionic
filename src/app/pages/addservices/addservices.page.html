@@ -1,4 +1,5 @@
-<ion-header>
+<div>
+  <ion-header>
   <ion-toolbar color ="primary">
     <ion-title class="ion-text-center">
   Add Services
@@ -12,6 +13,64 @@
       </ion-button>  
     </ion-buttons>
   </ion-toolbar>
-<ion-content>
+  </ion-header>
+</div>
 
+<ion-content >
+  <form>
+    
+    <ion-item>
+      <ion-label color="dark" position="floating">Service name</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">Vehicle year</ion-label>
+      <ion-datetime color="primary" slot="end" value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" position="floating">Amount</ion-label>
+      <ion-input inputmode="number"></ion-input>
+    </ion-item>
+
+    <!--<ion-item>
+      <ion-label color="primary">select vehicle</ion-label>
+      <ion-select value="4" slot="end">
+        <ion-select-option value="01">Honda</ion-select-option>
+        <ion-select-option value="02">isuzu</ion-select-option>
+        <ion-select-option value="03">mustang</ion-select-option>
+        <ion-select-option value="04">toyota</ion-select-option>
+      </ion-select>
+    </ion-item>-->
+
+    <ion-item>
+      <ion-label color="primary">Next service schedule</ion-label>
+      <ion-datetime color="primary" slot="end" value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" position="floating">Service provider</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Notes:</ion-label>
+      <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..."></ion-textarea>
+    </ion-item>
+
+    <div class="ion-padding">
+      <p class="resize" color="primary">Upload image of service as proof</p>
+      <ion-button class="button-size" (click)="PickFile()" color="warning"><ion-label color="light">Pick File</ion-label></ion-button>
+      <div>
+        {{returnpath}}
+      </div>
+    </div>
+
+
+  </form>
+
+  <ion-button type="submit" expand="block" color="warning"><ion-label color="light">ADD</ion-label>
+    <ion-icon slot="end" name="add"></ion-icon>
+  </ion-button>
 </ion-content>
