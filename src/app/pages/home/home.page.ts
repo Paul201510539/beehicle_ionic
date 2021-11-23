@@ -81,7 +81,17 @@ export class HomePage implements OnInit {
           console.log('add checklist clicked');
         },
       },
+
+      {
+        text: 'vehicle info',
+        icon: 'information-circle-outline',
+        handler: () => {
+          this.router.navigate([''])
+          console.log('vehicle info clicked');
+        },
+      },
         
+      
         {
         text: 'Cancel',
         icon: 'close',
@@ -94,6 +104,8 @@ export class HomePage implements OnInit {
     });
     await actionSheet.present();
   }
+
+  
 
   async servicesoptions(item) {
     console.log(item);
@@ -110,6 +122,17 @@ export class HomePage implements OnInit {
           console.log('add services clicked');
         },
       },
+
+      {
+        text: 'vehicle info',
+        icon: 'information-circle-outline',
+        handler: () => {
+          this.router.navigate([''])
+          console.log('vehicle info clicked');
+        },
+      },
+
+      
 
       {
         text: 'Checklist',
