@@ -20,17 +20,17 @@
   <form>
     
     <ion-item>
-      <ion-label color="dark" position="floating">Service name</ion-label>
+      <ion-label  position="floating">Service name</ion-label>
       <ion-input type="text"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label color="dark">Vehicle year</ion-label>
-      <ion-datetime color="primary" slot="end" value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
+      <ion-label >Vehicle year</ion-label>
+      <ion-datetime  slot="end" value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
     </ion-item>
 
     <ion-item>
-      <ion-label color="primary" position="floating">Amount</ion-label>
+      <ion-label position="floating">Amount</ion-label>
       <ion-input inputmode="number"></ion-input>
     </ion-item>
 
@@ -45,12 +45,12 @@
     </ion-item>-->
 
     <ion-item>
-      <ion-label color="primary">Next service schedule</ion-label>
-      <ion-datetime color="primary" slot="end" value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
+      <ion-label >Next service schedule</ion-label>
+      <ion-datetime  slot="end" value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
     </ion-item>
 
     <ion-item>
-      <ion-label color="primary" position="floating">Service provider</ion-label>
+      <ion-label  position="floating">Service provider</ion-label>
       <ion-input type="text"></ion-input>
     </ion-item>
 
@@ -60,7 +60,7 @@
     </ion-item>
 
     <div class="ion-padding">
-      <p class="resize" color="primary">Upload image of service as proof</p>
+      <p class="resize" >Upload image of service as proof</p>
       <ion-button class="button-size" (click)="PickFile()" color="warning"><ion-label color="light">Pick File</ion-label></ion-button>
       <div>
         {{returnpath}}
