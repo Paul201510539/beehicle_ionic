@@ -86,7 +86,7 @@ export class HomePage implements OnInit {
         text: 'vehicle info',
         icon: 'information-circle-outline',
         handler: () => {
-          this.router.navigate([''])
+          this.router.navigate(['/vehicleinfo'])
           console.log('vehicle info clicked');
         },
       },
@@ -127,7 +127,7 @@ export class HomePage implements OnInit {
         text: 'vehicle info',
         icon: 'information-circle-outline',
         handler: () => {
-          this.router.navigate([''])
+          this.router.navigate(['/vehicleinfo'])
           console.log('vehicle info clicked');
         },
       },

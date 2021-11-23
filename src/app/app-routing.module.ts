@@ -39,6 +39,10 @@ const routes: Routes = [
     path: 'addchecklist',
     loadChildren: () => import('./pages/addchecklist/addchecklist.module').then( m => m.AddchecklistPageModule)
   },
+  {
+    path: 'vehicleinfo',
+    loadChildren: () => import('./pages/vehicleinfo/vehicleinfo.module').then( m => m.VehicleinfoPageModule)
+  },
 ];
 
 
