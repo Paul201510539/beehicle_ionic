@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActionSheetController, AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class HomePage implements OnInit {
   
   newHeight = 0;
 
-  constructor(public actionSheetCtrl: ActionSheetController, public alertController: AlertController) {}
+  constructor(public actionSheetCtrl: ActionSheetController, public alertController: AlertController, private router: Router) {}
 
   ngOnInit() {
     
@@ -70,11 +71,13 @@ export class HomePage implements OnInit {
     const actionSheet = await this.actionSheetCtrl.create({
       header: 'Options',
       cssClass: 'my-custom-class',
+      mode: 'ios',
       buttons: [
         {
         text: 'Add Checklist',
-        icon: 'book',
+        icon: 'checkbox-outline',
         handler: () => {
+          this.router.navigate(['/addchecklist'])
           console.log('add checklist clicked');
         },
       },
@@ -97,15 +100,23 @@ export class HomePage implements OnInit {
     const actionSheet = await this.actionSheetCtrl.create({
       header: 'Options',
       cssClass: 'my-custom-class',
+      mode: 'ios',
       buttons: [
         {
         text: 'Add Services',
         icon: 'car',
         handler: () => {
+          this.router.navigate([''])
           console.log('add services clicked');
         },
       },
-        
+      {
+        text: 'Checklist',
+        icon: 'checkbox-outline',
+        handler: () => {
+          this.router.navigate(['/addchecklist'])
+          console.log('Checklist clicked');
+        },},
         {
         text: 'Cancel',
         icon: 'close',
@@ -114,8 +125,8 @@ export class HomePage implements OnInit {
           console.log('Cancel clicked');
         }
       }
-      ]
-    });
+    ]
+  });
     await actionSheet.present();
   }
 

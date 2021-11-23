@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar color ="primary">
+    <ion-title class="ion-text-center">
+  Checklist
+    </ion-title>
+  <ion-buttons slot="start">
+    <ion-menu-button menuId="custom-menu"></ion-menu-button>
+  </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="presentAlert()">
+        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>  
+    </ion-buttons>
+  </ion-toolbar>
+
+<ion-content [fullscreen]="true" color="primary"scroll-y="false">
+  <ion-list lines="none">
+    <ion-item-group class="ion-padding">
+      <form [formGroup]="form">
+        <ion-item-group>
+          <ion-item>
+            <ion-label>Air</ion-label> 
+            <ion-checkbox color="primary" ></ion-checkbox>
+            </ion-item>
+        </ion-item-group>
+
+      <ion-item-group>
+        <ion-item>
+          <ion-label>Water</ion-label>
+          <ion-checkbox color="primary"></ion-checkbox>
+        </ion-item>
+      </ion-item-group>
+
+      <ion-item-group>
+        <ion-item> 
+          <ion-label>Brake</ion-label>
+          <ion-checkbox color="primary" ></ion-checkbox>
+        </ion-item>
+      </ion-item-group>
+
+      <ion-item-group>
+        <ion-item>
+          <ion-label>Oil</ion-label>
+          <ion-checkbox color="primary"></ion-checkbox>
+          </ion-item> 
+      </ion-item-group>
+
+      <ion-item-group>
+          <ion-item>
+            <ion-label>Battery</ion-label>
+            <ion-checkbox color="primary"></ion-checkbox>
+          </ion-item> 
+      </ion-item-group>
+
+      <ion-item-group>
+          <ion-item>
+            <ion-label>Engine</ion-label>
+            <ion-checkbox color="primary"></ion-checkbox>
+          </ion-item> 
+      </ion-item-group>
+
+      <ion-item-group>
+        <ion-item>
+        <ion-label>Meter</ion-label>
+        <ion-checkbox color="primary"></ion-checkbox>
+        </ion-item> 
+      </ion-item-group>  
+      
+     
+      <ion-item-group>
+        <ion-item>
+        <ion-label>Sample</ion-label>
+        <ion-checkbox color="primary"></ion-checkbox>
+        </ion-item> 
+      </ion-item-group>  
+
+      <ion-item-group>
+        <ion-item>
+        <ion-label>Sample</ion-label>
+        <ion-checkbox color="primary"></ion-checkbox>
+        </ion-item> 
+      </ion-item-group>  
+</form>
+<footer>
+  <ion-button  expand="block" shape="round" color="dark"
+routerLink="/home" >
+<!--  [disabled]="!form?.valid" -->
+<ion-text>Save</ion-text>
+</ion-button>
+</footer>
+</ion-item-group>
+  </ion-list>
+
+</ion-content>
