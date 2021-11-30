@@ -11,7 +11,7 @@ export class AppComponent {
     {title: 'Dashboard', url: '/home', icon: 'home'},
     {title: 'Profile', url: '/profile', icon: 'person'},
     //{title: 'About Us', url: '/about', icon: 'information-circle'},
-    {title: 'Odometer', url: '/privacy', icon: 'speedometer'},
+    {title: 'Odometer', url: '/odometer', icon: 'speedometer'},
     {title: 'Sign Out', url: '', icon: 'log-out', route: true},
   ];
 

@@ -43,6 +43,10 @@ const routes: Routes = [
     path: 'vehicleinfo',
     loadChildren: () => import('./pages/vehicleinfo/vehicleinfo.module').then( m => m.VehicleinfoPageModule)
   },
+  {
+    path: 'odometer',
+    loadChildren: () => import('./pages/odometer/odometer.module').then( m => m.OdometerPageModule)
+  },
 ];
 
 
