@@ -1,0 +1,44 @@
+vehicle info
+- add vehicle
+Vehicle brand
+plate number 
+type
+year
+chasis
+coding sched
+notes
+file
+
+-add services
+service name
+year
+history
+amount
+service provider
+notes
+image
+
+-user
+name
+age
+gender
+email
+password
+address
+phone number
+username
+
+-checklist
+air
+water
+brake
+oil
+battery
+engine
+gas
+lights
+tire
+engine
+
+-odometer
+mileage
