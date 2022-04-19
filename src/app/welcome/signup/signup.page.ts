@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import axios from 'axios';
+import { environment } from '../../../../src/environments/environment';  
 
 @Component({
   selector: 'app-signup',
@@ -42,7 +43,9 @@ export class SignupPage implements OnInit {
         'Access-Control-Allow-Origin': '*',
       },
     };
-    const URL = 'http://beehicle.gg/api/user/register';
+    // const URL = 'http://beehicle.gg/api/user/register';
+    const URL = environment.API_HOST;;
+
     const res = await axios.post(URL, this.form.value, config);
     console.log(res);
     if (!this.form.valid) {

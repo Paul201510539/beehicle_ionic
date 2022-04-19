@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { environment } from '../../../src/environments/environment';  
+import { LoadingController, AlertController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
+import { ActivatedRoute } from '@angular/router';
+import axios from 'axios';
+
 @Component({
   selector: 'app-addservicelist',
   templateUrl: './addservicelist.page.html',
@@ -7,25 +13,64 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class AddservicelistPage implements OnInit {
   form: FormGroup;
-
-  constructor(public formBuilder: FormBuilder) { 
+  public services : [
+      'Oil Filter',
+      'Air',
+      'Gas',
+      'Battery',
+      'Engine',
+      'Water',
+      'Oil',
+      'Belts'
+  ];
+  public vehicle_id;
+  constructor(public formBuilder: FormBuilder, private route: ActivatedRoute, private storage: Storage, public loadingController: LoadingController, public alertController: AlertController) { 
     this.initForm();
   }
 
   ngOnInit() {
-    console.log('test');
+    this.vehicle_id = parseInt(this.route.snapshot.paramMap.get('id'));
   }
 
   initForm() {
+    
     this.form = new FormGroup({
-      service_names: new FormControl(null, { validators: [Validators.required] }),
-      service_type: new FormControl(['Water','Oil'], { validators: [Validators.required] }),
-      date_service: new FormControl(new Date(), { validators: [Validators.required] }),
-      service_providers: new FormControl([], { validators: [Validators.required] }),
-      service_notes: new FormControl(null, { validators: [Validators.required] }),
-      service_cost: new FormControl(null, { validators: [Validators.required] }),
+      name: new FormControl(null, { validators: [Validators.required] }),
+      service_ids: new FormControl([], { validators: [Validators.required] }),
+      date: new FormControl(new Date(), { validators: [Validators.required] }),
+      provider_id: new FormControl([], { validators: [Validators.required] }),
+      notes: new FormControl(null, { validators: [Validators.required] }),
+      cost: new FormControl(null, { validators: [Validators.required] }),
       
     }); 
+  }
+
+  async submitForm(){
+    const loading = await this.loadingController.create({message: 'Please wait'})
+    await loading.present()
+
+
+    const token = await this.storage.get('access_token');
+    const config = {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': `Bearer ${token}`
+      },
+    };
+    const URL = environment.API_HOST;;
+    try{
+      
+      const form = this.form.value;
+      form.vehicle_id = this.vehicle_id;
+      console.log(form);
+      const res = await axios.post(`${URL}/vehicles/${this.vehicle_id}/services/create`, form, config)
+      await loading.dismiss();
+    }
+    catch(e){
+      await loading.dismiss();
+
+
+    }
   }
   
 

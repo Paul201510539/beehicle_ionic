@@ -65,10 +65,11 @@ const routes: Routes = [
   },
   
   {
-    path: 'slist',
+    path: 'slist/:id',
     loadChildren: () => import('./slist/slist.module').then( m => m.SlistPageModule)
-  },  {
-    path: 'addservicelist',
+  },
+  {
+    path: 'addservicelist/:id',
     loadChildren: () => import('./addservicelist/addservicelist.module').then( m => m.AddservicelistPageModule)
   },
   {

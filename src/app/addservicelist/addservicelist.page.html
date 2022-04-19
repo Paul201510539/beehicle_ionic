@@ -24,52 +24,57 @@
     <form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
 
       <ion-item>
-        <ion-label position="floating">service name</ion-label>
-        <ion-input formControlName="service_names" type="text" required></ion-input>
+        <ion-label position="floating">Service Name</ion-label>
+        <ion-input formControlName="name" type="text" required></ion-input>
       </ion-item>
 
 
 
       <ion-item>
-        <ion-label>service type</ion-label>
-        <ion-select multiple formControlName="service_type">
-          <ion-select-option value="Oil">Oil</ion-select-option>
-          <ion-select-option value="Filter">Filter</ion-select-option>
-          <ion-select-option value="Air">Air</ion-select-option>
-          <ion-select-option value="Gas">Gas</ion-select-option>
-          <ion-select-option value="Battery">Battery</ion-select-option>
-          <ion-select-option value="Engine">Engine</ion-select-option>
-          <ion-select-option value="Water">Water</ion-select-option>
+        <ion-label>Service Type/s</ion-label>
+        <ion-select multiple formControlName="service_ids">
+          <ion-select-option value="1">Oil Filter</ion-select-option>
+          <ion-select-option value="2">Air</ion-select-option>
+          <ion-select-option value="3">Gas</ion-select-option>
+          <ion-select-option value="4">Battery</ion-select-option>
+          <ion-select-option value="5">Engine</ion-select-option>
+          <ion-select-option value="6">Water</ion-select-option>
+          <ion-select-option value="7">Oil</ion-select-option>
+          <ion-select-option value="8">Belts</ion-select-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label>Date of service</ion-label>
-        <ion-datetime formControlName="date_service" displayFormat="DD.MM.YYYY" presentation="date"></ion-datetime>
+        <ion-datetime formControlName="date" displayFormat="DD.MM.YYYY" presentation="date"></ion-datetime>
       </ion-item>
 
         <ion-item>
-          <ion-label>service provider</ion-label>
-          <ion-select formControlName="service_providers">
-            <ion-select-option value="yokohama">yokohama</ion-select-option>
-            <ion-select-option value="mitsubishi">mitsubishi</ion-select-option>
-            <ion-select-option value="autokid">autokid</ion-select-option>
-            <ion-select-option value="autofix">autofix</ion-select-option>
-            <ion-select-option value="fixauto">fixauto</ion-select-option>
+          <ion-label>Service Provider</ion-label>
+          <ion-select formControlName="provider_id">
+            <ion-select-option value="1">Motortrade</ion-select-option>
+            <ion-select-option value="2">Toyota</ion-select-option>
+            <ion-select-option value="3">Hyundai</ion-select-option>
+            <ion-select-option value="4">Honda</ion-select-option>
+            <ion-select-option value="5">Mitsubish</ion-select-option>
           </ion-select>
         </ion-item>
 
       <ion-item>
         <ion-label>Cost</ion-label>
-        <ion-input  placeholder="₱0.00" inputmode="decimal" [(ngModel)]="entry" name="amount" formControlName="service_cost"></ion-input>
+        <ion-input  placeholder="₱0.00" inputmode="decimal" [(ngModel)]="entry" name="amount" formControlName="cost"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>Notes</ion-label>
-        <ion-textarea formControlName="service_notes" rows="15" cols="20" placeholder="Enter any notes here...">
+        <ion-textarea formControlName="notes" rows="5" cols="20" placeholder="Enter any notes here...">
         </ion-textarea>
       </ion-item>
-
+      <ion-button size="large" expand="block" shape="round" color="dark"
+      (click)="submitForm()"  >
+      <!--  [disabled]="!form?.valid" -->
+      <ion-text>Sign In</ion-text>
+    </ion-button>
     </form>
   </ion-list>
 </ion-content>

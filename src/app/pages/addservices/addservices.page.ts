@@ -7,7 +7,17 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class AddservicesPage implements OnInit {
   form: FormGroup;
-
+  services : [
+      'Tulog',
+      'Oil Filter',
+      'Air',
+      'Gas',
+      'Battery',
+      'Engine',
+      'Water',
+      'Oil',
+      'Belts'
+  ];
   constructor(public formBuilder: FormBuilder) {
     this.initForm();
   }

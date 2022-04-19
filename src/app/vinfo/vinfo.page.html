@@ -84,7 +84,7 @@
 <ion-toolbar>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ion-tab-button routerLink="/slist">
+      <ion-tab-button [routerLink]="['/slist',id]">
         <ion-icon name="car-outline"></ion-icon>
         <ion-label>services</ion-label>
         <ion-badge>6</ion-badge>

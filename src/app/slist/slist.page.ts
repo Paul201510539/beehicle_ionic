@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-slist',
@@ -6,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./slist.page.scss'],
 })
 export class SlistPage implements OnInit {
-
-  constructor() { }
+public id;
+  constructor(private route : ActivatedRoute) { 
+    this.id =  parseInt(this.route.snapshot.paramMap.get('id'));
+  }
 
   ngOnInit() {
   }
