@@ -1,6 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActionSheetController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage-angular';
+
+
+
 
 
 @Component({
@@ -16,14 +20,21 @@ export class HomePage implements OnInit {
   lineChart: any;
   checklist: any[] = [];
   services: any[] = [];
-  
+  vehicles : any[] = [];
   newHeight = 0;
 
-  constructor(public actionSheetCtrl: ActionSheetController, public alertController: AlertController, private router: Router) {}
+  constructor(public actionSheetCtrl: ActionSheetController, public alertController: AlertController, private router: Router, private storage: Storage) {}
+  goToVehicle(){
+    console.log('heyyy')
+    // this.router.navigate([`/vinfo/${vehicle.id}`])
+  }
+  async loadVehicles(){
+    const token = await this.storage.get("access_token")
+    this.vehicles = await this.storage.get("vehicles")
 
-  ngOnInit() {
-    
-
+    console.log(token);
+    console.log(this.vehicles)
+    console.log('here');
     console.log('ngOnInit');
     this.checklist = [
       { id: 1, name: 'Sample name', age: 25, address: 'Sample address', gender: 'Female', vehicle_group: '2', photo: 'assets/imgs/2.png', distance: 0.5, phone: '9999900000', email: 'test@gmail.com' },
@@ -45,7 +56,14 @@ export class HomePage implements OnInit {
     ];
     this.type = 'checklist';
     this.type = 'services'; 
+  }
+  async ngOnInit() {
+   this.loadVehicles()
+  }
 
+  async ionViewWillEnter(){
+    this.loadVehicles()
+    console.log('papasok nako');
   }
   
   ngAfterViewInit() {
@@ -172,6 +190,10 @@ export class HomePage implements OnInit {
     await alert.present();
     let result = await alert.onDidDismiss();
     console.log(result);
+  }
+
+  testClick(){
+    this.router.navigate(['/addvehicle']);
   }
 
 }

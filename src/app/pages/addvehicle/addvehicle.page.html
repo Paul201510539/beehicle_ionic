@@ -1,18 +1,11 @@
-
 <ion-header>
   <ion-toolbar color ="primary">
     <ion-title class="ion-text-center">
   Add Vehicle
     </ion-title>
     
-  <ion-buttons slot="start">
-    <ion-menu-button menuId="custom-menu"></ion-menu-button>
-  </ion-buttons>
-
-    <ion-buttons slot="end">
-      <ion-button fill="clear" (click)="presentAlert()">
-        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
-      </ion-button>        
+    <ion-buttons slot="start">
+      <ion-back-button name="arrow-back-outline" ></ion-back-button>
     </ion-buttons>
     
   </ion-toolbar>
@@ -20,18 +13,17 @@
 
 
 
-<ion-content >
-  <form [formGroup]="registrationForm">
-
+<ion-content>
+  <!-- <form [formGroup]="form">
+    
 <ion-item>
-  <ion-label position="floating">Vehicle Brand</ion-label>
-  <ion-input ></ion-input>
+  <ion-input placeholder="brand name" type="text"></ion-input>
 </ion-item>
 
 
 <ion-item>
   <ion-label position="floating">Plate Number</ion-label>
-  <ion-input></ion-input>
+  <ion-input ></ion-input>
 </ion-item>
 
 
@@ -39,7 +31,7 @@
 <p>
   <ion-label>Vehicle Type</ion-label>
 </p>
-<ion-select value="4" slot="end">
+<ion-select value="4" slot="end" >
   <ion-select-option value="01">two wheels</ion-select-option>
   <ion-select-option value="02">four wheels</ion-select-option>
   <ion-select-option value="03">three wheels</ion-select-option>
@@ -56,7 +48,7 @@
 
 <ion-item>
   <ion-label position="floating">Chasis No.</ion-label>
-  <ion-input></ion-input>
+  <ion-input ></ion-input>
 </ion-item>
 
 
@@ -66,7 +58,7 @@
   <p>
     <ion-label >Coding Schedule</ion-label>
   </p>
-  <ion-select value="4" slot="end">
+  <ion-select value="4" slot="end" >
     <ion-select-option value="01">monday</ion-select-option>
     <ion-select-option value="02">tuesday</ion-select-option>
     <ion-select-option value="03">wednesday</ion-select-option>
@@ -81,7 +73,7 @@
 
   <ion-item>
     <ion-label>Notes:</ion-label>
-    <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..."></ion-textarea>
+    <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..." ></ion-textarea>
   </ion-item>
 
   <div >
@@ -92,11 +84,78 @@
     </div>
   </div>
 
-</form>
+</form> -->
 
-  <ion-button  type="button" routerLink="/home" (click)="addbutton" color="warning" expand="block"> <ion-label color="light">ADD</ion-label>
+
+<form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
+
+  <ion-item >
+    <ion-label position="floating">Vehicle brand</ion-label>
+    <ion-input formControlName="brand" type="text" required></ion-input>
+  </ion-item>
+
+  <ion-item >
+    <ion-label position="floating">Plate Number</ion-label>
+    <ion-input formControlName="plate_number" type="text" required></ion-input>
+  </ion-item> 
+
+  <ion-item >
+    <ion-label>Vehicle type</ion-label>
+    <ion-select  formControlName="vehicle_type">
+      <ion-select-option value="4 wheels">4 wheels</ion-select-option>
+      <ion-select-option value="3 wheels">3 wheels</ion-select-option>
+      <ion-select-option value="2 wheels">2 wheels</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Pick date</ion-label>
+    <ion-datetime formControlName="date_purchased"
+      displayFormat="DD.MM.YYYY"
+      presentation="date"
+      [(ngModel)]="date"
+    ></ion-datetime>
+  </ion-item>
+
+  <ion-item >
+    <ion-label position="floating">Chasis</ion-label>
+    <ion-input formControlName="chasis" type="text" required></ion-input>
+  </ion-item>
+
+  <ion-item >
+    <ion-label position="floating">Coding</ion-label>
+    <ion-input formControlName="coding" type="text" required [(ngModel)]='coding' value="{{coding}}"></ion-input>
+  </ion-item>
+
+  <!-- <ion-item >
+    <ion-label>coding</ion-label>
+    <ion-select multiple="true" [value]="['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']" formControlName="vehicle_coding">
+      <ion-select-option value="Monday">monday</ion-select-option>
+      <ion-select-option value="tuesday">tuesday</ion-select-option>
+      <ion-select-option value="wednesday">wednesday</ion-select-option>
+      <ion-select-option value="thursday">thursday</ion-select-option>
+      <ion-select-option value="friday">friday</ion-select-option>
+      <ion-select-option value="saturday">saturday</ion-select-option>
+      <ion-select-option value="sunday">sunday</ion-select-option>
+    </ion-select>
+  </ion-item> -->
+
+  <ion-item>
+    <ion-button >Select Images</ion-button>
+  </ion-item>
+
+  <ion-item >
+    <ion-label>Notes</ion-label>
+    <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..." formControlName="notes"></ion-textarea>
+  </ion-item>
+  
+
+
+  <ion-button  type="submit" color="warning" expand="block"> <ion-label color="light">Submit</ion-label>
     <ion-icon slot="end" name="add"></ion-icon>
   </ion-button>
+</form>
+
 </ion-content>
 
 

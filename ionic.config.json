@@ -1,5 +1,7 @@
 {
   "name": "Beehicle",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

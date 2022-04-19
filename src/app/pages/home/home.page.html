@@ -1,50 +1,60 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar color ="primary">
+  <ion-toolbar color="primary">
     <ion-title class="ion-text-center">
-  Beehicle App
+      <ion-label> Dashboard</ion-label>
     </ion-title>
-  <ion-buttons slot="start">
-    <ion-menu-button menuId="custom-menu"></ion-menu-button>
-  </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-menu-button menuId="custom-menu"></ion-menu-button>
+    </ion-buttons>
     <ion-buttons slot="end">
       <ion-button fill="clear" (click)="presentAlert()">
         <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
-      </ion-button>  
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 
-  
+
 </ion-header>
 
-<ion-content [scrollEvents]="true" (ionScroll)="scroll($event)" #myContent>
+<ion-content [scrollEvents]="true" (ionScrollStart)="logScrollStart()" (ionScroll)="logScrolling($event)"
+  (ionScrollEnd)="logScrollEnd()">
+
+
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button  routerLink="/addvehicle"> 
+    <ion-fab-button (click)="testClick()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  
+
   <ion-list lines="none">
-    <ion-item-group>
-      <div [ngSwitch]="type">
-        <ion-list *ngSwitchCase="'checklist'">
-          <ion-item class="ion-padding-vertical popItem" *ngFor="let item of [].constructor(20); let i = index" (click)="checklistoptions(item)">
-            <ion-thumbnail slot="start">
-              <img src="assets/imgs/logo.gif">
-            </ion-thumbnail>
-            <h6>Checklist Sample - {{ i }}</h6>
+    <ion-item-group >
+
+      
+        <!-- <ion-item [routerLink]="['/vinfo', vehicle.id]" *ngFor="let vehicle of vehicles">
+          <ion-label>{{vehicle.plate_number}}</ion-label>
+          <ion-avatar slot="start">
+            <img src="assets/imgs/pic1.jpg">
+          </ion-avatar>
+          <ion-label>
+            <h2>click</h2>
+            <h3>for more info</h3>
+          </ion-label>
+        </ion-item> -->
+
+        <ion-item-sliding [routerLink]="['/vinfo', vehicle.id]" *ngFor="let vehicle of vehicles">
+          <ion-item>
+            <ion-label>{{vehicle.plate_number}}</ion-label>
+            <ion-avatar slot="start">
+              <img src="assets/imgs/pic1.jpg">
+            </ion-avatar>
           </ion-item>
-        </ion-list>
-    
-        <ion-list *ngSwitchCase="'services'">
-          <ion-item class="ion-padding-vertical popItem" *ngFor="let item of [].constructor(20); let i = index" (click)="servicesoptions(item)">
-            <ion-thumbnail slot="start">
-              <img src="assets/imgs/logo.gif">
-            </ion-thumbnail>
-            <h6>Services Sample - {{ i }}</h6>
-          </ion-item>
-        </ion-list>
-      </div>
+          <ion-item-options side="end">
+            <ion-item-option (click)="unread(item)">Delete</ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+        
+
     </ion-item-group>
   </ion-list>
 </ion-content>

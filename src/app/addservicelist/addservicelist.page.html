@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="">
+      Add service
+    </ion-title>
+
+    <ion-buttons slot="start">
+      <ion-back-button name="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-list lines="none">
+
+    <form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
+
+      <ion-item>
+        <ion-label position="floating">service name</ion-label>
+        <ion-input formControlName="service_names" type="text" required></ion-input>
+      </ion-item>
+
+
+
+      <ion-item>
+        <ion-label>service type</ion-label>
+        <ion-select multiple formControlName="service_type">
+          <ion-select-option value="Oil">Oil</ion-select-option>
+          <ion-select-option value="Filter">Filter</ion-select-option>
+          <ion-select-option value="Air">Air</ion-select-option>
+          <ion-select-option value="Gas">Gas</ion-select-option>
+          <ion-select-option value="Battery">Battery</ion-select-option>
+          <ion-select-option value="Engine">Engine</ion-select-option>
+          <ion-select-option value="Water">Water</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Date of service</ion-label>
+        <ion-datetime formControlName="date_service" displayFormat="DD.MM.YYYY" presentation="date"></ion-datetime>
+      </ion-item>
+
+        <ion-item>
+          <ion-label>service provider</ion-label>
+          <ion-select formControlName="service_providers">
+            <ion-select-option value="yokohama">yokohama</ion-select-option>
+            <ion-select-option value="mitsubishi">mitsubishi</ion-select-option>
+            <ion-select-option value="autokid">autokid</ion-select-option>
+            <ion-select-option value="autofix">autofix</ion-select-option>
+            <ion-select-option value="fixauto">fixauto</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+      <ion-item>
+        <ion-label>Cost</ion-label>
+        <ion-input  placeholder="₱0.00" inputmode="decimal" [(ngModel)]="entry" name="amount" formControlName="service_cost"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Notes</ion-label>
+        <ion-textarea formControlName="service_notes" rows="15" cols="20" placeholder="Enter any notes here...">
+        </ion-textarea>
+      </ion-item>
+
+    </form>
+  </ion-list>
+</ion-content>

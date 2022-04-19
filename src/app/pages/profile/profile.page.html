@@ -6,73 +6,67 @@
       <ion-back-button *ngIf="back" defaultHref="/home"></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button fill="clear">EDIT</ion-button>
+      <ion-button fill="clear" routerLink="/userupdate">EDIT</ion-button>
     </ion-buttons>
   </ion-toolbar>
   <ion-grid class="main-header">
     <div align="center">
       <ion-avatar>
-        <img src="assets/imgs/logo.gif" />
+        <img src="assets/imgs/pic1.jpg" />
+        <ion-label><strong><h1>Aaron Paul</h1></strong></ion-label>
       </ion-avatar>
     </div>
   </ion-grid>
 
-  <ion-row class="ion-padding-horizontal">
-    <ion-col size="6">
-      <ion-item lines="none" class="ion-text-center">
-        <ion-icon name="car" color="primary"></ion-icon>
-        <ion-label>
-          2
-          <p>Vehicle</p>
-        </ion-label>
-      </ion-item>
-    </ion-col>
-    <ion-col size="6">
-      <ion-item lines="none" class="ion-text-center">
-        <ion-icon name="list" color="primary"></ion-icon>
-        <ion-label>
-          3
-          <p>Completed</p>
-        </ion-label>
-      </ion-item>
-    </ion-col>
-  </ion-row>
+
 
   <ion-list lines="full">
     <ion-item>
       <ion-label>
         <ion-text>Name</ion-text>
-        <p><ion-text color="dark">Sample Name</ion-text></p>
+        <p>
+          <ion-text color="dark">Aaron Paul Triviño</ion-text>
+        </p>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
         <ion-text>Vehicle</ion-text>
-        <p><ion-text color="dark">Sample Vehicle Unit</ion-text></p>
+        <p>
+          <ion-text color="dark">Sample Vehicle Unit</ion-text>
+        </p>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
         <ion-text>Phone</ion-text>
-        <p><ion-text color="dark">9999900000</ion-text></p>
+        <p>
+          <ion-text color="dark">9999900000</ion-text>
+        </p>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
         <ion-text>Email</ion-text>
-        <p><ion-text color="dark">test@gmail.com</ion-text></p>
+        <p>
+          <ion-text color="dark">test@gmail.com</ion-text>
+        </p>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
         <ion-text>Age</ion-text>
-        <p><ion-text color="dark">22 years old</ion-text></p>
+        <p>
+          <ion-text color="dark">22 years old</ion-text>
+        </p>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
         <ion-text>Address</ion-text>
-        <p><ion-text color="dark">Olongapo City</ion-text></p>
+        <p>
+          <ion-text color="dark">Olongapo City</ion-text>
+        </p>
       </ion-label>
     </ion-item>
   </ion-list>

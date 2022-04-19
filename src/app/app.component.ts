@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Storage } from '@ionic/storage-angular'
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,11 @@ export class AppComponent {
     {title: 'Sign Out', url: '', icon: 'log-out', route: true},
   ];
 
-  constructor() {}
+  constructor( private storage:Storage ) {}
+
+  async ngOnInit(){
+    await this.storage.create();
+  }
 
   signOut() {
     console.log('signout');

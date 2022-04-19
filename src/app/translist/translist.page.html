@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="">
+      Transaction list
+    </ion-title>
+
+    <ion-buttons slot="start">
+      <ion-back-button name="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true" (ionScrollStart)="logScrollStart()" (ionScroll)="logScrolling($event)"
+(ionScrollEnd)="logScrollEnd()">
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button routerLink="/trans">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-list>
+  <ion-item-sliding>
+    <ion-item>
+      <ion-label>Item</ion-label>
+    </ion-item>
+    <ion-item-options side="end">
+      <ion-item-option (click)="unread(testing)">Delete</ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
+
+  <ion-item-sliding>
+    <ion-item>
+      <ion-label>Item</ion-label>
+    </ion-item>
+    <ion-item-options side="end">
+      <ion-item-option (click)="unread(testing)">Delete</ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
+
+
+</ion-content>

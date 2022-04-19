@@ -11,9 +11,9 @@ import { SigninPage } from './signin.page';
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     IonicModule,
-    SigninPageRoutingModule
+    SigninPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [SigninPage]
 })

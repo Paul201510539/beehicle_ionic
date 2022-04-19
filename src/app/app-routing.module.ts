@@ -47,6 +47,37 @@ const routes: Routes = [
     path: 'odometer',
     loadChildren: () => import('./pages/odometer/odometer.module').then( m => m.OdometerPageModule)
   },
+  {
+    path: 'vinfo/:id',
+    loadChildren: () => import('./vinfo/vinfo.module').then( m => m.VinfoPageModule)
+  },
+  {
+    path: 'vimages',
+    loadChildren: () => import('./vimages/vimages.module').then( m => m.VimagesPageModule)
+  },
+  {
+    path: 'trans',
+    loadChildren: () => import('./trans/trans.module').then( m => m.TransPageModule)
+  },
+  {
+    path: 'userupdate',
+    loadChildren: () => import('./userupdate/userupdate.module').then( m => m.UserupdatePageModule)
+  },
+  
+  {
+    path: 'slist',
+    loadChildren: () => import('./slist/slist.module').then( m => m.SlistPageModule)
+  },  {
+    path: 'addservicelist',
+    loadChildren: () => import('./addservicelist/addservicelist.module').then( m => m.AddservicelistPageModule)
+  },
+  {
+    path: 'translist',
+    loadChildren: () => import('./translist/translist.module').then( m => m.TranslistPageModule)
+  },
+
+
+
 ];
 
 

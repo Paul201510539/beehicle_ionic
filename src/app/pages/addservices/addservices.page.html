@@ -1,76 +1,170 @@
-<div>
-  <ion-header>
-  <ion-toolbar color ="primary">
-    <ion-title class="ion-text-center">
-  Add Services
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="">
+      Service info
     </ion-title>
-  <ion-buttons slot="start">
-    <ion-menu-button menuId="custom-menu"></ion-menu-button>
-  </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button fill="clear" (click)="presentAlert()">
-        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
-      </ion-button>  
+
+    <ion-buttons slot="start">
+      <ion-back-button name="arrow-back-outline"></ion-back-button>
     </ion-buttons>
+
   </ion-toolbar>
-  </ion-header>
-</div>
+</ion-header>
 
-<ion-content >
-  <form>
-    
-    <ion-item>
-      <ion-label  position="floating">Service name</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
 
-    <ion-item>
-      <ion-label >Vehicle year</ion-label>
-      <ion-datetime  slot="end" value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
-    </ion-item>
+<ion-content>
+  <!-- <form [formGroup]="form">
 
-    <ion-item>
-      <ion-label position="floating">Amount</ion-label>
-      <ion-input inputmode="number"></ion-input>
-    </ion-item>
+<ion-item>
+  <ion-input placeholder="brand name" type="text"></ion-input>
+</ion-item>
 
-    <!--<ion-item>
-      <ion-label color="primary">select vehicle</ion-label>
-      <ion-select value="4" slot="end">
-        <ion-select-option value="01">Honda</ion-select-option>
-        <ion-select-option value="02">isuzu</ion-select-option>
-        <ion-select-option value="03">mustang</ion-select-option>
-        <ion-select-option value="04">toyota</ion-select-option>
-      </ion-select>
-    </ion-item>-->
 
-    <ion-item>
-      <ion-label >Next service schedule</ion-label>
-      <ion-datetime  slot="end" value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
-    </ion-item>
+<ion-item>
+  <ion-label position="floating">Plate Number</ion-label>
+  <ion-input ></ion-input>
+</ion-item>
 
-    <ion-item>
-      <ion-label  position="floating">Service provider</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
 
-    <ion-item>
-      <ion-label>Notes:</ion-label>
-      <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..."></ion-textarea>
-    </ion-item>
+<ion-item>
+<p>
+  <ion-label>Vehicle Type</ion-label>
+</p>
+<ion-select value="4" slot="end" >
+  <ion-select-option value="01">two wheels</ion-select-option>
+  <ion-select-option value="02">four wheels</ion-select-option>
+  <ion-select-option value="03">three wheels</ion-select-option>
+  
+ </ion-select>
+</ion-item>
 
-    <div class="ion-padding">
-      <p class="resize" >Upload image of service as proof</p>
-      <ion-button class="button-size" (click)="PickFile()" color="warning"><ion-label color="light">Pick File</ion-label></ion-button>
-      <div>
-        {{returnpath}}
-      </div>
+
+
+<ion-item >
+  <ion-label >Vehicle Year</ion-label>
+  <ion-datetime slot="end" value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating">Chasis No.</ion-label>
+  <ion-input ></ion-input>
+</ion-item>
+
+
+
+<ion-item>
+ 
+  <p>
+    <ion-label >Coding Schedule</ion-label>
+  </p>
+  <ion-select value="4" slot="end" >
+    <ion-select-option value="01">monday</ion-select-option>
+    <ion-select-option value="02">tuesday</ion-select-option>
+    <ion-select-option value="03">wednesday</ion-select-option>
+    <ion-select-option value="04">thursday</ion-select-option>
+    <ion-select-option value="04">friday</ion-select-option>
+    <ion-select-option value="04">saturday</ion-select-option>
+    <ion-select-option value="04">sunday</ion-select-option>
+   </ion-select>
+  </ion-item>
+
+ 
+
+  <ion-item>
+    <ion-label>Notes:</ion-label>
+    <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..." ></ion-textarea>
+  </ion-item>
+
+  <div >
+    <p class="sukat">Upload image of receipt/warranty</p>
+    <ion-button color="warning"><ion-label color="light">Pick File</ion-label></ion-button>
+    <div>
+      {{returnpath}}
     </div>
+  </div>
+
+</form> -->
+
+  <ion-list>
+
+    <form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
+
+      <!-- <ion-item>
+      <ion-label position="floating">service name</ion-label>
+      <ion-input formControlName="service_name" type="text" required></ion-input>
+    </ion-item> -->
+
+      <!-- <ion-item>
+      <ion-label>services</ion-label>
+      <ion-select multiple="true" value="'oil_change', 'tune-up', 'fluid_check', 'engine', 'air filter', 'tire_rotation', 'battery'" formControlName="service_name"> 
+        <ion-select-option value="oil_change">oil change</ion-select-option>
+        <ion-select-option value="tune-up">tune-up</ion-select-option>
+        <ion-select-option value="'fluid_check">fluid check</ion-select-option>
+        <ion-select-option value="engine">engine</ion-select-option>
+        <ion-select-option value="air filter">air filter</ion-select-option>
+        <ion-select-option value="tire_rotation">tire rotation</ion-select-option>
+        <ion-select-option value="battery'">battery</ion-select-option>
+      </ion-select>
+    </ion-item> -->
+
+      <ion-item>
+        <ion-label position="floating">service name</ion-label>
+        <ion-input formControlName="service_name" type="text" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>service type</ion-label>
+        <ion-select multiple formControlName="service_type">
+          <ion-select-option value="Oil">Oil</ion-select-option>
+          <ion-select-option value="Filter">Filter</ion-select-option>
+          <ion-select-option value="Air">Air</ion-select-option>
+          <ion-select-option value="Gas">Gas</ion-select-option>
+          <ion-select-option value="Battery">Battery</ion-select-option>
+          <ion-select-option value="Engine">Engine</ion-select-option>
+          <ion-select-option value="Water">Water</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>date of service</ion-label>
+        <ion-datetime formControlName="date_service" displayFormat="DD.MM.YYYY" presentation="date" [(ngModel)]="date">
+        </ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>service provider</ion-label>
+        <ion-select formControlName="service_providers">
+          <ion-select-option value="yokohama">yokohama</ion-select-option>
+          <ion-select-option value="mitsubishi">mitsubishi</ion-select-option>
+          <ion-select-option value="autokid">autokid</ion-select-option>
+          <ion-select-option value="autofix">autofix</ion-select-option>
+          <ion-select-option value="fixauto">fixauto</ion-select-option>
+        </ion-select>
+      </ion-item>
 
 
-  </form>
+      <ion-item>
+        <ion-label>Cost</ion-label>
+        <ion-input placeholder="₱0.00" inputmode="decimal" [(ngModel)]="entry" name="amount"
+          formControlName="service_cost"></ion-input>
+      </ion-item>
 
-  <ion-button type="submit" expand="block" color="warning"><ion-label color="light">ADD</ion-label>
-    <ion-icon slot="end" name="add"></ion-icon>
-  </ion-button>
+
+      <ion-item>
+        <ion-label>Notes</ion-label>
+        <ion-textarea rows="10" cols="20" placeholder="Enter any notes here..." formControlName="service_notes">
+        </ion-textarea>
+      </ion-item>
+
+
+      <ion-button type="submit" color="warning" expand="block">
+        <ion-label color="light">Submit</ion-label>
+        <ion-icon slot="end" name="add"></ion-icon>
+      </ion-button>
+    </form>
+
+
+
+
+  </ion-list>
 </ion-content>

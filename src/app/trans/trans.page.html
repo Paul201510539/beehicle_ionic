@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="">
+      Transaction
+    </ion-title>
+
+    <ion-buttons slot="start">
+      <ion-back-button name="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content [scrollEvents]="true" (ionScrollStart)="logScrollStart()" (ionScroll)="logScrolling($event)"
+(ionScrollEnd)="logScrollEnd()">
+
+<ion-tabs>
+      <!-- Searchbar with a placeholder -->
+      <ion-searchbar slot="top" placeholder="From"></ion-searchbar>
+      <ion-searchbar slot="top" placeholder="to"></ion-searchbar>
+</ion-tabs>
+
+
+</ion-content>

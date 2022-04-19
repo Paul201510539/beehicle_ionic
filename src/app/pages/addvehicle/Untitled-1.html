@@ -1,0 +1,63 @@
+
+<ion-item>
+    <ion-label position="floating">Plate Number</ion-label>
+    <ion-input formControlName="plate_number"></ion-input>
+  </ion-item>
+  
+  
+  <ion-item>
+  <p>
+    <ion-label>Vehicle Type</ion-label>
+  </p>
+  <ion-select value="4" slot="end" formControlName="vehicle_type">
+    <ion-select-option value="01">two wheels</ion-select-option>
+    <ion-select-option value="02">four wheels</ion-select-option>
+    <ion-select-option value="03">three wheels</ion-select-option>
+    
+   </ion-select>
+  </ion-item>
+  
+  
+  
+  <ion-item >
+    <ion-label >Vehicle Year</ion-label>
+    <ion-datetime slot="end" value="2019-10-01T15:43:40.394Z" display-timezone="utc" formControlName="vehicle_year"></ion-datetime>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label position="floating">Chasis No.</ion-label>
+    <ion-input formControlName="vehicle_chasis"></ion-input>
+  </ion-item>
+  
+  
+  
+  <ion-item>
+   
+    <p>
+      <ion-label >Coding Schedule</ion-label>
+    </p>
+    <ion-select value="4" slot="end" formControlName="vehicle_coding">
+      <ion-select-option value="01">monday</ion-select-option>
+      <ion-select-option value="02">tuesday</ion-select-option>
+      <ion-select-option value="03">wednesday</ion-select-option>
+      <ion-select-option value="04">thursday</ion-select-option>
+      <ion-select-option value="04">friday</ion-select-option>
+      <ion-select-option value="04">saturday</ion-select-option>
+      <ion-select-option value="04">sunday</ion-select-option>
+     </ion-select>
+  </ion-item>
+  
+   
+  
+    <ion-item>
+      <ion-label>Notes:</ion-label>
+      <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..." formControlName="vehicle_notes"></ion-textarea>
+    </ion-item>
+  
+    <div >
+      <p class="sukat">Upload image of receipt/warranty</p>
+      <ion-button color="warning"><ion-label color="light">Pick File</ion-label></ion-button>
+      <div>
+        <!-- {{returnpath}} -->
+      </div>
+    </div>
