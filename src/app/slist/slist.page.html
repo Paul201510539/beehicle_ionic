@@ -6,7 +6,7 @@
 
 
     <ion-buttons slot="start">
-      <ion-back-button name="arrow-back-outline"></ion-back-button>
+      <ion-back-button defaultHref="/vinfo" name="arrow-back-outline"></ion-back-button>
     </ion-buttons>
 
   </ion-toolbar>
@@ -21,11 +21,11 @@
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button [routerLink]="['/addservicelist',id]">
-      <ion-icon name="add"></ion-icon>
+      <ion-icon name="add"></ion-icon> 
     </ion-fab-button>
-  </ion-fab>
-
-  <ion-list lines="none">
+  </ion-fab> 
+ 
+  <ion-list lines="none"> 
     <!-- <ion-item-group >
 
       <ion-item routerLink="/addservices">

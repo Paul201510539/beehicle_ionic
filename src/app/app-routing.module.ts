@@ -52,6 +52,10 @@ const routes: Routes = [
     loadChildren: () => import('./vinfo/vinfo.module').then( m => m.VinfoPageModule)
   },
   {
+    path: 'vinfo',
+    loadChildren: () => import('./vinfo/vinfo.module').then( m => m.VinfoPageModule)
+  },
+  {
     path: 'vimages',
     loadChildren: () => import('./vimages/vimages.module').then( m => m.VimagesPageModule)
   },
@@ -69,7 +73,15 @@ const routes: Routes = [
     loadChildren: () => import('./slist/slist.module').then( m => m.SlistPageModule)
   },
   {
+    path: 'slist',
+    loadChildren: () => import('./slist/slist.module').then( m => m.SlistPageModule)
+  },
+  {
     path: 'addservicelist/:id',
+    loadChildren: () => import('./addservicelist/addservicelist.module').then( m => m.AddservicelistPageModule)
+  },
+  {
+    path: 'addservicelist',
     loadChildren: () => import('./addservicelist/addservicelist.module').then( m => m.AddservicelistPageModule)
   },
   {
