@@ -1,7 +1,7 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="primary">
     <ion-title>
-      <p class="centered-p">Vehicle info</p>
+      <p class="centered-p">Vehicle Info</p>
     </ion-title>
 
     <ion-buttons slot="start">
@@ -14,7 +14,7 @@
   <form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
 
     <ion-item>
-      <ion-label position="floating">Vehicle brand</ion-label>
+      <ion-label position="floating">Vehicle Brand</ion-label>
       <ion-input formControlName="brand" type="text" required></ion-input>
     </ion-item>
 
@@ -39,7 +39,7 @@
   </ion-item> -->
 
     <ion-item>
-      <ion-label>Pick date</ion-label>
+      <ion-label>Date of Purchase</ion-label>
       <ion-datetime formControlName="date_purchased" displayFormat="DD.MM.YYYY" presentation="date" [(ngModel)]="date">
       </ion-datetime>
     </ion-item>

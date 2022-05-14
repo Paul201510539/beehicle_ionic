@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title class="">
-      <p class="centered-p">Service info</p>
+      <p class="centered-p">Service Info</p>
     </ion-title>
 
     <ion-buttons slot="start">
@@ -108,7 +108,7 @@
     </ion-item> -->
 
       <ion-item>
-        <ion-label position="floating">service name</ion-label>
+        <ion-label position="floating">Service Name</ion-label>
         <ion-input formControlName="service_name" type="text" required></ion-input>
       </ion-item>
 
@@ -127,13 +127,13 @@
       </ion-item>
 
       <ion-item>
-        <ion-label>date of service</ion-label>
+        <ion-label>Date of Service</ion-label>
         <ion-datetime formControlName="date_service" displayFormat="DD.MM.YYYY" presentation="date" [(ngModel)]="date">
         </ion-datetime>
       </ion-item>
 
       <ion-item>
-        <ion-label>service provider</ion-label>
+        <ion-label>Service Provider</ion-label>
         <ion-select formControlName="service_providers">
           <ion-select-option value="yokohama">yokohama</ion-select-option>
           <ion-select-option value="mitsubishi">mitsubishi</ion-select-option>

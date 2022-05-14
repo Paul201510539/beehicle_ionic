@@ -183,8 +183,8 @@ export class HomePage implements OnInit {
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'About',
-      subHeader: 'sample',
-      message: 'Yamete Kudesai.',
+      subHeader: 'Beehicle Journal',
+      message: 'A Mobile Application that aim to lessen the burden of bringing all documents/papers of the customer`s vehicle. To monitor/predict the maintenance of the vehicle it will help track how much the vehicle will cost per travel. The Application will help to compute the fuel consumption from point to point and notify when to PMS.',
       buttons: ['Okay']
     });
     await alert.present();

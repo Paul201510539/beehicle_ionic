@@ -1,11 +1,11 @@
 <ion-header>
   <ion-toolbar color ="primary">
     <ion-title class="ion-text-center">
-      <p class="centered-p">Add vehicle</p>
+      <p class="centered-p">Add Vehicle</p>
     </ion-title>
     
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home" name="arrow-back-outline" ></ion-back-button>
+      <ion-back-button defaultHref="/home"name="arrow-back-outline" ></ion-back-button>
     </ion-buttons>
     
   </ion-toolbar>
@@ -90,7 +90,7 @@
 <form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
 
   <ion-item >
-    <ion-label position="floating">Vehicle brand</ion-label>
+    <ion-label position="floating">Vehicle Brand</ion-label>
     <ion-input formControlName="brand" type="text" required></ion-input>
   </ion-item>
 
@@ -100,7 +100,7 @@
   </ion-item> 
 
   <ion-item >
-    <ion-label>Vehicle type</ion-label>
+    <ion-label>Vehicle Type</ion-label>
     <ion-select  formControlName="vehicle_type">
       <ion-select-option value="4 wheels">4 wheels</ion-select-option>
       <ion-select-option value="3 wheels">3 wheels</ion-select-option>
@@ -109,7 +109,7 @@
   </ion-item>
 
   <ion-item>
-    <ion-label>Pick date</ion-label>
+    <ion-label>Pick Date</ion-label>
     <ion-datetime formControlName="date_purchased"
       displayFormat="DD.MM.YYYY"
       presentation="date"
