@@ -1,28 +1,49 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title class="">
+    <ion-title class="ion-text-center">
       <p class="centered-p">Transaction</p>
     </ion-title>
-
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/translist" name="arrow-back-outline"></ion-back-button>
     </ion-buttons>
-
-    <!-- <capacitor-google-map id="map"></capacitor-google-map> -->
-
   </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="UpdateSearchResults()" placeholder="From"
+      (ionClear)="ClearAutocomplete()"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="UpdateSearchResults()" placeholder="To"
+      (ionClear)="ClearAutocomplete()"></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-list [hidden]="autocompleteItems.length == 0">
+    <ion-item *ngFor="let item of autocompleteItems" tappable (click)="SelectSearchResult(item)">
+      {{ item.description }}
+    </ion-item>
+  </ion-list>
+
+  <ion-row>
+    <!-- <ion-col size="6">
+      <ion-text>Google & Ionic Map</ion-text>
+    </ion-col> -->
+    <ion-toolbar>
+      <ion-button style="background:#FFFFFF" (click)="loadMap()" shape="round" fill="outline">
+        <ion-icon slot="secondary" name="locate"></ion-icon>
+        Where i am
+      </ion-button>
+    </ion-toolbar> 
+    
+  </ion-row>
 </ion-header>
-
-
-
-<ion-content [scrollEvents]="true" (ionScrollStart)="logScrollStart()" (ionScroll)="logScrolling($event)"
-(ionScrollEnd)="logScrollEnd()">
-
-<ion-tabs>
-      <!-- Searchbar with a placeholder -->
-      <ion-searchbar slot="top" placeholder="From"></ion-searchbar>
-      <ion-searchbar slot="top" placeholder="to"></ion-searchbar>
-</ion-tabs>
-
-
+<ion-content>
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button (click)="ShowCords()" ion-fab color="tertiary">
+      <ion-icon name="information-circle-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <div class="map-wrapper" style="height: 100%;">
+    <div id="map_center">
+      <ion-icon name="pin" size="large" color="danger"></ion-icon>
+    </div>
+    <div #map id="map" style="height: 100%;"></div>
+  </div>
 </ion-content>
