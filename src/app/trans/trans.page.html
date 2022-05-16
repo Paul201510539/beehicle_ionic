@@ -11,8 +11,6 @@
   <ion-toolbar>
     <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="UpdateSearchResults()" placeholder="From"
       (ionClear)="ClearAutocomplete()"></ion-searchbar>
-    <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="UpdateSearchResults()" placeholder="To"
-      (ionClear)="ClearAutocomplete()"></ion-searchbar>
   </ion-toolbar>
 
   <ion-list [hidden]="autocompleteItems.length == 0">

@@ -100,6 +100,7 @@ export class TransPage implements OnInit {
   
   //AUTOCOMPLETE, SIMPLY LOAD THE PLACE USING GOOGLE PREDICTIONS AND RETURNING THE ARRAY.
   UpdateSearchResults(){
+console.log("input", this.autocomplete.input)
     if (this.autocomplete.input == '') {
       this.autocompleteItems = [];
       return;
