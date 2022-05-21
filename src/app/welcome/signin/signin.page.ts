@@ -73,7 +73,7 @@ export class SigninPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Alert',
       message: 'Invalid Credentials',
-      buttons: ['OK']
+      buttons: ['OK'] 
     })
     await alert.present();
 

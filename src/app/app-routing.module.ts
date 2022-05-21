@@ -87,7 +87,9 @@ const routes: Routes = [
   {
     path: 'translist',
     loadChildren: () => import('./translist/translist.module').then( m => m.TranslistPageModule)
-  },
+  }
+ 
+
 
 
 

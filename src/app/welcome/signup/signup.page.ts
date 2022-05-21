@@ -43,8 +43,8 @@ export class SignupPage implements OnInit {
         'Access-Control-Allow-Origin': '*',
       },
     };
-    // const URL = 'http://beehicle.gg/api/user/register';
-    const URL = environment.API_HOST;;
+    const URL = 'https://beehicle.xyz/api/user/register';
+    // const URL = environment.API_HOST;;
 
     const res = await axios.post(URL, this.form.value, config);
     console.log(res);
