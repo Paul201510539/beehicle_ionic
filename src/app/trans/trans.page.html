@@ -9,9 +9,13 @@
   </ion-toolbar>
 
   <ion-toolbar>
-    <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="UpdateSearchResults()" placeholder="From"
+    <!-- <ion-searchbar [(ngModel)]="autocomplete.input" debounce = "500" (ionChange)="UpdateSearchResults('from')" placeholder="From"
       (ionClear)="ClearAutocomplete()"></ion-searchbar>
-    <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="UpdateSearchResults()" placeholder="To"
+    <ion-searchbar [(ngModel)]="autocomplete.input" debounce = "500" (ionChange)="UpdateSearchResults('to')" placeholder="To"
+      (ionClear)="ClearAutocomplete()"></ion-searchbar> -->
+    <ion-searchbar [(ngModel)]="location.from" debounce = "500" (ionChange)="UpdateSearchResults('from')" placeholder="From"
+      (ionClear)="ClearAutocomplete()"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="location.to" debounce = "500" (ionChange)="UpdateSearchResults('to')" placeholder="To"
       (ionClear)="ClearAutocomplete()"></ion-searchbar>
   </ion-toolbar>
 

@@ -13,15 +13,18 @@ declare var google;
 export class TransPage implements OnInit {
 
   @ViewChild('map',  {static: false}) mapElement: ElementRef;
-   map: any;
+  map: any;
   address:string;
   lat: string;
   long: string;  
   autocomplete: { input: string; };
   autocompleteItems: any[];
-  location: any;
+  location: Object;
   placeid: any;
   GoogleAutocomplete: any;
+  from : Object;
+  to: Object;
+  mode: string;
 
 
   constructor(
@@ -32,6 +35,11 @@ export class TransPage implements OnInit {
     this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
     this.autocomplete = { input: '' };
     this.autocompleteItems = [];
+    this.location = {
+      from: '',
+      to: ''
+    },
+    this.mode = '';
   }
    
 
@@ -95,17 +103,18 @@ export class TransPage implements OnInit {
 
   //FUNCTION SHOWING THE COORDINATES OF THE POINT AT THE CENTER OF THE MAP
   ShowCords(){
-    alert('lat' +this.lat+', long'+this.long )
+    // alert('lat' +this.lat+', long'+this.long )
   }
   
   //AUTOCOMPLETE, SIMPLY LOAD THE PLACE USING GOOGLE PREDICTIONS AND RETURNING THE ARRAY.
-  UpdateSearchResults(){
-console.log("input", this.autocomplete.input)
-    if (this.autocomplete.input == '') {
+  UpdateSearchResults( type :string ){
+    const input = this.location[type]
+    this.mode = type;
+    if (input== '') {
       this.autocompleteItems = [];
       return;
     }
-    this.GoogleAutocomplete.getPlacePredictions({ input: this.autocomplete.input },
+    this.GoogleAutocomplete.getPlacePredictions({ input: input },
     (predictions, status) => {
       this.autocompleteItems = [];
       this.zone.run(() => {
@@ -113,14 +122,30 @@ console.log("input", this.autocomplete.input)
           this.autocompleteItems.push(prediction);
         });
       });
+      console.log(this.autocompleteItems);
     });
+
   }
   
   //wE CALL THIS FROM EACH ITEM.
   SelectSearchResult(item) {
     ///WE CAN CONFIGURE MORE COMPLEX FUNCTIONS SUCH AS UPLOAD DATA TO FIRESTORE OR LINK IT TO SOMETHING
-    alert(JSON.stringify(item))      
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({placeId: item.place_id})
+      .then(({results})=>{
+        this[this.mode] = {
+          lat: results[0].geometry.location.lat(),
+          lng: results[0].geometry.location.lng(),
+        }
+
+        console.log(this[this.mode]);
+      })
+    
+    // console.log(item.place_id);
+    // alert(JSON.stringify(item))      
     this.placeid = item.place_id
+    this.location[this.mode] = item.description;
+    this.autocompleteItems = [];
   }
   
   
