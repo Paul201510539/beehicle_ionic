@@ -26,6 +26,7 @@ export class VinfoPage implements OnInit {
 
   };
   public vehicles;
+  
   constructor(private router: Router, private storage: Storage, public formBuilder: FormBuilder, private route : ActivatedRoute, public loadingController: LoadingController, public alertController: AlertController) {
 
     this.getVehicle();
