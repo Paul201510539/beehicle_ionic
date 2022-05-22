@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../../src/environments/environment';  
-import { LoadingController, AlertController } from '@ionic/angular';
+import { LoadingController, AlertController , NavController} from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { ActivatedRoute } from '@angular/router';
 import axios from 'axios';
@@ -24,12 +24,20 @@ export class AddservicelistPage implements OnInit {
       'Belts'
   ];
   public vehicle_id;
-  constructor(public formBuilder: FormBuilder, private route: ActivatedRoute, private storage: Storage, public loadingController: LoadingController, public alertController: AlertController) { 
+  constructor(
+    public formBuilder: FormBuilder, 
+    private route: ActivatedRoute, 
+    private storage: Storage, 
+    public loadingController: LoadingController, 
+    public alertController: AlertController,
+    private navCtrl: NavController
+    ) { 
     this.initForm();
   }
 
-  ngOnInit() {
-    this.vehicle_id = parseInt(this.route.snapshot.paramMap.get('id'));
+  async ngOnInit() {
+    this.vehicle_id = parseInt(this.route.snapshot.paramMap.get('vehicle_id'));
+
   }
 
   initForm() {
@@ -59,17 +67,32 @@ export class AddservicelistPage implements OnInit {
     };
     const URL = environment.API_HOST;;
     try{
-      
       const form = this.form.value;
       form.vehicle_id = this.vehicle_id;
-      console.log(form);
       const res = await axios.post(`${URL}/vehicles/${this.vehicle_id}/services/create`, form, config)
       await loading.dismiss();
+      const sData = await this.storage.get('data');
+      console.log('before', sData);
+      sData.vehicles.find(x=>x.id == this.vehicle_id).service_summary.push(res.data.data.service)
+      await this.storage.set('data',sData);
+      console.log('after',sData);
+      const alert = await this.alertController.create({
+        header: 'Success',
+        message: 'Service Added',
+        buttons: ['OK'] 
+      })
+      await alert.present();
+      this.navCtrl.back();      
     }
     catch(e){
       await loading.dismiss();
-
-
+      const alert = await this.alertController.create({
+        header: 'Alert',
+        message: 'Error',
+        buttons: ['OK'] 
+      })
+      console.log(e)
+      await alert.present();
     }
   }
   

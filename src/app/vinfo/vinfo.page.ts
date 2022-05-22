@@ -34,9 +34,10 @@ export class VinfoPage implements OnInit {
   async getVehicle(){
     this.id = parseInt(this.route.snapshot.paramMap.get('id'));
     
-    this.vehicles = await this.storage.get("vehicles")
-    console.log(this.vehicles, 'finding', parseInt(this.id));
-    this.vehicle = this.vehicles.find(x=>x.id==this.id)
+    const sData  = await this.storage.get("data")
+
+    this.vehicle = sData.vehicles.find(x=>x.id==this.id)
+    console.log(this.vehicle);
 
     this.form = new FormGroup({
       brand: new FormControl(this.vehicle.brand, { validators: [Validators.required] }),

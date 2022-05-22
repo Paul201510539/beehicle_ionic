@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { environment } from '../../../../src/environments/environment';  
+
+
+
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.page.html',
@@ -62,9 +65,10 @@ export class SigninPage implements OnInit {
               'Authorization': `Bearer ${token}`
             }
         }
-        res = await axios.get(`${URL}/vehicles`, get_config)
-        console.log(res.data.data.vehicles);
-        await this.storage.set('vehicles', res.data.data.vehicles)
+        res = await axios.get(`${URL}/setup`, get_config)
+        console.log(res)
+        await this.storage.set('data', res.data.data)
+        // await this.storage.set('vehicles', res.data.data.vehicles)
 
         this.router.navigate(["/home"])
       }

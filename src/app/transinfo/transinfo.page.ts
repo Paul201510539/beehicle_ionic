@@ -11,13 +11,12 @@ import { Storage } from '@ionic/storage-angular';
 
 declare var google;
 
-
 @Component({
-  selector: 'app-trans',
-  templateUrl: './trans.page.html',
-  styleUrls: ['./trans.page.scss'],
+  selector: 'app-transinfo',
+  templateUrl: './transinfo.page.html',
+  styleUrls: ['./transinfo.page.scss'],
 })
-export class TransPage implements OnInit {
+export class TransinfoPage implements OnInit {
 
   @ViewChild('map',  {static: false}) mapElement: ElementRef;
   map: any;
@@ -29,12 +28,14 @@ export class TransPage implements OnInit {
   location: Object;
   placeid: any;
   GoogleAutocomplete: any;
-  from : string;
+  from : Object;
   to: Object;
   mode: string;
   odometer: String;
-  vehicle_id: String;
+  transaction_id: Number;
+  vehicle_id: Number;
   name: String;
+  transaction: Object;
 
 
   constructor(
@@ -57,17 +58,41 @@ export class TransPage implements OnInit {
     },
     this.mode = '';
     this.odometer = '';
-    this.vehicle_id = this.route.snapshot.paramMap.get('id');
+    this.transaction_id = parseInt(this.route.snapshot.paramMap.get('transaction_id'));
+    this.vehicle_id = parseInt(this.route.snapshot.paramMap.get('vehicle_id'));
     this.name = '';
+    this.transaction_id
+
+
+    this.loadTransaction()
   }
    
 
-  
+  async loadTransaction()
+  {
+    const sData = await this.storage.get("data")
+
+    this.transaction = sData.vehicles.find(x=>x.id == this.vehicle_id).transactions.find(x=>x.id == this.transaction_id);
+    
+    this.location['from']  =  this.transaction['from_address'];
+    this['from'] =  {
+      lat: this.transaction['from_lat'],
+      lng: this.transaction['from_lng']
+    }
+    console.log(this.transaction)
+    this.location['to']  =  this.transaction['to_address'];
+
+    this['to'] =  {
+      lat: this.transaction['to_lat'],
+      lng: this.transaction['to_lng']
+    }
+    this.name = this.transaction['name'];
+  }
    //LOAD THE MAP ONINIT.
    async ngOnInit() {
     this.loadMap();   
-    const vehicles = await this.storage.get("vehicles")
-    console.log(vehicles);
+    // const vehicles = await this.storage.get("vehicles")
+    // console.log(vehicles);
   }
 
     //LOADING THE MAP HAS 2 PARTS.
@@ -86,18 +111,18 @@ export class TransPage implements OnInit {
       this.getAddressFromCoords(resp.coords.latitude, resp.coords.longitude); 
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions); 
       this.map.addListener('tilesloaded', () => {
-        console.log('accuracy',this.map, this.map.center.lat());
+        // console.log('accuracy',this.map, this.map.center.lat());
         this.getAddressFromCoords(this.map.center.lat(), this.map.center.lng())
         this.lat = this.map.center.lat()
         this.long = this.map.center.lng()
       }); 
     }).catch((error) => {
-      console.log('Error getting location', error);
+      // console.log('Error getting location', error);
     });
   }
 
   getAddressFromCoords(lattitude, longitude) {
-    console.log("getAddressFromCoords "+lattitude+" "+longitude);
+    // console.log("getAddressFromCoords "+lattitude+" "+longitude);
     let options: NativeGeocoderOptions = {
       useLocale: true,
       maxResults: 5    
@@ -152,7 +177,7 @@ export class TransPage implements OnInit {
     const geocoder = new google.maps.Geocoder();
     const {results} = await geocoder.geocode({placeId: item.place_id})
 
-    console.log(results)
+    // console.log(results)
     this[this.mode] = {
       lat: results[0].geometry.location.lat(),
       lng: results[0].geometry.location.lng(),
@@ -162,7 +187,7 @@ export class TransPage implements OnInit {
     this.placeid = item.place_id
     this.location[this.mode] = item.description;
     this.autocompleteItems = [];
-    console.log(this.autocompleteItems);
+    // console.log(this.autocompleteItems);
     // this.GoTo();
   }
   
@@ -198,11 +223,11 @@ export class TransPage implements OnInit {
       from: this.from,
       to: this.to,
       odometer: this.odometer,
-      vehicle_id: this.vehicle_id,
+      // vehicle_id: this.vehicle_id,
       name: this.name
     }
 
-    console.log(form)
+    // console.log(form)
     const token = await this.storage.get('access_token');
 
     const config = {
@@ -220,7 +245,7 @@ export class TransPage implements OnInit {
       
       let {data} = await axios.post(URL, form, config);
       let sData =  await this.storage.get("data")
-      sData.vehicles.find(x => x.id == this.vehicle_id).transactions.push(data.data);
+      // sData.vehicles.find(x => x.id == this.vehicle_id).transactions.push(data.data);
       await this.storage.set('data', sData)
       await loading.dismiss();
       const alert = await this.alertController.create({
@@ -242,5 +267,3 @@ export class TransPage implements OnInit {
   }
   
 }
-
-      

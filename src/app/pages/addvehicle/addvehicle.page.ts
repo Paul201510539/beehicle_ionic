@@ -49,10 +49,14 @@ export class AddvehiclePage implements OnInit {
     const URL = environment.API_HOST + '/vehicles/create';
     console.log(environment, environment.API_HOST)
     try{
+      const sData = await this.storage.get("data");
+
       const res = await axios.post(URL, this.form.value, config);
-      const vehicles = await this.storage.get("vehicles")
-      vehicles.push(res.data.data.vehicle);
-      await this.storage.set("vehicles", vehicles)
+      // const vehicles = await this.storage.get("vehicles")
+      console.log('before', res.data.data);
+      sData.vehicles.push(res.data.data.vehicle);
+      await this.storage.set("data", sData)
+      console.log('after', sData)
       await loading.dismiss();
       if (res.data.code==200){
         // await this.storage.set('access_token',res.data.data.access_token)

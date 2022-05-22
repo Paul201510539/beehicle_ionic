@@ -23,19 +23,22 @@ export class HomePage implements OnInit {
   vehicles : any[] = [];
   newHeight = 0;
 
-  constructor(public actionSheetCtrl: ActionSheetController, public alertController: AlertController, private router: Router, private storage: Storage) {}
+  constructor(
+    public actionSheetCtrl: ActionSheetController, 
+    public alertController: AlertController, 
+    private router: Router, 
+    private storage: Storage) {
+      this.loadVehicles();
+    }
   goToVehicle(){
-    console.log('heyyy')
     // this.router.navigate([`/vinfo/${vehicle.id}`])
   }
   async loadVehicles(){
     const token = await this.storage.get("access_token")
-    this.vehicles = await this.storage.get("vehicles")
+    const data  = await this.storage.get("data")
+    console.log('data',data)
+    this.vehicles  = data.vehicles
 
-    console.log(token);
-    console.log(this.vehicles)
-    console.log('here');
-    console.log('ngOnInit');
     this.checklist = [
       { id: 1, name: 'Sample name', age: 25, address: 'Sample address', gender: 'Female', vehicle_group: '2', photo: 'assets/imgs/2.png', distance: 0.5, phone: '9999900000', email: 'test@gmail.com' },
       { id: 2, name: 'Sample name', age: 22, address: 'Sample address', gender: 'Male', vehicle_group: '4', photo: 'assets/imgs/4.2.jpg', distance: 2, phone: '9999900001', email: 'test@gmail.com' },
@@ -61,18 +64,15 @@ export class HomePage implements OnInit {
    this.loadVehicles()
   }
 
-  async ionViewWillEnter(){
+  async ionViewDidEnter(){
     this.loadVehicles()
-    console.log('papasok nako');
   }
   
   ngAfterViewInit() {
-    console.log('ngAfterViewInit');
   }
 
   scroll(event){
     const value = event.detail.scrollTop;
-    console.log(value, this.newHeight);
     if(value > 40) {
       this.newHeight += 5;
     } else {
@@ -193,6 +193,7 @@ export class HomePage implements OnInit {
   }
 
   testClick(){
+    
     this.router.navigate(['/addvehicle']);
   }
 

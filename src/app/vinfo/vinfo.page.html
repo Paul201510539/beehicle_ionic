@@ -86,12 +86,12 @@
     <ion-tab-bar slot="bottom">
       <ion-tab-button [routerLink]="['/slist',id]">
         <ion-icon name="car-outline"></ion-icon>
-        <ion-label>services</ion-label>
+        <ion-label>Services</ion-label>
         <ion-badge>6</ion-badge>
       </ion-tab-button>
-      <ion-tab-button routerLink="/translist">
+      <ion-tab-button [routerLink]="['/translist',id]">
         <ion-icon name="calculator"></ion-icon>
-        <ion-label>transactions</ion-label>
+        <ion-label>Transactions</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>

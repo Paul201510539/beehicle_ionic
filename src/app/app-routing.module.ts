@@ -60,9 +60,10 @@ const routes: Routes = [
     loadChildren: () => import('./vimages/vimages.module').then( m => m.VimagesPageModule)
   },
   {
-    path: 'trans',
+    path: 'trans/:id',
     loadChildren: () => import('./trans/trans.module').then( m => m.TransPageModule)
   },
+
   {
     path: 'userupdate',
     loadChildren: () => import('./userupdate/userupdate.module').then( m => m.UserupdatePageModule)
@@ -77,7 +78,7 @@ const routes: Routes = [
     loadChildren: () => import('./slist/slist.module').then( m => m.SlistPageModule)
   },
   {
-    path: 'addservicelist/:id',
+    path: 'addservicelist/:vehicle_id',
     loadChildren: () => import('./addservicelist/addservicelist.module').then( m => m.AddservicelistPageModule)
   },
   {
@@ -85,8 +86,16 @@ const routes: Routes = [
     loadChildren: () => import('./addservicelist/addservicelist.module').then( m => m.AddservicelistPageModule)
   },
   {
-    path: 'translist',
+    path: 'translist/:vehicle_id',
     loadChildren: () => import('./translist/translist.module').then( m => m.TranslistPageModule)
+  },
+  {
+    path: 'transinfo/:vehicle_id/:transaction_id',
+    loadChildren: () => import('./transinfo/transinfo.module').then( m => m.TransinfoPageModule)
+  },
+  {
+    path: 'transinfo',
+    loadChildren: () => import('./transinfo/transinfo.module').then( m => m.TransinfoPageModule)
   }
  
 
