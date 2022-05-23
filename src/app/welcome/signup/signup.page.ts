@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import axios from 'axios';
 import { environment } from '../../../../src/environments/environment';  
+import { LoadingController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-signup',
@@ -10,9 +11,13 @@ import { environment } from '../../../../src/environments/environment';
 })
 export class SignupPage implements OnInit {
   form: FormGroup;
-
-  constructor() {
+  errors : Array<Object>
+  constructor(
+    public loadingController: LoadingController, 
+    public alertController: AlertController
+  ) {
     this.initForm();
+    this.errors = [];
   }
 
   ngOnInit() {}
@@ -37,27 +42,46 @@ export class SignupPage implements OnInit {
   }
 
   async onSubmit() {
-    console.log(this.form.value);
     const config = {
       headers: {
         'Access-Control-Allow-Origin': '*',
       },
     };
-    const URL = 'https://beehicle.xyz/api/user/register';
     // const URL = environment.API_HOST;;
+    const loading = await this.loadingController.create({message: 'Please wait'})
+    await loading.present()
+    try{
+      const URL = `${environment.API_HOST}/user/register`;
+      // const URL = 'http://beehicle.test/api/user/register';
+      const res = await axios.post(URL, this.form.value, config);
+      if (res.data.data.code==200){
+        await loading.dismiss();
+        const alert = await this.alertController.create({
+          header: 'Success',
+          message: 'Success. Please check your email and verify your account',
+          buttons: ['OK'] 
+        })
+        await alert.present();
+      }
 
-    const res = await axios.post(URL, this.form.value, config);
-    console.log(res);
-    if (!this.form.valid) {
-      this.form.markAllAsTouched();
-      return;
+    }catch(err){
+      await loading.dismiss();
+
+      const message = err.response.data.message;
+      this.errors = err.response.data.data;
+      console.log(this.errors);
+      const alert = await this.alertController.create({
+        header: 'Alert',
+        message: message,
+        buttons: ['OK'] 
+      })
+      await alert.present();
     }
-    // const URL ='http://127.0.0.1:8000/api/user/register';
-    // const res = await axios.post(URL,this.form.value, config)
-    // console.log(res);
-    // const res = await axios.get('https://api.sampleapis.com/futurama/info', config)
   }
 
+  hasError(field){
+    return this.errors.hasOwnProperty(field);
+  }
   //For uploading ID Verification //
 
   // loadImageFromDevice(event) {

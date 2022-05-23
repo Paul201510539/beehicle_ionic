@@ -42,9 +42,6 @@ export class SigninPage implements OnInit {
     const loading = await this.loadingController.create({message: 'Please wait'})
     await loading.present()
 
-
-
-    
     const config = {
       headers: {
         'Access-Control-Allow-Origin': '*', 
@@ -53,7 +50,6 @@ export class SigninPage implements OnInit {
     const URL = environment.API_HOST;;
     console.log(environment, environment.API_HOST)
     try{
-      console.log(this.form.value)
       let res = await axios.post(`${URL}/user/login`, this.form.value, config);
       await loading.dismiss();
       if (res.data.data.code==200){
@@ -74,9 +70,10 @@ export class SigninPage implements OnInit {
       }
   }catch(err){
     await loading.dismiss();
+    const message = err.response.data.message;
     const alert = await this.alertController.create({
       header: 'Alert',
-      message: 'Invalid Credentials',
+      message: message,
       buttons: ['OK'] 
     })
     await alert.present();
