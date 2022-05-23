@@ -10,7 +10,7 @@
   
   <ion-item lines="none">
     <ion-label color="dark">
-      <span >Sign In</span>
+      <h1><span >Sign In</span></h1>
     </ion-label>
   </ion-item>
 </ion-header>
@@ -26,7 +26,7 @@
               class="ion-margin-horizontal"
               formControlName="email"
               type="text"
-              placeholder="email"
+              placeholder="Email"
               (click)="save()"
               >
             </ion-input>
@@ -64,7 +64,7 @@
 
         <ion-button size="large" expand="block" shape="round" color="dark"
           (click)="onSubmit()"  >
-          <!--  [disabled]="!form?.valid" -->
+           <!-- [disabled]="!form?.valid" -->
           <ion-text>Sign In</ion-text>
         </ion-button>
       </form>
