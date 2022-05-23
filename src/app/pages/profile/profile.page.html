@@ -13,7 +13,7 @@
     <div align="center">
       <ion-avatar>
         <img src="assets/imgs/pic1.jpg" />
-        <ion-label><strong><h1>Aaron Paul</h1></strong></ion-label>
+        <ion-label><strong><h1>{{user?.name}}</h1></strong></ion-label>
       </ion-avatar>
     </div>
   </ion-grid>
@@ -25,23 +25,23 @@
       <ion-label>
         <ion-text>Name</ion-text>
         <p>
-          <ion-text color="dark">Aaron Paul Triviñoooo</ion-text>
+          <ion-text color="dark">{{user?.name }}</ion-text>
         </p>
       </ion-label>
     </ion-item>
-    <ion-item>
+    <!-- <ion-item>
       <ion-label>
         <ion-text>Vehicle</ion-text>
         <p>
           <ion-text color="dark">Sample Vehicle Unit</ion-text>
         </p>
       </ion-label>
-    </ion-item>
+    </ion-item> -->
     <ion-item>
       <ion-label>
         <ion-text>Phone</ion-text>
         <p>
-          <ion-text color="dark">9999900000</ion-text>
+          <ion-text color="dark">{{user?.phone_number}}</ion-text>
         </p>
       </ion-label>
     </ion-item>
@@ -49,7 +49,7 @@
       <ion-label>
         <ion-text>Email</ion-text>
         <p>
-          <ion-text color="dark">test@gmail.com</ion-text>
+          <ion-text color="dark">{{user?.email}}</ion-text>
         </p>
       </ion-label>
     </ion-item>
@@ -57,7 +57,7 @@
       <ion-label>
         <ion-text>Age</ion-text>
         <p>
-          <ion-text color="dark">22 years old</ion-text>
+          <ion-text color="dark">{{user?.age}}</ion-text>
         </p>
       </ion-label>
     </ion-item>
@@ -65,7 +65,7 @@
       <ion-label>
         <ion-text>Address</ion-text>
         <p>
-          <ion-text color="dark">Olongapo City</ion-text>
+          <ion-text color="dark">{{user?.address}}</ion-text>
         </p>
       </ion-label>
     </ion-item>

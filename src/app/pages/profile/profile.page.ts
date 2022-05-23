@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage-angular'
 
 @Component({
   selector: 'app-profile',
@@ -9,12 +10,15 @@ import { Router } from '@angular/router';
 export class ProfilePage implements OnInit {
 
   back: boolean;
+  user: Object;
+  constructor(public router: Router, private storage:Storage) { 
+    
+  }
 
-  constructor(public router: Router) { }
-
-  ngOnInit() {
+  async ngOnInit() {
     const data = this.router.url.split('/');
-    console.log(data);
+    const sData = await this.storage.get('data');
+    this.user = sData;
     if(data[1] == 'home') this.back = true;
     else this.back = false;
   }
