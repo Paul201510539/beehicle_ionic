@@ -15,6 +15,7 @@ import { FileService } from 'src/app/services/file.service';
 export class AddvehiclePage implements OnInit {
   form: FormGroup;
   public coding: string;
+  vehicle_image: string;
   constructor(
     public formBuilder: FormBuilder, 
     private storage: Storage, 
@@ -86,8 +87,9 @@ export class AddvehiclePage implements OnInit {
     return 'Monday';
   }
 
-  addPhotoToGallery() {
-    this.fileService.addNewToGallery();
+  async addPhotoToGallery() {
+    const base64 = await this.fileService.addNewToGallery();
+    this.vehicle_image = `data:image/jpeg;base64, ${base64}`;
   }
 
 }

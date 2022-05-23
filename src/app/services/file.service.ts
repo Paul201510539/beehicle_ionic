@@ -11,9 +11,11 @@ export class FileService {
   public async addNewToGallery() {
     // Take a photo
     const capturedPhoto = await Camera.getPhoto({
-      resultType: CameraResultType.Uri,
+      resultType: CameraResultType.Base64,
       source: CameraSource.Camera,
       quality: 100
     });
+
+    return capturedPhoto.base64String;
   }
 }
