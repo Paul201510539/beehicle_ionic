@@ -74,6 +74,7 @@ export class AddservicelistPage implements OnInit {
       const sData = await this.storage.get('data');
       console.log('before', sData);
       sData.vehicles.find(x=>x.id == this.vehicle_id).service_summary.push(res.data.data.service)
+      console.log(sData.vehicles.find(x=>x.id == this.vehicle_id))
       await this.storage.set('data',sData);
       console.log('after',sData);
       const alert = await this.alertController.create({
@@ -91,7 +92,6 @@ export class AddservicelistPage implements OnInit {
         message: 'Error',
         buttons: ['OK'] 
       })
-      console.log(e)
       await alert.present();
     }
   }

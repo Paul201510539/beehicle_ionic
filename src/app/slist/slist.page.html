@@ -42,7 +42,7 @@
 
     </ion-item-group> -->
     
-    <ion-item-sliding [routerLink]="['/', vehicle_id,service.id]" *ngFor="let service of services">
+    <ion-item-sliding [routerLink]="['/addservicelist', vehicle_id,service.id]" *ngFor="let service of services">
       <ion-item>
         <ion-label>{{service.name}}</ion-label>
       </ion-item>

@@ -78,7 +78,7 @@ const routes: Routes = [
     loadChildren: () => import('./slist/slist.module').then( m => m.SlistPageModule)
   },
   {
-    path: 'addservicelist/:vehicle_id',
+    path: 'addservicelist/:vehicle_id/:service_id',
     loadChildren: () => import('./addservicelist/addservicelist.module').then( m => m.AddservicelistPageModule)
   },
   {
