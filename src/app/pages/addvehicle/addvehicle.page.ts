@@ -5,6 +5,7 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { environment } from '../../../../src/environments/environment';  
 import { Router } from '@angular/router';
 import axios from 'axios';
+import { FileService } from 'src/app/services/file.service';
 
 @Component({
   selector: 'app-addvehicle',
@@ -14,7 +15,14 @@ import axios from 'axios';
 export class AddvehiclePage implements OnInit {
   form: FormGroup;
   public coding: string;
-  constructor(public formBuilder: FormBuilder, private storage: Storage, public loadingController: LoadingController, public alertController: AlertController,private router: Router) {
+  constructor(
+    public formBuilder: FormBuilder, 
+    private storage: Storage, 
+    public loadingController: LoadingController, 
+    public alertController: AlertController,
+    public fileService: FileService, 
+    private router: Router
+    ) {
     this.initForm();
   }
 
@@ -76,6 +84,10 @@ export class AddvehiclePage implements OnInit {
 
   getCoding(){
     return 'Monday';
+  }
+
+  addPhotoToGallery() {
+    this.fileService.addNewToGallery();
   }
 
 }
