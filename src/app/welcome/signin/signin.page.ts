@@ -59,7 +59,6 @@ export class SigninPage implements OnInit {
       };
       
       const URL = environment.API_HOST;;
-      console.log(environment, environment.API_HOST)
       try{
         let res = await axios.post(`${URL}/user/login`, this.form.value, config);
         await loading.dismiss();
@@ -121,9 +120,7 @@ export class SigninPage implements OnInit {
       const URL = environment.API_HOST;;
       console.log(environment, environment.API_HOST)
 
-      const res = await axios.post(`${URL}/reset-password`, {
-        email: this.form.value.email
-      }, config)
+      const res = await axios.post(`${URL}/user/reset-password`, this.form.value, config)
 
       await loading.dismiss();
 
