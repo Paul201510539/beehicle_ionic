@@ -7,7 +7,7 @@ import { Storage } from '@ionic/storage-angular'
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-
+  user : Object;
   public pages: any[] = [
     {title: 'Dashboard', url: '/home', icon: 'home'},
     {title: 'Profile', url: '/profile', icon: 'person'},
@@ -16,13 +16,17 @@ export class AppComponent {
     {title: 'Sign Out', url: '', icon: 'log-out', route: true},
   ];
 
-  constructor( private storage:Storage ) {}
+  constructor( private storage:Storage ) {
+   
+  }
 
   async ngOnInit(){
     await this.storage.create();
+    const sData = await this.storage.get('data');
+    this.user = sData;
   }
 
-  signOut() {
-    console.log('signout');
+  async signOut() {
+    await this.storage.clear();
   }
 }
