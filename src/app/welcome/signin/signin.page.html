@@ -36,7 +36,7 @@
           </ion-text>
         </ion-item-group>
 
-        <ion-item-group class="ion-margin-bottom">
+        <ion-item-group class="ion-margin-bottom" *ngIf="state=='sign_in'">
           <ion-item color="light">
             <ion-input 
               class="ion-margin-horizontal"
@@ -58,14 +58,18 @@
           </ion-text>
         </ion-item-group>
 
-        <p class="ion-text-right">
-          <ion-text>Forgot Password?</ion-text>
+        <p class="ion-text-right" (click) = "toggleState()">
+          <ion-text *ngIf="state=='sign_in'">Forgot Password?</ion-text>
+          <ion-text *ngIf="state=='forgot_password'">Sign In</ion-text>
         </p>
 
         <ion-button size="large" expand="block" shape="round" color="dark"
           (click)="onSubmit()"  >
-           <!-- [disabled]="!form?.valid" -->
-          <ion-text>Sign In</ion-text>
+
+          <!--  [disabled]="!form?.valid" -->
+          <ion-text *ngIf="state=='sign_in'">Sign In</ion-text>
+          <ion-text *ngIf="state=='forgot_password'">Reset Password</ion-text>
+
         </ion-button>
       </form>
     </ion-item-group>

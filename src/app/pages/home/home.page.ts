@@ -85,7 +85,7 @@ export class HomePage implements OnInit {
   }
 
   async checklistoptions(item) {
-    console.log(item);
+    // console.log(item);
     const actionSheet = await this.actionSheetCtrl.create({
       header: 'Options',
       cssClass: 'my-custom-class',

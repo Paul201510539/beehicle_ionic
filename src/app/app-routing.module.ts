@@ -82,7 +82,7 @@ const routes: Routes = [
     loadChildren: () => import('./addservicelist/addservicelist.module').then( m => m.AddservicelistPageModule)
   },
   {
-    path: 'addservicelist',
+    path: 'viewservice/:vehicle_id/:service_id',
     loadChildren: () => import('./addservicelist/addservicelist.module').then( m => m.AddservicelistPageModule)
   },
   {

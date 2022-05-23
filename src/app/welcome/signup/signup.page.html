@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content overflow-scroll="true">
 
   <ion-list>
     <ion-item-group class="ion-padding">
@@ -22,6 +22,9 @@
             <ion-input class="ion-margin-horizontal" type="text" placeholder="Name" formControlName="name">
             </ion-input>
           </ion-item>
+          <ion-text class="error" color="danger" *ngIf="hasError('name')">
+            {{errors['name'][0]}}
+          </ion-text>
           <!-- <ion-text class="error" color="danger" *ngIf="!form.get('name').valid && form.get('name').touched">
             Please enter your Name
           </ion-text> -->
@@ -29,6 +32,9 @@
 
         <ion-item>
           <ion-datetime slot="left" placeholder="Birthday" slot="end" value="2019-10-01T15:43:40.394Z" display-timezone="utc" formControlName="birthday"></ion-datetime>
+          <ion-text class="error" color="danger" *ngIf="hasError('birthday')">
+            {{errors['birthday'][0]}}
+          </ion-text>
         </ion-item>
 
         
@@ -50,6 +56,9 @@
               <ion-select-option value="Male">Male</ion-select-option>
             </ion-select>
           </ion-item>
+          <ion-text class="error" color="danger" *ngIf="hasError('gender')">
+            {{errors['gender'][0]}}
+          </ion-text>
           <!-- <ion-text 
               class="error" 
               color="danger"
@@ -66,6 +75,9 @@
             <ion-input class="ion-margin-horizontal" placeholder="Phone No." type="number" required formControlName="phone_number"> 
             </ion-input>
           </ion-item>
+          <ion-text class="error" color="danger" *ngIf="hasError('number')">
+            {{errors['number'][0]}}
+          </ion-text>
           <!-- <ion-text class="error" color="danger" *ngIf="!form.get('phoneno').valid && form.get('phoneno').touched">
             Please enter your Number
           </ion-text>  -->
@@ -76,6 +88,9 @@
             <ion-input class="ion-margin-horizontal" type="text" placeholder="Address" required formControlName="address">
             </ion-input>
           </ion-item>
+          <ion-text class="error" color="danger" *ngIf="hasError('address')">
+            {{errors['address'][0]}}
+          </ion-text>
           <!-- <ion-text class="error" color="danger" *ngIf="!form.get('address').valid && form.get('address').touched">
             Please enter your Address
           </ion-text> -->
@@ -89,6 +104,9 @@
               placeholder="Email" >
             </ion-input>
           </ion-item>
+          <ion-text class="error" color="danger" *ngIf="hasError('email')">
+            {{errors['email'][0]}}
+          </ion-text>
           <!-- <ion-text class="error" color="danger" *ngIf="!form.get('email').valid && form.get('email').touched">
             Please enter your Email
           </ion-text>  -->
@@ -99,6 +117,9 @@
             <ion-input class="ion-margin-horizontal" formControlName="password" type="password" placeholder="Password" formControlName="password"> 
             </ion-input>
           </ion-item>
+          <ion-text class="error" color="danger" *ngIf="hasError('address')">
+            {{errors['password'][0]}}
+          </ion-text>
 
           <ion-item color="light">
             <ion-input class="ion-margin-horizontal" formControlName="password" type="password"
