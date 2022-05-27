@@ -90,6 +90,10 @@ const routes: Routes = [
     loadChildren: () => import('./translist/translist.module').then( m => m.TranslistPageModule)
   },
   {
+    path: 'translist',
+    loadChildren: () => import('./translist/translist.module').then( m => m.TranslistPageModule)
+  },
+  {
     path: 'transinfo/:vehicle_id/:transaction_id',
     loadChildren: () => import('./transinfo/transinfo.module').then( m => m.TransinfoPageModule)
   },

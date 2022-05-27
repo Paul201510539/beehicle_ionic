@@ -108,13 +108,9 @@
     </ion-select>
   </ion-item>
 
+  <ion-item>Date</ion-item>
   <ion-item>
-    <ion-label>Pick Date</ion-label>
-    <ion-datetime formControlName="date_purchased"
-      displayFormat="DD.MM.YYYY"
-      presentation="date"
-      [(ngModel)]="date"
-    ></ion-datetime>
+    <ion-datetime formControlName="date_purchased" presentation="date" [(ngModel)]="date">Date</ion-datetime>
   </ion-item>
 
   <ion-item >
@@ -122,9 +118,22 @@
     <ion-input formControlName="chasis" type="text" required></ion-input>
   </ion-item>
 
-  <ion-item >
+  <!-- <ion-item >
     <ion-label position="floating">Coding</ion-label>
     <ion-input formControlName="coding" type="text" required [(ngModel)]='coding' value="{{coding}}"></ion-input>
+  </ion-item> -->
+
+  <ion-item >
+    <ion-label>Coding</ion-label>
+    <ion-select  formControlName="vehicle_type">
+      <ion-select-option value="Monday">monday</ion-select-option>
+      <ion-select-option value="tuesday">tuesday</ion-select-option>
+      <ion-select-option value="wednesday">wednesday</ion-select-option>
+      <ion-select-option value="thursday">Thursday</ion-select-option>
+      <ion-select-option value="friday">friday</ion-select-option>
+      <ion-select-option value="saturday">saturday</ion-select-option>
+      <ion-select-option value="sunday">sunday</ion-select-option>
+    </ion-select>
   </ion-item>
 
   <!-- <ion-item >
@@ -139,7 +148,7 @@
       <ion-select-option value="sunday">sunday</ion-select-option>
     </ion-select>
   </ion-item> -->
-
+  
   <ion-item>
     <ion-img [src]="vehicle_image"></ion-img>
   </ion-item>
