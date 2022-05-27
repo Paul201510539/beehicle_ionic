@@ -43,20 +43,37 @@
 
   <ion-item>
     <ion-label position="floating">Starting Location</ion-label>
-    <ion-input></ion-input>
+    <ion-input [(ngModel)] = "address_start"></ion-input>
+    <ion-text class="error" color="danger" *ngIf="hasError('address_start')">
+      {{errors['address_start'][0]}}
+    </ion-text>
   </ion-item>
 
   <ion-item>
-    <ion-input position="floating" [(ngModel)]="odometer" placeholder="Start Odometer"></ion-input>
+    <ion-label position="floating">Start Odometer</ion-label>
+
+    <ion-input position="floating" [(ngModel)]="odometer_start" ></ion-input>
+    <ion-text class="error" color="danger" *ngIf="hasError('odometer_start')">
+      {{errors['odometer_start'][0]}}
+    </ion-text>
   </ion-item>
+  
 
   <ion-item>
     <ion-label position="floating">Destination</ion-label>
-    <ion-input></ion-input>
+    <ion-input [(ngModel)] = "address_end"></ion-input>
+    <ion-text class="error" color="danger" *ngIf="hasError('address_end')">
+      {{errors['address_end'][0]}}
+    </ion-text>
   </ion-item>
 
   <ion-item>
-    <ion-input position="floating" [(ngModel)]="odometer" placeholder="Succeeding Odometer"></ion-input>
+    <ion-label position="floating">Succeeding Odometer </ion-label>
+
+    <ion-input position="floating" [(ngModel)]="odometer_end" ></ion-input>
+    <ion-text class="error" color="danger" *ngIf="hasError('odometer_end')">
+      {{errors['odometer_end'][0]}}
+    </ion-text>
   </ion-item>
 
   <!-- <ion-item>
@@ -70,9 +87,13 @@
   </ion-item> -->
   <ion-item>Date</ion-item>
   <ion-item>
-    <ion-datetime formControlName="date_purchased" presentation="date" [(ngModel)]="date">Date</ion-datetime>
+    <ion-datetime  presentation="date" [(ngModel)]="datetime">Date</ion-datetime>
   </ion-item>
-
+  <ion-item>
+    <ion-text class="error" color="danger" *ngIf="hasError('datetime')">
+      {{errors['datetime'][0]}}
+    </ion-text>
+  </ion-item>
   <ion-button slot="" (click)="submit()" color="warning" expand="block">Submit
     <ion-icon slot="end" name="add"></ion-icon>
   </ion-button>

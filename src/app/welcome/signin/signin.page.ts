@@ -61,7 +61,6 @@ export class SigninPage implements OnInit {
       const URL = environment.API_HOST;;
       try{
         let res = await axios.post(`${URL}/user/login`, this.form.value, config);
-        await loading.dismiss();
         if (res.data.data.code==200){
           const token = res.data.data.access_token;
           await this.storage.set('access_token', token)
@@ -75,6 +74,7 @@ export class SigninPage implements OnInit {
           console.log(res)
           await this.storage.set('data', res.data.data)
           // await this.storage.set('vehicles', res.data.data.vehicles)
+          await loading.dismiss();
 
           this.router.navigate(["/home"])
         }
