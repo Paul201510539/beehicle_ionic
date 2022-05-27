@@ -100,7 +100,7 @@
   </ion-item> 
 
   <ion-item >
-    <ion-label>Vehicle Type</ion-label>
+    <ion-label position="floating">Vehicle Type</ion-label>
     <ion-select  formControlName="vehicle_type">
       <ion-select-option value="4 wheels">4 wheels</ion-select-option>
       <ion-select-option value="3 wheels">3 wheels</ion-select-option>
@@ -109,7 +109,7 @@
   </ion-item>
 
   <ion-item>
-    <ion-label>Pick Date</ion-label>
+    <ion-label position="floating">Pick Date</ion-label>
     <ion-datetime formControlName="date_purchased"
       displayFormat="DD.MM.YYYY"
       presentation="date"
@@ -141,11 +141,21 @@
   </ion-item> -->
 
   <ion-item>
-    <ion-img [src]="vehicle_image"></ion-img>
+    <ion-img [src]="vehicle_image_ORCR"></ion-img>
   </ion-item>
     
+  <ion-item class="photoPicker">
+    <ion-label position="floating">*upload a photo of your OR/CR</ion-label>
+    <ion-button (click)="OraddPhotoToGallery()" class="button">Select Images</ion-button>
+  </ion-item>
+
   <ion-item>
-    <ion-button (click)="addPhotoToGallery()">Select Images</ion-button>
+    <ion-img [src]="vehicle_image_car"></ion-img>
+  </ion-item>
+
+  <ion-item class="photoPicker">
+    <ion-label position="floating">*upload a photo of your Car</ion-label>
+    <ion-button (click)="CaraddPhotoToGallery()" class="button">Select Images</ion-button>
   </ion-item>
 
   <ion-item >
@@ -153,7 +163,6 @@
     <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..." formControlName="notes"></ion-textarea>
   </ion-item>
   
-
 
   <ion-button  type="submit" color="warning" expand="block"> <ion-label color="light">Submit</ion-label>
     <ion-icon slot="end" name="add"></ion-icon>

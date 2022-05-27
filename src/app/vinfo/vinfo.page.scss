@@ -1,4 +1,24 @@
 .md .centered-p {
     text-align: center;
-    margin-left: -25%
+    margin-left: -25%;
+    
   }
+
+ion-item{
+  ion-label{
+    color: #949494;
+  }
+}
+
+  .photoPicker{
+    ion-label{
+      font-size: 14px;
+      font-style: italic;
+      color: gray;
+    }
+    .button{
+      margin-top: 10%;
+    }
+  }
+
+  
