@@ -49,26 +49,45 @@ export class TransinfoPage implements OnInit {
     private navCtrl: NavController
     
   ) {
-    this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
-    this.autocomplete = { input: '' };
-    this.autocompleteItems = [];
-    this.location = {
-      from: '',
-      to: ''
-    },
-    this.mode = '';
-    this.odometer = '';
+    // this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
+    // this.autocomplete = { input: '' };
+    // this.autocompleteItems = [];
+    // this.location = {
+    //   from: '',
+    //   to: ''
+    // },
+    // this.mode = '';
+    // this.odometer = '';
     this.transaction_id = parseInt(this.route.snapshot.paramMap.get('transaction_id'));
     this.vehicle_id = parseInt(this.route.snapshot.paramMap.get('vehicle_id'));
-    this.name = '';
-    this.transaction_id
-
-
+    this.transaction = {
+      address_start: '',
+      address_end: '',
+      odometer_start:'',
+      odometer_end:'',
+      datetime : new Date().toISOString()
+    }
     this.loadTransaction()
   }
    
-
   async loadTransaction()
+  {
+    const sData = await this.storage.get("data")
+    const transaction = sData.vehicles.find(x=> x.id == this.vehicle_id).travels.find(x=> x.id == this.transaction_id);
+    
+    this.transaction['address_start'] = transaction.address_start;
+    this.transaction['address_end'] = transaction.address_end;
+    this.transaction['odometer_start'] = transaction.odometer_start;
+    this.transaction['odometer_end'] = transaction.odometer_end;
+    this.transaction['datetime'] = new Date(transaction['datetime']).toISOString();
+    // console.log(this.vehicle_id, this.transaction_id);
+    // console.log(sData.vehicles.find(x=>x.id == this.vehicle_id));
+    // console.log(this.transaction['datetime']);
+    // this.transaction['datetime'] = new Date(this.transaction['datetime'])
+
+    console.log(this.transaction)
+  }
+  async loadTransactionOld()
   {
     const sData = await this.storage.get("data")
 

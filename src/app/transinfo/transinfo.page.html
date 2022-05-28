@@ -19,12 +19,12 @@
     <ion-searchbar [(ngModel)]="location.to" debounce = "500" (ionChange)="UpdateSearchResults('to')" placeholder="To"
       (ionClear)="ClearAutocomplete('to')"></ion-searchbar> -->
   
-
+<!-- 
   <ion-list [hidden]="autocompleteItems.length == 0">
     <ion-item *ngFor="let item of autocompleteItems" tappable (click)="SelectSearchResult(item)">
       {{ item.description }}
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 
   <ion-row>
     <!-- <ion-col size="6">
@@ -58,24 +58,24 @@
 
   <ion-item>
     <ion-label position="floating">Starting point</ion-label>
-    <ion-input [(ngModel)]='starting_point'></ion-input>
+    <ion-input [(ngModel)]='transaction.address_start' ></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating">Starting odometer</ion-label>
-    <ion-input [(ngModel)]='starting_odometer'></ion-input>
+    <ion-input [(ngModel)]='transaction.odometer_start'></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating">Destination</ion-label>
-    <ion-input [(ngModel)]='destination'></ion-input>
+    <ion-input [(ngModel)]='transaction.address_end'></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating">Succeeding Odometer</ion-label>
-    <ion-input [(ngModel)]='Succeeding_odomater'></ion-input>
+    <ion-input [(ngModel)]='transaction.odometer_end'></ion-input>
   </ion-item>
   
   <ion-item>Date</ion-item>
 <ion-item>
-  <ion-datetime  presentation="time-date" [(ngModel)]="datetime">Date</ion-datetime>
+  <ion-datetime  presentation="time-date" [(ngModel)]="transaction.datetime">Date</ion-datetime>
 </ion-item>
 
 <ion-button slot="" (click)="submit()" color="warning" expand="block">Submit

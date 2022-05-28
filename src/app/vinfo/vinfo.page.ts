@@ -44,7 +44,7 @@ export class VinfoPage implements OnInit {
       brand: new FormControl(this.vehicle.brand, { validators: [Validators.required] }),
       plate_number: new FormControl(this.vehicle.plate_number, { validators: [Validators.required] }),
       vehicle_type: new FormControl(this.vehicle.vehicle_type, { validators: [Validators.required] }),
-      date_purchased: new FormControl(this.vehicle.date_purchased, { validators: [Validators.required] }),
+      date_purchased: new FormControl(new Date(this.vehicle.date_purchased).toISOString(), { validators: [Validators.required] }),
       chasis: new FormControl(this.vehicle.chasis, { validators: [Validators.required] }),
       coding: new FormControl(this.vehicle.coding, { validators: [Validators.required] }),
       notes: new FormControl(this.vehicle.notes, { validators: [Validators.required] }),
@@ -62,6 +62,7 @@ export class VinfoPage implements OnInit {
       coding: new FormControl('', { validators: [Validators.required] }),
       notes: new FormControl('', { validators: [Validators.required] }),
     })
+
   }
 
   async submitForm(){

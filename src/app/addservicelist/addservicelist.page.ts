@@ -45,12 +45,13 @@ export class AddservicelistPage implements OnInit {
     this.form = new FormGroup({
       name: new FormControl(null, { validators: [Validators.required] }),
       service_ids: new FormControl([], { validators: [Validators.required] }),
-      date: new FormControl(new Date(), { validators: [Validators.required] }),
+      date: new FormControl(new Date().toISOString(), { validators: [Validators.required] }),
       provider_id: new FormControl([], { validators: [Validators.required] }),
       notes: new FormControl(null, { validators: [Validators.required] }),
       cost: new FormControl(null, { validators: [Validators.required] }),
       
     }); 
+    
   }
 
   async submitForm(){
