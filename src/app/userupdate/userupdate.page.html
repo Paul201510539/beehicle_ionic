@@ -37,7 +37,7 @@
     <ion-item>
       <ion-input type="email" placeholder="E-mail" [(ngModel)] = "user.email"></ion-input>
     </ion-item>
-
+<ion-item>Birthday</ion-item>
     <ion-item>
       <ion-datetime [(ngModel)]="user.birthday" presentation="date"></ion-datetime>
       <!-- <ion-datetime ></ion-datetime> -->
@@ -85,11 +85,11 @@
     
 
 
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button type="submit" (click) = "submit()">
+    
+      <ion-button expand="block" type="submit" (click) = "submit()">
         <!-- <ion-icon name="add"></ion-icon> -->
         Submit
-      </ion-fab-button>
-    </ion-fab>
+      </ion-button>
+  
 
   </ion-content>
