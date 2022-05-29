@@ -16,7 +16,6 @@ import { FileService } from '../services/file.service';
 export class VinfoPage implements OnInit {
   form: FormGroup;
 
-  public id;
   vehicle_image_ORCR: string;
   vehicle_image_car: string;
 
