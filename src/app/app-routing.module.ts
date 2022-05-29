@@ -104,7 +104,11 @@ const routes: Routes = [
   {
     path: 'pms',
     loadChildren: () => import('./pms/pms.module').then( m => m.PmsPageModule)
+  },  {
+    path: 'pmslist',
+    loadChildren: () => import('./pmslist/pmslist.module').then( m => m.PmslistPageModule)
   }
+
 
  
 

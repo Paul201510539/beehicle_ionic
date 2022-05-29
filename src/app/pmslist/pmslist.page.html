@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="">
+      <p class="centered-p">PMS List</p>
+    </ion-title>
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/slist" name="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item>
+      <ion-icon slot="end" name="alert-circle-sharp"></ion-icon>
+      <ion-label [routerLink]="['/pms']">FOR PMS</ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
