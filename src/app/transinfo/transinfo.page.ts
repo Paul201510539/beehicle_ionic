@@ -109,13 +109,13 @@ export class TransinfoPage implements OnInit {
   }
    //LOAD THE MAP ONINIT.
    async ngOnInit() {
-    this.loadMap();   
+    // this.loadMap();   
     // const vehicles = await this.storage.get("vehicles")
     // console.log(vehicles);
   }
 
     //LOADING THE MAP HAS 2 PARTS.
-    loadMap() {
+  loadMap() {
     
       //FIRST GET THE LOCATION FROM THE DEVICE.
       this.geolocation.getCurrentPosition().then((resp) => {

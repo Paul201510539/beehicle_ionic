@@ -84,23 +84,14 @@ export class AddservicelistPage implements OnInit {
   }
 
   async ngOnInit() {
-    console.log(this.router.url);
     this.vehicle_id = parseInt(this.route.snapshot.paramMap.get('vehicle_id'));
     this.service_id = parseInt(this.route.snapshot.paramMap.get('service_id'));
     this.mode = this.route.snapshot.paramMap.get('mode') != null ? this.route.snapshot.paramMap.get('mode') : 'create';
   }
 
   async initForm() {
-    
-    // this.form = new FormGroup({
-    //   name: new FormControl(null, { validators: [Validators.required] }),
-    //   service_ids: new FormControl([], { validators: [Validators.required] }),
-    //   date: new FormControl(new Date().toISOString(), { validators: [Validators.required] }),
-    //   provider_id: new FormControl([], { validators: [Validators.required] }),
-    //   notes: new FormControl(null, { validators: [Validators.required] }),
-    //   cost: new FormControl(null, { validators: [Validators.required] }),
-      
-    // }); 
+    this.mode = this.route.snapshot.paramMap.get('mode') != null ? this.route.snapshot.paramMap.get('mode') : 'create';
+
     if(this.mode == 'create'){
       this.name = null;
       this.selected_services = [];
@@ -108,14 +99,12 @@ export class AddservicelistPage implements OnInit {
       this.selected_provider = {};
       this.cost = null;
       this.notes =  null;
+
     }else{
       const sData = await this.storage.get('data');
       const service = sData.vehicles.find(x => x.id == this.vehicle_id).service_summary.find(x=>x.id == this.service_id);
-      // const service = sData.vehicles.find(x => x.id == this.vehicle_id);
+
       this.name = service.name;
-      // this.selected_services = this.services.filter(service_list=> {
-      //   return service.services.map(service=> service.service_id).includes(service_list['id'])
-      // })
       this.selected_services = service.services.map(service=> service.service_id.toString())
       this.selected_provider = service.provider_id.toString()
       this.date = new Date(service.date).toISOString();

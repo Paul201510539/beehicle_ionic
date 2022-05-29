@@ -81,7 +81,7 @@ export class TransPage implements OnInit {
   
    //LOAD THE MAP ONINIT.
    async ngOnInit() {
-    this.loadMap();   
+    // this.loadMap();   
     const vehicles = await this.storage.get("vehicles")
     console.log(vehicles);
   }
