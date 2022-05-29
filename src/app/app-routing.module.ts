@@ -82,7 +82,7 @@ const routes: Routes = [
     loadChildren: () => import('./addservicelist/addservicelist.module').then( m => m.AddservicelistPageModule)
   },
   {
-    path: 'viewservice/:vehicle_id/:service_id',
+    path: 'viewservice/:vehicle_id/:service_id/:mode',
     loadChildren: () => import('./addservicelist/addservicelist.module').then( m => m.AddservicelistPageModule)
   },
   {
@@ -100,7 +100,8 @@ const routes: Routes = [
   {
     path: 'transinfo',
     loadChildren: () => import('./transinfo/transinfo.module').then( m => m.TransinfoPageModule)
-  },  {
+  },
+  {
     path: 'pms',
     loadChildren: () => import('./pms/pms.module').then( m => m.PmsPageModule)
   }

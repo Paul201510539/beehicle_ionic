@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  API_HOST: 'https://beehicle.xyz/api' 
-  // API_HOST: 'http://beehicle.test/api' 
+  // API_HOST: 'https://beehicle.xyz/api' 
+  API_HOST: 'http://beehicle.test/api' 
 };
 
 /*
