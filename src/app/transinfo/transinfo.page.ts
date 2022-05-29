@@ -72,6 +72,7 @@ export class TransinfoPage implements OnInit {
    
   async loadTransaction()
   {
+
     const sData = await this.storage.get("data")
     const transaction = sData.vehicles.find(x=> x.id == this.vehicle_id).travels.find(x=> x.id == this.transaction_id);
     

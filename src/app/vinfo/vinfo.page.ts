@@ -33,6 +33,8 @@ export class VinfoPage implements OnInit {
   }
 
   async getVehicle(){
+    const loading = await this.loadingController.create({message: 'Please wait'})
+    await loading.present()
     this.id = parseInt(this.route.snapshot.paramMap.get('id'));
     
     const sData  = await this.storage.get("data")
@@ -50,7 +52,7 @@ export class VinfoPage implements OnInit {
       notes: new FormControl(this.vehicle.notes, { validators: [Validators.required] }),
     })  
 
-    console.log(this.form.value)
+    loading.dismiss();
   }
   async ngOnInit() {
     this.form = new FormGroup({
