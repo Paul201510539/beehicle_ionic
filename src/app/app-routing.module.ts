@@ -102,10 +102,11 @@ const routes: Routes = [
     loadChildren: () => import('./transinfo/transinfo.module').then( m => m.TransinfoPageModule)
   },
   {
-    path: 'pms',
+    path: 'pms/:odometer',
     loadChildren: () => import('./pms/pms.module').then( m => m.PmsPageModule)
-  },  {
-    path: 'pmslist',
+  },
+  {
+    path: 'pmslist/:vehicle_id',
     loadChildren: () => import('./pmslist/pmslist.module').then( m => m.PmslistPageModule)
   }
 

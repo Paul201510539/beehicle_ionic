@@ -15,8 +15,16 @@
 
   <ion-list>
     <ion-item>
+      <ion-icon slot="end" name="warning"></ion-icon>
+      <ion-label [routerLink]="['/pms/','1000']">PMS (1,000KM)</ion-label>
+    </ion-item>
+    <ion-item>
       <ion-icon slot="end" name="alert-circle-sharp"></ion-icon>
-      <ion-label [routerLink]="['/pms']">FOR PMS</ion-label>
+      <ion-label [routerLink]="['/pms/','5000']">PMS (5,000KM)</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon slot="end" name="alert-circle-sharp"></ion-icon>
+      <ion-label [routerLink]="['/pms/','10000']">PMS (10,000KM)</ion-label>
     </ion-item>
   </ion-list>
 

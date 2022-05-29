@@ -24,7 +24,7 @@ export class PmsPage implements OnInit {
     private navCtrl: NavController,
     private router: Router,
   ) {
-    this.pms_kms = '5000'
+    this.pms_kms = this.route.snapshot.paramMap.get('odometer');
     this.ngOnInit();
     this.pms = this.pms_form.find(x => x.odometer == this.pms_kms);
     this.fields = this.pms.fields;
