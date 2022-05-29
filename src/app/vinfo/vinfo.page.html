@@ -19,14 +19,27 @@
     </ion-item>
 
     <ion-item>
-      <ion-button>Select Images</ion-button>
+      <ion-img [src]="vehicle_image_ORCR"></ion-img>
+    </ion-item>
+      
+    <ion-item class="photoPicker">
+      <ion-label position="floating">*upload a photo of your OR/CR</ion-label>
+      <ion-button (click)="OraddPhotoToGallery()" class="button">Select Images</ion-button>
+    </ion-item>
+  
+    <ion-item>
+      <ion-img [src]="vehicle_image_car"></ion-img>
+    </ion-item>
+  
+    <ion-item class="photoPicker">
+      <ion-label position="floating">*upload a photo of your Car</ion-label>
+      <ion-button (click)="CaraddPhotoToGallery()" class="button">Select Images</ion-button>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Plate Number</ion-label>
       <ion-input formControlName="plate_number" type="text" required></ion-input>
     </ion-item>
-
 
 
     <!-- <ion-item >
@@ -38,10 +51,12 @@
     </ion-select>
   </ion-item> -->
 
+
   <ion-item>Date</ion-item>
   <ion-item>
     <ion-datetime formControlName="date_purchased" presentation="date" [(ngModel)]="date">Date</ion-datetime>
   </ion-item>
+
 
     <ion-item>
       <ion-label position="floating">Chasis</ion-label>

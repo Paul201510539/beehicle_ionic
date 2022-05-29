@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage-angular';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { environment } from '../../../src/environments/environment';  
 import axios from 'axios';
+import { FileService } from '../services/file.service';
 
 
 @Component({
@@ -14,9 +15,15 @@ import axios from 'axios';
 })
 export class VinfoPage implements OnInit {
   form: FormGroup;
+
+  public id;
+  vehicle_image_ORCR: string;
+  vehicle_image_car: string;
+
   id: any;
   pms_badge: any;
   
+
   public vehicle: {
     brand: '',
     plate_number:'',
@@ -30,7 +37,16 @@ export class VinfoPage implements OnInit {
   public vehicles;
   vehicle_id: any;
   
-  constructor(private router: Router, private storage: Storage, public formBuilder: FormBuilder, private route : ActivatedRoute, public loadingController: LoadingController, public alertController: AlertController) {
+
+  constructor(
+    private router: Router, 
+    private storage: Storage, 
+    public formBuilder: FormBuilder, 
+    private route : ActivatedRoute, 
+    public loadingController: LoadingController, 
+    public alertController: AlertController,
+    public fileService: FileService
+    ) {
     this.getVehicle();
   }
 
@@ -123,6 +139,16 @@ export class VinfoPage implements OnInit {
   }
   save(){
     console.log('clicked')
+  }
+
+  async OraddPhotoToGallery() {
+    const base64 = await this.fileService.addNewToGallery();
+    this.vehicle_image_ORCR = `data:image/jpeg;base64, ${base64}`;
+  }
+
+  async CaraddPhotoToGallery() {
+    const base64 = await this.fileService.addNewToGallery();
+    this.vehicle_image_car = `data:image/jpeg;base64, ${base64}`;
   }
 
   initForm() {

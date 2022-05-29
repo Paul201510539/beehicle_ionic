@@ -1,12 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-
-
-import { ActionSheetController, LoadingController, AlertController,ModalController } from '@ionic/angular';
-
-
+import { ActionSheetController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
-import { AlertModalComponent } from 'src/app/alert-modal/alert-modal.component';
 
 
 
@@ -29,21 +24,16 @@ export class HomePage implements OnInit {
   newHeight = 0;
 
   constructor(
-    private modalController: ModalController,
     public actionSheetCtrl: ActionSheetController, 
-    public alertController: AlertController,
-    public loadingController: LoadingController,  
+    public alertController: AlertController, 
     private router: Router, 
     private storage: Storage) {
       this.loadVehicles();
     }
   goToVehicle(){
-    
     // this.router.navigate([`/vinfo/${vehicle.id}`])
   }
   async loadVehicles(){
-    const loading = await this.loadingController.create({message: 'Please wait'})
-    await loading.present()
     const token = await this.storage.get("access_token")
     const data  = await this.storage.get("data")
     console.log('data',data)
@@ -69,7 +59,6 @@ export class HomePage implements OnInit {
     ];
     this.type = 'checklist';
     this.type = 'services'; 
-    loading.dismiss()
   }
   async ngOnInit() {
    this.loadVehicles()
@@ -203,20 +192,6 @@ export class HomePage implements OnInit {
     let result = await alert.onDidDismiss();
     console.log(result);
   }
-
-  presentModal(){
-    this.showModal("Ready to use modal");  
-  }
-
-  async showModal(msg){
-    const modal = await this.modalController.create({
-      component: AlertModalComponent,
-      componentProps: { message : msg },
-      cssClass: 'alert-modal'
-    });
-    await modal.present();
-  }
-
 
   testClick(){
     
