@@ -83,18 +83,20 @@
 <ion-toolbar>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ion-tab-button [routerLink]="['/slist',id]">
+      <ion-tab-button [routerLink]="['/slist', id]">
         <ion-icon name="car-outline"></ion-icon>
         <ion-label>Services</ion-label>
         <ion-badge>6</ion-badge>
       </ion-tab-button>
-      <ion-tab-button [routerLink]="['/translist',id]">
+      <ion-tab-button [routerLink]="['/translist', id]">
         <ion-icon name="book-outline"></ion-icon>
         <ion-label>Travel</ion-label>
       </ion-tab-button>
-      <ion-tab-button [routerLink]="['/pmslist',id]">
+      <ion-tab-button [routerLink]="['/pmslist', id]">
         <ion-icon name="speedometer-outline"></ion-icon>
         <ion-label>PMS</ion-label>
+        <ion-badge *ngIf="pms_badge > 0">{{pms_badge}}</ion-badge>
+
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>

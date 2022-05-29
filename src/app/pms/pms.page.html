@@ -51,7 +51,7 @@
   <!-- <ion-list *ngFor="let field of fields"></ion-list> -->
   <ion-item *ngIf ="show('amount')">
     <ion-label>Cost</ion-label>
-    <ion-input placeholder="₱0.00" inputmode="decimal" [(ngModel)]="entry" name="amount"></ion-input>
+    <ion-input placeholder="0.00" inputmode="decimal" [(ngModel)]="field.amount" name="amount"></ion-input>
   </ion-item>
 
   <ion-item *ngIf ="show('notes')">

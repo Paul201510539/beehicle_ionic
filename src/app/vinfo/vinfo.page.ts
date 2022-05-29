@@ -14,7 +14,9 @@ import axios from 'axios';
 })
 export class VinfoPage implements OnInit {
   form: FormGroup;
-  public id;
+  id: any;
+  pms_badge: any;
+  
   public vehicle: {
     brand: '',
     plate_number:'',
@@ -26,9 +28,9 @@ export class VinfoPage implements OnInit {
 
   };
   public vehicles;
+  vehicle_id: any;
   
   constructor(private router: Router, private storage: Storage, public formBuilder: FormBuilder, private route : ActivatedRoute, public loadingController: LoadingController, public alertController: AlertController) {
-
     this.getVehicle();
   }
 
@@ -36,10 +38,12 @@ export class VinfoPage implements OnInit {
     const loading = await this.loadingController.create({message: 'Please wait'})
     await loading.present()
     this.id = parseInt(this.route.snapshot.paramMap.get('id'));
-    
+    this.vehicle_id = parseInt(this.route.snapshot.paramMap.get('id'));
     const sData  = await this.storage.get("data")
 
     this.vehicle = sData.vehicles.find(x=>x.id==this.id)
+    this.pms_badge = sData.vehicles.find(x=>x.id==this.id).pms_records.filter(x=> x.alert == true && x.done == false).length
+
     console.log(this.vehicle);
 
     this.form = new FormGroup({
@@ -55,6 +59,7 @@ export class VinfoPage implements OnInit {
     loading.dismiss();
   }
   async ngOnInit() {
+    this.getVehicle()
     this.form = new FormGroup({
       brand: new FormControl('', { validators: [Validators.required] }),
       plate_number: new FormControl('', { validators: [Validators.required] }),
@@ -66,6 +71,14 @@ export class VinfoPage implements OnInit {
     })
 
   }
+
+  ionViewWillEnter(){
+    this.getVehicle()
+  }
+
+  // ionViewDidEnter(){
+  //   console.log('ionViewDidEnter')
+  // }
 
   async submitForm(){
     const loading = await this.loadingController.create({message: 'Please wait'})

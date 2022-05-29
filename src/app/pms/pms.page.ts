@@ -15,7 +15,7 @@ export class PmsPage implements OnInit {
   pms: any;
   fields: Array<any>;
   vehicle_id: any;
-
+  
   constructor(
     private route: ActivatedRoute, 
     private storage: Storage, 
@@ -24,15 +24,11 @@ export class PmsPage implements OnInit {
     private navCtrl: NavController,
     private router: Router,
   ) {
-    this.pms_kms = this.route.snapshot.paramMap.get('odometer');
-    this.ngOnInit();
-    this.pms = this.pms_form.find(x => x.odometer == this.pms_kms);
-    this.fields = this.pms.fields;
-    this.vehicle_id = parseInt(this.route.snapshot.paramMap.get('vehicle_id'));
 
   }
   
   ngOnInit() {
+    this.pms_kms = this.route.snapshot.paramMap.get('odometer').toString();
     this.pms_form = [
       {
         id: 1,
@@ -75,6 +71,7 @@ export class PmsPage implements OnInit {
             value: ''
           },
           {
+            code :'notes',
             label: 'Notes',
             value: ''
           },
@@ -159,7 +156,11 @@ export class PmsPage implements OnInit {
           }
         ]
       }
-    ]
+    ];
+    this.pms = this.pms_form.find(x => x.odometer == this.pms_kms);
+    this.fields = this.pms.fields;
+    this.vehicle_id = (this.route.snapshot.paramMap.get('vehicle_id'));
+    console.log(this.storage.get('data'));
   }
 
   show(field){
@@ -179,13 +180,41 @@ export class PmsPage implements OnInit {
       },
     };
     const URL = environment.API_HOST;
-    const form = this.fields
+    // let fields = [];
+    const form = {}
+    this.fields.map(x=> {
+      form[x.code] = x.value
+    })    
+    form['vehicle_id'] = this.vehicle_id;
+    form['pms'] = this.pms_kms;
+    // fields['vehicle_id'] = this.vehicle_id
+    // fields['pms'] = this.pms_kms;
+
+    console.log(form)
     try{
-      const res = await axios.post(`${URL}/pms/${this.vehicle_id}`, form, config)
+      const res = await axios.post(`${URL}/pms  `, form, config)
       await loading.dismiss();
+
+      const alert = await this.alertController.create({
+        header: 'Success',
+        message: res.data.message,
+        buttons: ['OK'] 
+      })
+      await this.storage.set('data', res.data.data)
+      await alert.present();
+
+      this.navCtrl.back();
     }catch(e){
       console.log(e)
       await loading.dismiss();
+
+
+      const alert = await this.alertController.create({
+        header: 'Alert',
+        message: e.response.data.message,
+        buttons: ['OK'] 
+      })
+      await alert.present();
 
     }
   }
