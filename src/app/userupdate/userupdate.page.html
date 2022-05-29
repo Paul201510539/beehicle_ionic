@@ -25,28 +25,27 @@
       </ion-avatar>
     </div>
     <ion-item>
-      <ion-input placeholder="name"></ion-input>
+      <ion-input placeholder="Name" [(ngModel)] = "user.name"></ion-input>
     </ion-item>
 
 
     <ion-item>
-      <ion-input type="number" placeholder="phoneno"></ion-input>
+      <ion-input type="string" placeholder="Phone Number" [(ngModel)] = "user.phone_number"></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-input placeholder="vehicle brand"></ion-input>
-    </ion-item>
-   
-    <ion-item>
-      <ion-input type="email" placeholder="email"></ion-input>
-    </ion-item>
 
     <ion-item>
-      <ion-input type="number" placeholder="age"></ion-input>
+      <ion-input type="email" placeholder="E-mail" [(ngModel)] = "user.email"></ion-input>
+    </ion-item>
+<ion-item>Birthday</ion-item>
+    <ion-item>
+      <ion-datetime [(ngModel)]="user.birthday" presentation="date"></ion-datetime>
+      <!-- <ion-datetime ></ion-datetime> -->
+      <!-- <ion-input type="number" placeholder="B" [(ngModel)] = "birthday"></ion-input> -->
     </ion-item>
     
     <ion-item>
-      <ion-input  placeholder="address"></ion-input>
+      <ion-input  placeholder="Address" [(ngModel)] = "user.address"></ion-input>
     </ion-item>
 
     <!-- <ion-item>
@@ -86,10 +85,11 @@
     
 
 
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button type="submit" >
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+    
+      <ion-button expand="block" type="submit" (click) = "submit()">
+        <!-- <ion-icon name="add"></ion-icon> -->
+        Submit
+      </ion-button>
+  
 
   </ion-content>

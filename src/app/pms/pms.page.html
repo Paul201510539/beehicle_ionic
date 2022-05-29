@@ -1,0 +1,66 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title>
+      <p class="centered-p">PMS</p>
+    </ion-title>
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" name="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-item>
+    <ion-label><strong>First 1000km</strong></ion-label>
+  </ion-item>
+  <ion-item  *ngIf ="show('break_system')">
+    <ion-label position="floating">Break System</ion-label>
+    <ion-textarea autogrow></ion-textarea>
+  </ion-item>
+  <ion-item *ngIf ="show('engine')">
+    <ion-label position="floating">Engine</ion-label>
+    <ion-textarea autogrow></ion-textarea>
+  </ion-item>
+  <ion-item *ngIf ="show('oil')">
+    <ion-label position="floating">Oil</ion-label>
+    <ion-textarea auto-grow></ion-textarea>
+  </ion-item>
+  <ion-item *ngIf ="show('filters')">
+    <ion-label position="floating">Filters</ion-label>
+    <ion-textarea autogrow></ion-textarea>
+  </ion-item>
+  <ion-item *ngIf ="show('washer_fluid')">
+    <ion-label position="floating">Washer Fluid</ion-label>
+    <ion-textarea autogrow></ion-textarea>
+  </ion-item>
+  <ion-item *ngIf ="show('engine_coolant')">
+    <ion-label position="floating">Engine Coolant</ion-label>
+    <ion-textarea autogrow></ion-textarea>
+  </ion-item> -->
+  <ion-item *ngFor="let field of fields" >
+    
+    <ion-label *ngIf="field.code!='date'">{{field.label}}</ion-label>
+    <ion-textarea autogrow [(ngModel)]="field.value" *ngIf="field.code!='date'"></ion-textarea>
+
+    <ion-label *ngIf="field.code=='date'">{{field.label}}</ion-label>
+    <ion-datetime autogrow  [(ngModel)]="field.value" *ngIf="field.code=='date'"></ion-datetime>
+    
+  </ion-item>
+
+  <!-- <ion-list *ngFor="let field of fields"></ion-list> -->
+  <ion-item *ngIf ="show('amount')">
+    <ion-label>Cost</ion-label>
+    <ion-input placeholder="0.00" inputmode="decimal" [(ngModel)]="field.amount" name="amount"></ion-input>
+  </ion-item>
+
+  <ion-item *ngIf ="show('notes')">
+    <ion-label>Notes</ion-label>
+    <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..." ></ion-textarea>
+  </ion-item>
+
+  <ion-button type="submit" color="warning" expand="block" (click)="submit()">
+    <ion-label color="light">Submit</ion-label>
+
+  </ion-button>
+</ion-content>

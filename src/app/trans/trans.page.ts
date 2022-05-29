@@ -36,6 +36,14 @@ export class TransPage implements OnInit {
   vehicle_id: String;
   name: String;
 
+  // new data
+  address_start: String;
+  address_end: String;
+  odometer_end: String;
+  odometer_start: String;
+  datetime: String;
+  errors : Array<Object>
+
 
   constructor(
     private geolocation: Geolocation,
@@ -59,13 +67,21 @@ export class TransPage implements OnInit {
     this.odometer = '';
     this.vehicle_id = this.route.snapshot.paramMap.get('id');
     this.name = '';
+
+    this.address_start = '';
+    this.address_end = '';
+    this.odometer_start = '';
+    this.odometer_end = '';
+    // this.datetime = '1994-12-15T13:47'
+    this.datetime = new Date().toISOString();
+    this.errors = [];
   }
    
 
   
    //LOAD THE MAP ONINIT.
    async ngOnInit() {
-    this.loadMap();   
+    // this.loadMap();   
     const vehicles = await this.storage.get("vehicles")
     console.log(vehicles);
   }
@@ -180,7 +196,7 @@ export class TransPage implements OnInit {
     return window.location.href = 'https://www.google.com/maps/search/?api=1&query=Google&query_place_id='+this.placeid;
   }
 
-  async submit(){
+  async submitOld(){
 
     if(this.from== undefined || this.to == undefined || this.odometer=='' || this.name == '')
     {
@@ -241,6 +257,60 @@ export class TransPage implements OnInit {
     }
   }
   
+  hasError(field){
+    return this.errors.hasOwnProperty(field);
+  }
+
+  async submit()
+  {
+
+    const loading = await this.loadingController.create({message: 'Please wait'})
+    await loading.present()
+
+    const form = {
+      address_start: this.address_start,
+      address_end: this.address_end,
+      odometer_start: this.odometer_start,
+      odometer_end: this.odometer_end,
+      datetime: this.datetime,
+      vehicle_id: this.vehicle_id
+    }
+
+    try {
+      const token = await this.storage.get('access_token');
+  
+      const config = {
+        headers: {
+          'Access-Control-Allow-Origin': '*', 
+          'Authorization': `Bearer ${token}`
+        }
+      };
+      const URL = `${environment.API_HOST}/travels`;
+      const response = await axios.post(URL, form, config);
+      await this.storage.set('data', response.data.data)
+
+      loading.dismiss()
+
+      const alert = await this.alertController.create({
+        header: 'Success',
+        message: 'Travel Record Added',
+        buttons: ['OK'] 
+      })
+      
+      await alert.present();
+      this.navCtrl.back();      
+
+    } catch (error) {
+      loading.dismiss()
+      this.errors = error.response.data.data;
+            const alert = await this.alertController.create({
+        header: 'Failed',
+        message: 'Please check values',
+        buttons: ['OK'] 
+      })
+      await alert.present();
+    }
+  }
 }
 
       

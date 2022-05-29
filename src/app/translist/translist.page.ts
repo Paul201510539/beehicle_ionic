@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
+import { LoadingController, AlertController, NavController } from '@ionic/angular';
+import { environment } from '../../../src/environments/environment';  
+import axios from 'axios';
 
 @Component({
   selector: 'app-translist',
@@ -13,7 +16,10 @@ export class TranslistPage implements OnInit {
   constructor(
     private router: Router,
     private route : ActivatedRoute,
-    private storage: Storage
+    public loadingController: LoadingController, 
+    public alertController: AlertController,
+    private storage: Storage,
+    private navCtrl: NavController
   ) { 
     this.vehicle_id = this.route.snapshot.paramMap.get('vehicle_id');
    console.log(this.vehicle_id, 'dito')
@@ -22,15 +28,64 @@ export class TranslistPage implements OnInit {
   }
   async ngOnInit() {
     const data  = await this.storage.get("data")
-    this.transactions = data.vehicles.find(x => x.id == this.vehicle_id).transactions;
+    
+    this.transactions = data.vehicles.find(x => x.id == this.vehicle_id).travels;
     console.log(this.transactions);
   }
 
   async ionViewDidEnter(){
     const data  = await this.storage.get("data")
     console.log(data);
-    this.transactions = data.vehicles.find(x => x.id == this.vehicle_id).transactions;
+    this.transactions = data.vehicles.find(x => x.id == this.vehicle_id).travels;
     console.log(this.transactions);
+  }
+
+  async delete(transaction_id){
+    const loading = await this.loadingController.create({message: 'Please wait'})
+    await loading.present()
+    try {
+      const token = await this.storage.get('access_token');
+      
+      const config = {
+        headers: {
+          'Access-Control-Allow-Origin': '*', 
+          'Authorization': `Bearer ${token}`
+        }
+      }
+      const URL = `${environment.API_HOST}/travels/${transaction_id}`;
+      const form = {
+        transaction_id : transaction_id
+      }
+
+
+      const response = await axios.delete(URL, { 
+          headers : {
+              'Access-Control-Allow-Origin': '*', 
+              'Authorization': `Bearer ${token}`
+          }
+      });
+      await this.storage.set('data', response.data.data)
+
+      loading.dismiss()
+
+      const alert = await this.alertController.create({
+        header: 'Deleted',
+        message: 'Travel Record Deleted',
+        buttons: ['OK'] 
+      })
+      
+      await alert.present();
+      this.ionViewDidEnter();
+    } catch (error) {
+      loading.dismiss();
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Please contact system Administrator',
+        buttons: ['OK'] 
+      })
+      
+      await alert.present();
+    }
   }
 
 

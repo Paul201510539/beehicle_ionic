@@ -15,9 +15,15 @@ import { FileService } from '../services/file.service';
 })
 export class VinfoPage implements OnInit {
   form: FormGroup;
+
   public id;
   vehicle_image_ORCR: string;
   vehicle_image_car: string;
+
+  id: any;
+  pms_badge: any;
+  
+
   public vehicle: {
     brand: '',
     plate_number:'',
@@ -29,7 +35,9 @@ export class VinfoPage implements OnInit {
 
   };
   public vehicles;
+  vehicle_id: any;
   
+
   constructor(
     private router: Router, 
     private storage: Storage, 
@@ -39,31 +47,35 @@ export class VinfoPage implements OnInit {
     public alertController: AlertController,
     public fileService: FileService
     ) {
-
     this.getVehicle();
   }
 
   async getVehicle(){
+    const loading = await this.loadingController.create({message: 'Please wait'})
+    await loading.present()
     this.id = parseInt(this.route.snapshot.paramMap.get('id'));
-    
+    this.vehicle_id = parseInt(this.route.snapshot.paramMap.get('id'));
     const sData  = await this.storage.get("data")
 
     this.vehicle = sData.vehicles.find(x=>x.id==this.id)
+    this.pms_badge = sData.vehicles.find(x=>x.id==this.id).pms_records.filter(x=> x.alert == true && x.done == false).length
+
     console.log(this.vehicle);
 
     this.form = new FormGroup({
       brand: new FormControl(this.vehicle.brand, { validators: [Validators.required] }),
       plate_number: new FormControl(this.vehicle.plate_number, { validators: [Validators.required] }),
       vehicle_type: new FormControl(this.vehicle.vehicle_type, { validators: [Validators.required] }),
-      date_purchased: new FormControl(this.vehicle.date_purchased, { validators: [Validators.required] }),
+      date_purchased: new FormControl(new Date(this.vehicle.date_purchased).toISOString(), { validators: [Validators.required] }),
       chasis: new FormControl(this.vehicle.chasis, { validators: [Validators.required] }),
       coding: new FormControl(this.vehicle.coding, { validators: [Validators.required] }),
       notes: new FormControl(this.vehicle.notes, { validators: [Validators.required] }),
     })  
 
-    console.log(this.form.value)
+    loading.dismiss();
   }
   async ngOnInit() {
+    this.getVehicle()
     this.form = new FormGroup({
       brand: new FormControl('', { validators: [Validators.required] }),
       plate_number: new FormControl('', { validators: [Validators.required] }),
@@ -73,7 +85,16 @@ export class VinfoPage implements OnInit {
       coding: new FormControl('', { validators: [Validators.required] }),
       notes: new FormControl('', { validators: [Validators.required] }),
     })
+
   }
+
+  ionViewWillEnter(){
+    this.getVehicle()
+  }
+
+  // ionViewDidEnter(){
+  //   console.log('ionViewDidEnter')
+  // }
 
   async submitForm(){
     const loading = await this.loadingController.create({message: 'Please wait'})

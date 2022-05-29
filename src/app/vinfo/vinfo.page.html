@@ -51,11 +51,12 @@
     </ion-select>
   </ion-item> -->
 
-    <ion-item>
-      <ion-label position="floating">Date of Purchase</ion-label>
-      <ion-datetime formControlName="date_purchased" displayFormat="DD.MM.YYYY" presentation="date" [(ngModel)]="date">
-      </ion-datetime>
-    </ion-item>
+
+  <ion-item>Date</ion-item>
+  <ion-item>
+    <ion-datetime formControlName="date_purchased" presentation="date" [(ngModel)]="date">Date</ion-datetime>
+  </ion-item>
+
 
     <ion-item>
       <ion-label position="floating">Chasis</ion-label>
@@ -97,14 +98,20 @@
 <ion-toolbar>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ion-tab-button [routerLink]="['/slist',id]">
+      <ion-tab-button [routerLink]="['/slist', id]">
         <ion-icon name="car-outline"></ion-icon>
         <ion-label>Services</ion-label>
         <ion-badge>6</ion-badge>
       </ion-tab-button>
-      <ion-tab-button [routerLink]="['/translist',id]">
-        <ion-icon name="calculator"></ion-icon>
-        <ion-label>Transactions</ion-label>
+      <ion-tab-button [routerLink]="['/translist', id]">
+        <ion-icon name="book-outline"></ion-icon>
+        <ion-label>Travel</ion-label>
+      </ion-tab-button>
+      <ion-tab-button [routerLink]="['/pmslist', id]">
+        <ion-icon name="speedometer-outline"></ion-icon>
+        <ion-label>PMS</ion-label>
+        <ion-badge *ngIf="pms_badge > 0">{{pms_badge}}</ion-badge>
+
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>

@@ -82,11 +82,15 @@ const routes: Routes = [
     loadChildren: () => import('./addservicelist/addservicelist.module').then( m => m.AddservicelistPageModule)
   },
   {
-    path: 'viewservice/:vehicle_id/:service_id',
+    path: 'viewservice/:vehicle_id/:service_id/:mode',
     loadChildren: () => import('./addservicelist/addservicelist.module').then( m => m.AddservicelistPageModule)
   },
   {
     path: 'translist/:vehicle_id',
+    loadChildren: () => import('./translist/translist.module').then( m => m.TranslistPageModule)
+  },
+  {
+    path: 'translist',
     loadChildren: () => import('./translist/translist.module').then( m => m.TranslistPageModule)
   },
   {
@@ -96,7 +100,17 @@ const routes: Routes = [
   {
     path: 'transinfo',
     loadChildren: () => import('./transinfo/transinfo.module').then( m => m.TransinfoPageModule)
+  },
+  {
+    path: 'pms/:vehicle_id/:odometer',
+    loadChildren: () => import('./pms/pms.module').then( m => m.PmsPageModule)
+  },
+  {
+    path: 'pmslist/:vehicle_id',
+    loadChildren: () => import('./pmslist/pmslist.module').then( m => m.PmslistPageModule)
   }
+
+
  
 
 

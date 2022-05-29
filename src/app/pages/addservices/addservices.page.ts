@@ -18,6 +18,7 @@ export class AddservicesPage implements OnInit {
       'Oil',
       'Belts'
   ];
+  selected_services: Array<String>;
   constructor(public formBuilder: FormBuilder) {
     this.initForm();
   }

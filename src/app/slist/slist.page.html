@@ -1,7 +1,7 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="primary">
     <ion-title class="ion-text-center">
-      <p class="centered-p">Service List</p>
+      <p class="centered-p">Other Service List</p>
     </ion-title>
 
 
@@ -42,7 +42,7 @@
 
     </ion-item-group> -->
     
-    <ion-item-sliding [routerLink]="['/viewservice', vehicle_id,service.id]" *ngFor="let service of services">
+    <ion-item-sliding [routerLink]="['/viewservice', id,service.id,'edit']" *ngFor="let service of services">
       <ion-item>
         <ion-label>{{service.name}}</ion-label>
       </ion-item>

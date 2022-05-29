@@ -1,24 +1,24 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title class="ion-text-center">
-      <p class="centered-p">Transaction</p>
+      <p class="centered-p">Travel record</p>
     </ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/translist" name="arrow-back-outline"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 
-  <ion-toolbar>
+  <!-- <ion-toolbar>
     <ion-input placeholder="Transaction Name" [(ngModel)] = 'name'></ion-input>
-    <!-- <ion-searchbar [(ngModel)]="autocomplete.input" debounce = "500" (ionChange)="UpdateSearchResults('from')" placeholder="From"
+    <ion-searchbar [(ngModel)]="autocomplete.input" debounce = "500" (ionChange)="UpdateSearchResults('from')" placeholder="From"
       (ionClear)="ClearAutocomplete()"></ion-searchbar>
     <ion-searchbar [(ngModel)]="autocomplete.input" debounce = "500" (ionChange)="UpdateSearchResults('to')" placeholder="To"
-      (ionClear)="ClearAutocomplete()"></ion-searchbar> -->
+      (ionClear)="ClearAutocomplete()"></ion-searchbar>
     <ion-searchbar [(ngModel)]="location.from" debounce = "500" (ionChange)="UpdateSearchResults('from')" placeholder="From"
       (ionClear)="ClearAutocomplete('from')"></ion-searchbar>
     <ion-searchbar [(ngModel)]="location.to" debounce = "500" (ionChange)="UpdateSearchResults('to')" placeholder="To"
       (ionClear)="ClearAutocomplete('to')"></ion-searchbar>
-  </ion-toolbar>
+  </ion-toolbar> -->
 
   <ion-list [hidden]="autocompleteItems.length == 0">
     <ion-item *ngFor="let item of autocompleteItems" tappable (click)="SelectSearchResult(item)">
@@ -36,14 +36,70 @@
         Where i am
       </ion-button>
     </ion-toolbar>  -->
-    
+
   </ion-row>
 </ion-header>
 <ion-content>
-  <ion-input [(ngModel)] = "odometer" placeholder="odometer"></ion-input>
-  <ion-button (click) = "submit()" color="light">Submit</ion-button>
 
-  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+  <ion-item>
+    <ion-label position="floating">Starting Location</ion-label>
+    <ion-input [(ngModel)] = "address_start"></ion-input>
+    <ion-text class="error" color="danger" *ngIf="hasError('address_start')">
+      {{errors['address_start'][0]}}
+    </ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Start Odometer</ion-label>
+
+    <ion-input position="floating" [(ngModel)]="odometer_start" ></ion-input>
+    <ion-text class="error" color="danger" *ngIf="hasError('odometer_start')">
+      {{errors['odometer_start'][0]}}
+    </ion-text>
+  </ion-item>
+  
+
+  <ion-item>
+    <ion-label position="floating">Destination</ion-label>
+    <ion-input [(ngModel)] = "address_end"></ion-input>
+    <ion-text class="error" color="danger" *ngIf="hasError('address_end')">
+      {{errors['address_end'][0]}}
+    </ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Succeeding Odometer </ion-label>
+
+    <ion-input position="floating" [(ngModel)]="odometer_end" ></ion-input>
+    <ion-text class="error" color="danger" *ngIf="hasError('odometer_end')">
+      {{errors['odometer_end'][0]}}
+    </ion-text>
+  </ion-item>
+
+  <!-- <ion-item>
+  <ion-label>Date of Travel</ion-label>
+  <ion-datetime first-day-of-week="1" ></ion-datetime>
+</ion-item>
+
+  <ion-item>
+    <ion-label>Time of Travel</ion-label>
+    <ion-datetime displayFormat="h:mm A"></ion-datetime>
+  </ion-item> -->
+  <ion-item>Date</ion-item>
+  <ion-item>
+    <ion-datetime  presentation="time-date" [(ngModel)]="datetime">Date</ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-text class="error" color="danger" *ngIf="hasError('datetime')">
+      {{errors['datetime'][0]}}
+    </ion-text>
+  </ion-item>
+  <ion-button slot="" (click)="submit()" color="warning" expand="block">Submit
+    <ion-icon slot="end" name="add"></ion-icon>
+  </ion-button>
+
+
+  <!-- <ion-fab vertical="bottom" horizontal="start" slot="fixed">
     <ion-fab-button (click)="ShowCords()" ion-fab color="tertiary">
       <ion-icon name="information-circle-outline"></ion-icon>
     </ion-fab-button>
@@ -53,5 +109,5 @@
       <ion-icon name="pin" size="large" color="danger"></ion-icon>
     </div>
     <div #map id="map" style="height: 100%;"></div>
-  </div>
+  </div> -->
 </ion-content>
