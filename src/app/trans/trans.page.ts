@@ -297,7 +297,7 @@ export class TransPage implements OnInit {
 
       const alert = await this.alertController.create({
         header: 'Success',
-        message: 'Travel Record Added',
+        message: response.data.message,
         buttons: ['OK'] 
       })
       
