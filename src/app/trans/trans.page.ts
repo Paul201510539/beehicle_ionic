@@ -39,8 +39,8 @@ export class TransPage implements OnInit {
   // new data
   address_start: String;
   address_end: String;
-  odometer_end: String;
-  odometer_start: String;
+  odometer_end: any;
+  odometer_start: any;
   datetime: String;
   errors : Array<Object>
 
@@ -84,6 +84,10 @@ export class TransPage implements OnInit {
     // this.loadMap();   
     const vehicles = await this.storage.get("vehicles")
     console.log(vehicles);
+    const sData = await this.storage.get("data")
+    this.vehicle_id = this.route.snapshot.paramMap.get('id');
+    const vehicle = sData.vehicles.find(x => x.id == this.vehicle_id);
+    this.odometer_start = vehicle.last_odometer
   }
 
     //LOADING THE MAP HAS 2 PARTS.
@@ -310,6 +314,18 @@ export class TransPage implements OnInit {
       })
       await alert.present();
     }
+  }
+
+  travelled(){
+    if(this.odometer_start != "" && this.odometer_end !=""){
+      const start = parseInt(this.odometer_start);
+      const end = parseInt(this.odometer_end);
+
+      return 'Total Traveled: '+(end - start).toLocaleString()  + ' km';
+      // return parseInt(thisodometer_end) - parseInt(this.odometer_start)
+    }
+
+    return "Total Traveled: 0 km";
   }
 }
 

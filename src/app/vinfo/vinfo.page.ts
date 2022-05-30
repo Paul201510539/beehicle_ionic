@@ -57,6 +57,7 @@ export class VinfoPage implements OnInit {
     const sData  = await this.storage.get("data")
 
     this.vehicle = sData.vehicles.find(x=>x.id==this.id)
+    console.log(sData.vehicles.find(x=>x.id==this.id));
     this.pms_badge = sData.vehicles.find(x=>x.id==this.id).pms_records.filter(x=> x.alert == true && x.done == false).length
 
     console.log(this.vehicle);
