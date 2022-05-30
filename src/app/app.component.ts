@@ -24,7 +24,7 @@ export class AppComponent {
     await this.storage.create();
     const sData = await this.storage.get('data');
     this.user = sData;
-    console.log(sData);
+    // console.log(sData);
     
   }
 

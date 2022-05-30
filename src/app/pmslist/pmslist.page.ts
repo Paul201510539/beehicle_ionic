@@ -36,23 +36,35 @@ export class PmslistPage implements OnInit {
   }
 
   async goTo(boolean, vehicle_id, pms_kms,item){
-    if(!boolean){
-      const alert = await this.alertController.create({
-        header: 'Alert',
-        message:'Not due for PMS',
-        buttons: ['OK'] 
-      })
-      await alert.present();      
-      return;
-    }
-    if(item.alert == true && item.done == true){
-      const alert = await this.alertController.create({
-        header: 'Information',
-        message:'PMS already finished',
-        buttons: ['OK'] 
-      })
-      await alert.present();  
-      return;
+    const sData = await this.storage.get('data');
+
+    const pms_data = sData.vehicles.find(x=>x.id == this.vehicle_id).pms.find(x=>x.pms_kms == pms_kms);
+    // const pms_data = sData.vehicles.find(x=>x.id == this.vehicle_id).pms
+    
+    
+    // if(!pms_data){
+    //   const alert = await this.alertController.create({
+    //     header: 'Alert',
+    //     message:'Not due for PMS',
+    //     buttons: ['OK'] 
+    //   })
+    //   await alert.present();      
+    //   return;
+    // }
+    // if(item.alert == true && item.done == true){
+    //   // const alert = await this.alertController.create({
+    //   //   header: 'Information',
+    //   //   message:'PMS already finished',
+    //   //   buttons: ['OK'] 
+    //   // })
+    //   // await alert.present();  
+    //   this.router.navigate([`/pms/${vehicle_id}/${pms_kms}`]);
+
+    //   return;
+    // }
+    if(pms_data){
+        this.router.navigate([`/pms/${vehicle_id}/${pms_kms}`]);
+        return;
     }
     this.router.navigate([`/pms/${vehicle_id}/${pms_kms}`]);
   }

@@ -16,7 +16,8 @@ export class PmsPage implements OnInit {
   pms: any;
   fields: Array<any>;
   vehicle_id: any;
-  
+  mode : String;
+  pms_data: any;
   constructor(
     private route: ActivatedRoute, 
     private storage: Storage, 
@@ -28,7 +29,10 @@ export class PmsPage implements OnInit {
 
   }
   
-  ngOnInit() {
+  async ngOnInit() {
+    const sData = await this.storage.get('data');
+    this.vehicle_id = (this.route.snapshot.paramMap.get('vehicle_id'));
+
     this.pms_kms = this.route.snapshot.paramMap.get('odometer').toString();
     this.pms_form_old = [
       {
@@ -287,16 +291,54 @@ export class PmsPage implements OnInit {
       }
     ];
     this.pms = this.pms_form.find(x => x.odometer == this.pms_kms);
+    
+    // return;
     this.fields = this.pms.fields;
-    this.vehicle_id = (this.route.snapshot.paramMap.get('vehicle_id'));
-    console.log(this.storage.get('data'));
+
+    const pms_data = sData.vehicles.find(x=>x.id == this.vehicle_id).pms.find(x=>x.pms_kms == this.pms_kms);
+    this.mode = pms_data === undefined ? 'create' : 'update';
+    if(this.mode=='update'){
+      this.pms_data = JSON.parse(pms_data.data);
+      this.loadFields();
+    }
+    
+    
+  }
+
+  loadFields(){
+   Object.keys(this.pms_data).map((key)=>{
+     if(key=='date' || key=='cost' || key=='pms' || key =='vehicle_id'){
+
+     }else{
+      const field = this.fields.find(x=>x.code == key)
+      // console.log(key, '---', value);
+      // const obj_value = field.value > 0 ? true : false;
+
+      if(field !== undefined){
+        this.fields.find(x=>x.code == key).value = this.pms_data[key];
+      }
+    }
+   })
+
+  //  console.log('fields are',this.fields);
   }
 
   show(field){
-    return this.fields.findIndex(x=>x.code == field) < 0 ? false : true;
+    if(this.fields){
+      return this.fields.findIndex(x=>x.code == field) < 0 ? false : true;
+    }
+    return false;
   }
 
-  async submit(){
+  submit(){
+   if(this.mode == 'create'){
+     this.create();
+   }else{
+     this.update();
+   }
+  }
+
+  async create(){
     const sData = await this.storage.get('data');
     const loading = await this.loadingController.create({message: 'Please wait'})
     await loading.present();
@@ -319,7 +361,6 @@ export class PmsPage implements OnInit {
     // fields['vehicle_id'] = this.vehicle_id
     // fields['pms'] = this.pms_kms;
 
-    console.log(form)
     try{
       const res = await axios.post(`${URL}/pms  `, form, config)
       await loading.dismiss();
@@ -347,5 +388,58 @@ export class PmsPage implements OnInit {
 
     }
   }
+  async update(){
+    
+    const sData = await this.storage.get('data');
+    const loading = await this.loadingController.create({message: 'Please wait'})
+    await loading.present();
+
+    const token = await this.storage.get('access_token');
+    const config = {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': `Bearer ${token}`
+      },
+    };
+    const URL = environment.API_HOST;
+    // let fields = [];
+    const form = {}
+    this.fields.map(x=> {
+      form[x.code] = x.value
+    })    
+    form['vehicle_id'] = this.vehicle_id;
+    form['pms'] = this.pms_kms;
+    // fields['vehicle_id'] = this.vehicle_id
+    // fields['pms'] = this.pms_kms;
+
+    try{
+      const res = await axios.put(`${URL}/pms/${this.vehicle_id}/${this.pms_kms}`, form, config)
+      await loading.dismiss();
+
+      const alert = await this.alertController.create({
+        header: 'Success',
+        message: res.data.message,
+        buttons: ['OK'] 
+      })
+      await this.storage.set('data', res.data.data)
+      await alert.present();
+
+      this.navCtrl.back();
+    }catch(e){
+      console.log(e)
+      await loading.dismiss();
+
+
+      const alert = await this.alertController.create({
+        header: 'Alert',
+        message: e.response.data.message,
+        buttons: ['OK'] 
+      })
+      await alert.present();
+
+    }
+  }
+
+
 
 }
