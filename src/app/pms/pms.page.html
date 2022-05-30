@@ -40,8 +40,11 @@
   </ion-item> -->
   <ion-item *ngFor="let field of fields" >
     
-    <ion-label *ngIf="field.code!='date'">{{field.label}}</ion-label>
-    <ion-textarea autogrow [(ngModel)]="field.value" *ngIf="field.code!='date'"></ion-textarea>
+    <!-- <ion-label *ngIf="field.code!='date'">{{field.label}}</ion-label>
+    <ion-textarea autogrow [(ngModel)]="field.value" *ngIf="field.code!='date'"></ion-textarea> -->
+    <ion-checkbox slot="start" [(ngModel)]="field.value"  *ngIf="field.code!='date'"></ion-checkbox>
+
+    <ion-label>{{field.label}}</ion-label>
 
     <ion-label *ngIf="field.code=='date'">{{field.label}}</ion-label>
     <ion-datetime autogrow  [(ngModel)]="field.value" *ngIf="field.code=='date'"></ion-datetime>

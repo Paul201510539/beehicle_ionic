@@ -11,6 +11,7 @@ import axios from 'axios';
 })
 export class PmsPage implements OnInit {
   pms_form: Array<any>
+  pms_form_old: Array<any>
   pms_kms: String;
   pms: any;
   fields: Array<any>;
@@ -29,7 +30,7 @@ export class PmsPage implements OnInit {
   
   ngOnInit() {
     this.pms_kms = this.route.snapshot.paramMap.get('odometer').toString();
-    this.pms_form = [
+    this.pms_form_old = [
       {
         id: 1,
         label:'1,000km PMS',
@@ -38,42 +39,42 @@ export class PmsPage implements OnInit {
           {
             code: 'break_system',
             label: 'Break System',
-            value: ''
+            value: false
           },
           {
             code: 'engine',
             label: 'Engine',
-            value: ''
+            value: false
           },
           {
             code: 'oil',
             label: 'Oil',
-            value: ''
+            value: false
           },
           {
             code: 'filters',
             label: 'Filters',
-            value: ''
+            value: false
           },
           {
             code: 'washer_fluid',
             label: 'Washer Fluid',
-            value: ''
+            value: false
           },
           {
             code: 'engine_coolant',
             label: 'Engine Coolant',
-            value: ''
+            value: false
           },
           {
             code: 'cost',
             label: 'Cost',
-            value: ''
+            value: false
           },
           {
             code :'notes',
             label: 'Notes',
-            value: ''
+            value: false
           },
           {
             code: 'date',
@@ -90,17 +91,17 @@ export class PmsPage implements OnInit {
           {
             code: 'change_oil',
             label: 'Change Oil',
-            value: ''
+            value: false
           },
           {
             code: 'change_oil_filter',
             label: 'Change Oil Filter',
-            value: ''
+            value: false
           },
           {
             code: 'change_oil_leaks',
             label: 'Change Oil Leaks',
-            value: ''
+            value: false
           },
           {
             code: 'date',
@@ -117,37 +118,165 @@ export class PmsPage implements OnInit {
           {
             code: 'mandatory_oil_change',
             label: 'Mandatory Change Oil',
-            value: ''
+            value: false
           },
           {
             code: 'brake_pads',
             label: 'Brake Pads',
-            value: ''
+            value: false
           },
           {
             code: 'axle_joints',
             label: 'Axle Joints',
-            value: ''
+            value: false
           },
           {
             code: 'parking_break',
             label: 'Parking Break',
-            value: ''
+            value: false
           },
           {
             code: 'clutch',
             label: 'Clutch',
-            value: ''
+            value: false
           },
           {
             code: 'steering',
             label: 'Steering',
-            value: ''
+            value: false
           },
           {
             code: 'suspension_system',
             label: 'Suspension System',
-            value: ''
+            value: false
+          },
+          {
+            code: 'date',
+            label:'Date',
+            value:new Date().toISOString()
+          }
+        ]
+      }
+    ];
+    this.pms_form = [
+      {
+        id: 1,
+        label:'1,000km PMS',
+        odometer:'1000',
+        fields: [
+          {
+            code: 'break_system',
+            label: 'Break System',
+            value: false
+          },
+          {
+            code: 'engine',
+            label: 'Engine',
+            value: false
+          },
+          {
+            code: 'oil',
+            label: 'Oil',
+            value: false
+          },
+          {
+            code: 'filters',
+            label: 'Filters',
+            value: false
+          },
+          {
+            code: 'washer_fluid',
+            label: 'Washer Fluid',
+            value: false
+          },
+          {
+            code: 'engine_coolant',
+            label: 'Engine Coolant',
+            value: false
+          },
+          {
+            code: 'cost',
+            label: 'Cost',
+            value: false
+          },
+          // {
+          //   code :'notes',
+          //   label: 'Notes',
+          //   value: false
+          // },
+          {
+            code: 'date',
+            label: 'Date',
+            value: new Date().toISOString(),
+          }
+        ]
+      },
+      {
+        id: 2,
+        label: '5,000km PMS',
+        odometer: '5000',
+        fields : [
+          {
+            code: 'change_oil',
+            label: 'Change Oil',
+            value: false
+          },
+          {
+            code: 'change_oil_filter',
+            label: 'Change Oil Filter',
+            value: false
+          },
+          {
+            code: 'change_oil_leaks',
+            label: 'Change Oil Leaks',
+            value: false
+          },
+          {
+            code: 'date',
+            label:'Date',
+            value: new Date().toISOString()
+          }
+        ]
+      },
+      {
+        id: 3,
+        label: '10,000km PMS',
+        odometer: '10000',
+        fields : [
+          {
+            code: 'mandatory_oil_change',
+            label: 'Mandatory Change Oil',
+            value: false
+          },
+          {
+            code: 'brake_pads',
+            label: 'Brake Pads',
+            value: false
+          },
+          {
+            code: 'axle_joints',
+            label: 'Axle Joints',
+            value: false
+          },
+          {
+            code: 'parking_break',
+            label: 'Parking Break',
+            value: false
+          },
+          {
+            code: 'clutch',
+            label: 'Clutch',
+            value: false
+          },
+          {
+            code: 'steering',
+            label: 'Steering',
+            value: false
+          },
+          {
+            code: 'suspension_system',
+            label: 'Suspension System',
+            value: false
           },
           {
             code: 'date',
