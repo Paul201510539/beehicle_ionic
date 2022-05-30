@@ -13,6 +13,7 @@ import axios from 'axios';
 export class TranslistPage implements OnInit {
   vehicle_id: String;
   transactions: Array <Object>;
+  vehicle: any;
   constructor(
     private router: Router,
     private route : ActivatedRoute,
@@ -22,22 +23,17 @@ export class TranslistPage implements OnInit {
     private navCtrl: NavController
   ) { 
     this.vehicle_id = this.route.snapshot.paramMap.get('vehicle_id');
-   console.log(this.vehicle_id, 'dito')
-  
   
   }
   async ngOnInit() {
     const data  = await this.storage.get("data")
-    
-    this.transactions = data.vehicles.find(x => x.id == this.vehicle_id).travels;
-    console.log(this.transactions);
+    this.transactions = data.vehicles.find(x => x.id == this.vehicle_id).travels.sort((a,b)=>a-b);
   }
 
   async ionViewDidEnter(){
     const data  = await this.storage.get("data")
-    console.log(data);
-    this.transactions = data.vehicles.find(x => x.id == this.vehicle_id).travels;
-    console.log(this.transactions);
+    this.transactions = data.vehicles.find(x => x.id == this.vehicle_id).travels.sort((a,b)=>a-b);
+    this.vehicle = data.vehicles.find(x => x.id == this.vehicle_id)
   }
 
   async delete(transaction_id){
