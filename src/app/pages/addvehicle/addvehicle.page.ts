@@ -64,25 +64,25 @@ export class AddvehiclePage implements OnInit {
 
       const res = await axios.post(URL, this.form.value, config);
       // const vehicles = await this.storage.get("vehicles")
-      console.log('before', res.data.data);
-      sData.vehicles.push(res.data.data.vehicle);
-      await this.storage.set("data", sData)
-      console.log('after', sData)
+      
+      // sData.vehicles.push(res.data.data.vehicle);
+      await this.storage.set("data", res.data.data)
+      // console.log('after', sData)
       await loading.dismiss();
       if (res.data.code==200){
         // await this.storage.set('access_token',res.data.data.access_token)
         this.router.navigate(["/home"])
       }
-  }catch(err){
-    await loading.dismiss();
-    const alert = await this.alertController.create({
-      header: 'Alert',
-      message: 'Invalid Fields',
-      buttons: ['OK']
-    })
-    await alert.present();
+    }catch(err){
+      await loading.dismiss();
+      const alert = await this.alertController.create({
+        header: 'Alert',
+        message: 'Invalid Fields',
+        buttons: ['OK']
+      })
+      await alert.present();
 
-  }
+    }
   }
 
   getCoding(){
