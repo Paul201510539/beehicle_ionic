@@ -464,7 +464,7 @@ let HomePage = class HomePage {
     var _this3 = this;
 
     return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
-      _this3.loadVehicles();
+      yield _this3.loadVehicles();
     })();
   }
 

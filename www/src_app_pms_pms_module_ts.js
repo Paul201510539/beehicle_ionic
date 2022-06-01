@@ -339,6 +339,7 @@ let PmsPage = class PmsPage {
 
       if (_this.mode == 'update') {
         _this.pms_data = JSON.parse(pms_data.data);
+        console.log(_this.pms_data);
 
         _this.loadFields();
       }
@@ -355,6 +356,8 @@ let PmsPage = class PmsPage {
           this.fields.find(x => x.code == key).value = this.pms_data[key];
         }
       }
+
+      this.fields.find(x => x.code == "date").value = new Date(this.pms_data['date']).toISOString();
     }); //  console.log('fields are',this.fields);
   }
 
@@ -463,7 +466,9 @@ let PmsPage = class PmsPage {
           message: res.data.message,
           buttons: ['OK']
         });
-        yield _this3.storage.set('data', res.data.data);
+        yield _this3.storage.set("data", res.data.data);
+        const data = yield _this3.storage.get("data");
+        console.log(data);
         yield alert.present();
 
         _this3.navCtrl.back();
@@ -531,7 +536,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header class=\"ion-no-border\">\n  <ion-toolbar color=\"primary\">\n    <ion-title>\n      <p class=\"centered-p\">PMS</p>\n    </ion-title>\n\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/home\" name=\"arrow-back-outline\"></ion-back-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <!-- <ion-item>\n    <ion-label><strong>First 1000km</strong></ion-label>\n  </ion-item>\n  <ion-item  *ngIf =\"show('break_system')\">\n    <ion-label position=\"floating\">Break System</ion-label>\n    <ion-textarea autogrow></ion-textarea>\n  </ion-item>\n  <ion-item *ngIf =\"show('engine')\">\n    <ion-label position=\"floating\">Engine</ion-label>\n    <ion-textarea autogrow></ion-textarea>\n  </ion-item>\n  <ion-item *ngIf =\"show('oil')\">\n    <ion-label position=\"floating\">Oil</ion-label>\n    <ion-textarea auto-grow></ion-textarea>\n  </ion-item>\n  <ion-item *ngIf =\"show('filters')\">\n    <ion-label position=\"floating\">Filters</ion-label>\n    <ion-textarea autogrow></ion-textarea>\n  </ion-item>\n  <ion-item *ngIf =\"show('washer_fluid')\">\n    <ion-label position=\"floating\">Washer Fluid</ion-label>\n    <ion-textarea autogrow></ion-textarea>\n  </ion-item>\n  <ion-item *ngIf =\"show('engine_coolant')\">\n    <ion-label position=\"floating\">Engine Coolant</ion-label>\n    <ion-textarea autogrow></ion-textarea>\n  </ion-item> -->\n  <ion-item *ngFor=\"let field of fields\" >\n    \n    <!-- <ion-label *ngIf=\"field.code!='date'\">{{field.label}}</ion-label>\n    <ion-textarea autogrow [(ngModel)]=\"field.value\" *ngIf=\"field.code!='date'\"></ion-textarea> -->\n    <ion-checkbox slot=\"start\" [(ngModel)]=\"field.value\"  *ngIf=\"field.code!='date'\"></ion-checkbox>\n\n    <ion-label>{{field.label}}</ion-label>\n\n    <ion-label *ngIf=\"field.code=='date'\">{{field.label}}</ion-label>\n    <ion-datetime autogrow  [(ngModel)]=\"field.value\" *ngIf=\"field.code=='date'\"></ion-datetime>\n    \n  </ion-item>\n\n  <!-- <ion-list *ngFor=\"let field of fields\"></ion-list> -->\n  <ion-item *ngIf =\"show('amount')\">\n    <ion-label>Cost</ion-label>\n    <ion-input placeholder=\"0.00\" inputmode=\"decimal\" [(ngModel)]=\"field.amount\" name=\"amount\"></ion-input>\n  </ion-item>\n\n  <ion-item *ngIf =\"show('notes')\">\n    <ion-label>Notes</ion-label>\n    <ion-textarea rows=\"6\" cols=\"20\" placeholder=\"Enter any notes here...\" ></ion-textarea>\n  </ion-item>\n\n  <ion-button type=\"submit\" color=\"warning\" expand=\"block\" (click)=\"submit()\">\n    <ion-label color=\"light\">Submit</ion-label>\n\n  </ion-button>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header class=\"ion-no-border\">\n  <ion-toolbar color=\"primary\">\n    <ion-title>\n      <p class=\"centered-p\">PMS</p>\n    </ion-title>\n\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/home\" name=\"arrow-back-outline\"></ion-back-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <!-- <ion-item>\n    <ion-label><strong>First 1000km</strong></ion-label>\n  </ion-item>\n  <ion-item  *ngIf =\"show('break_system')\">\n    <ion-label position=\"floating\">Break System</ion-label>\n    <ion-textarea autogrow></ion-textarea>\n  </ion-item>\n  <ion-item *ngIf =\"show('engine')\">\n    <ion-label position=\"floating\">Engine</ion-label>\n    <ion-textarea autogrow></ion-textarea>\n  </ion-item>\n  <ion-item *ngIf =\"show('oil')\">\n    <ion-label position=\"floating\">Oil</ion-label>\n    <ion-textarea auto-grow></ion-textarea>\n  </ion-item>\n  <ion-item *ngIf =\"show('filters')\">\n    <ion-label position=\"floating\">Filters</ion-label>\n    <ion-textarea autogrow></ion-textarea>\n  </ion-item>\n  <ion-item *ngIf =\"show('washer_fluid')\">\n    <ion-label position=\"floating\">Washer Fluid</ion-label>\n    <ion-textarea autogrow></ion-textarea>\n  </ion-item>\n  <ion-item *ngIf =\"show('engine_coolant')\">\n    <ion-label position=\"floating\">Engine Coolant</ion-label>\n    <ion-textarea autogrow></ion-textarea>\n  </ion-item> -->\n  <ion-item *ngFor=\"let field of fields\" >\n    \n    <!-- <ion-label *ngIf=\"field.code!='date'\">{{field.label}}</ion-label>\n    <ion-textarea autogrow [(ngModel)]=\"field.value\" *ngIf=\"field.code!='date'\"></ion-textarea> -->\n    <ion-checkbox slot=\"start\" [(ngModel)]=\"field.value\"  *ngIf=\"field.code!='date'\"></ion-checkbox>\n\n    <ion-label>{{field.label}}</ion-label>\n\n    <ion-label *ngIf=\"field.code=='date'\">{{field.label}}</ion-label>\n    <ion-datetime \n      autogrow  \n      [(ngModel)]=\"field.value\" \n      *ngIf=\"field.code=='date'\"\n      displayFormat=\"DD.MM.YYYY\"\n      presentation=\"date\" \n    ></ion-datetime>\n    \n  </ion-item>\n\n  <!-- <ion-list *ngFor=\"let field of fields\"></ion-list> -->\n  <ion-item *ngIf =\"show('amount')\">\n    <ion-label>Cost</ion-label>\n    <ion-input placeholder=\"0.00\" inputmode=\"decimal\" [(ngModel)]=\"field.amount\" name=\"amount\"></ion-input>\n  </ion-item>\n\n  <ion-item *ngIf =\"show('notes')\">\n    <ion-label>Notes</ion-label>\n    <ion-textarea rows=\"6\" cols=\"20\" placeholder=\"Enter any notes here...\" ></ion-textarea>\n  </ion-item>\n\n  <ion-button type=\"submit\" color=\"warning\" expand=\"block\" (click)=\"submit()\">\n    <ion-label color=\"light\">Submit</ion-label>\n\n  </ion-button>\n</ion-content>\n");
 
 /***/ })
 
