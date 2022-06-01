@@ -1,0 +1,49 @@
+version: "3.7"
+services:
+
+  #Laravel App
+  app:
+    build:
+      # args:
+      #   user: ubuntu
+      #   uid: 1000
+      context: ./
+      dockerfile: ./docker/php/Dockerfile
+    image: laravel-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+      - ./docker/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+    networks:
+      - mynetwork
+
+  #Cron Service
+  cron:
+    build:
+      context: .
+      dockerfile: ./docker/cron/Dockerfile
+    volumes:
+      - ./:/var/www
+    networks:
+      - mynetwork
+    #container_name: cron
+
+ # Nginx Service
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./:/var/www
+      - /etc/letsencrypt:/etc/ca-certificates
+      - ./docker/nginx-prod.conf:/etc/nginx/conf.d/default.conf
+      - ./storage/logs/nginx:/var/log/nginx/
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
