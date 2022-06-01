@@ -110,6 +110,7 @@ let ProfilePage = class ProfilePage {
   constructor(router, storage) {
     this.router = router;
     this.storage = storage;
+    console.log('hey from constructor'); // this.ngOnInit()
   }
 
   ngOnInit() {
@@ -120,8 +121,17 @@ let ProfilePage = class ProfilePage {
 
       const sData = yield _this.storage.get('data');
       _this.user = sData;
+      console.log('hey from ngOnInit');
       if (data[1] == 'home') _this.back = true;else _this.back = false;
     })();
+  }
+
+  ionOnViewWillEnter() {
+    console.log('hey from ionOnViewWillEnter');
+  }
+
+  IonViewDidLeave() {
+    console.log('hey from IonViewDidLeave');
   }
 
 };

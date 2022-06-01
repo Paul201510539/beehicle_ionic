@@ -94,15 +94,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "UserupdatePage": () => (/* binding */ UserupdatePage)
 /* harmony export */ });
 /* harmony import */ var _Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ 6304);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_userupdate_page_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !raw-loader!./userupdate.page.html */ 1047);
 /* harmony import */ var _userupdate_page_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userupdate.page.scss */ 7432);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/storage-angular */ 1628);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 9122);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/storage-angular */ 1628);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 9122);
 /* harmony import */ var _src_environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../src/environments/environment */ 2340);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ 8686);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _services_profile_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/profile.service */ 9181);
+
+
 
 
 
@@ -118,11 +122,13 @@ let UserupdatePage = class UserupdatePage {
   // email: String;
   // birthday: Date;
   // address: String;
-  constructor(loadingController, alertController, storage, navCtrl) {
+  constructor(loadingController, alertController, storage, navCtrl, router, globalFooService) {
     this.loadingController = loadingController;
     this.alertController = alertController;
     this.storage = storage;
     this.navCtrl = navCtrl;
+    this.router = router;
+    this.globalFooService = globalFooService;
     this.user = {
       name: '',
       phone_number: '',
@@ -185,6 +191,13 @@ let UserupdatePage = class UserupdatePage {
           buttons: ['OK']
         });
         yield alert.present();
+
+        _this3.globalFooService.publishSomeData({
+          data: response.data.data
+        }); // this.navCtrl.back();
+
+
+        _this3.router.navigate(["home"]);
       } catch (error) {
         loading.dismiss();
         const alert = yield _this3.alertController.create({
@@ -200,16 +213,20 @@ let UserupdatePage = class UserupdatePage {
 };
 
 UserupdatePage.ctorParameters = () => [{
-  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.LoadingController
+  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.LoadingController
 }, {
-  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.AlertController
+  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.AlertController
 }, {
-  type: _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_6__.Storage
+  type: _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_7__.Storage
 }, {
-  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.NavController
+  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.NavController
+}, {
+  type: _angular_router__WEBPACK_IMPORTED_MODULE_8__.Router
+}, {
+  type: _services_profile_service__WEBPACK_IMPORTED_MODULE_5__.GlobalFooService
 }];
 
-UserupdatePage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
+UserupdatePage = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.Component)({
   selector: 'app-userupdate',
   template: _raw_loader_userupdate_page_html__WEBPACK_IMPORTED_MODULE_1__.default,
   styles: [_userupdate_page_scss__WEBPACK_IMPORTED_MODULE_2__.default]
