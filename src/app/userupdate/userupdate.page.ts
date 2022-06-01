@@ -4,6 +4,8 @@ import { Storage } from '@ionic/storage-angular';
 import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { environment } from '../../../src/environments/environment';  
 import axios from 'axios';
+import { Router } from '@angular/router';
+import { GlobalFooService } from '../services/profile.service';
 @Component({
   selector: 'app-userupdate',
   templateUrl: './userupdate.page.html',
@@ -20,7 +22,10 @@ export class UserupdatePage implements OnInit {
     public loadingController: LoadingController, 
     public alertController: AlertController,
     private storage: Storage,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private router: Router,
+    private globalFooService: GlobalFooService
+    
   ) {
     this.user = {
       name: '',
@@ -80,6 +85,12 @@ export class UserupdatePage implements OnInit {
       })
       
       await alert.present();
+      this.globalFooService.publishSomeData({
+        data: response.data.data
+      })
+      // this.navCtrl.back();
+      this.router.navigate(["home"])
+
     }catch(error){
       loading.dismiss()
 
