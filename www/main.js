@@ -325,7 +325,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    API_HOST: 'https://beehicle.xyz/api'
+    API_HOST: 'https://beehicle.xyz:8443/api'
     // API_HOST: 'http://beehicle.test/api' 
 };
 /*
