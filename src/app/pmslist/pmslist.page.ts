@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { LoadingController, AlertController, ModalController } from '@ionic/angular';
+import { PmsComponent } from '../modals/pms/pms.component';
 
 @Component({
   selector: 'app-pmslist',
@@ -16,7 +17,8 @@ export class PmslistPage implements OnInit {
     private route: ActivatedRoute,
     private storage: Storage,
     public loadingController: LoadingController, 
-    public alertController: AlertController
+    public alertController: AlertController,
+    public modalController: ModalController
   ) { 
     this.pms_list = [];
 
@@ -69,4 +71,16 @@ export class PmslistPage implements OnInit {
     this.router.navigate([`/pms/${vehicle_id}/${pms_kms}`]);
   }
 
+  presentModal(){
+    this.showModal("Ready to use modal");  
+  }
+
+  async showModal(msg){
+    const modal = await this.modalController.create({
+      component: PmsComponent,
+      componentProps: { message : msg },
+      cssClass: 'alert-modal'
+    });
+    await modal.present();
+  }
 }

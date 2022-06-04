@@ -113,8 +113,8 @@ export class VinfoPage implements OnInit {
         const vehicle = res.data.data.vehicle;
         await loading.dismiss();
         const alert = await this.alertController.create({
-          header: 'Alert',
-          message: 'Success',
+          header: 'Success',
+          message: 'Changes saved',
           buttons: ['OK']
         })
         var vehicles = await this.storage.get('vehicles')

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
-import { LoadingController, AlertController, NavController } from '@ionic/angular';
+import { LoadingController, AlertController, NavController, ModalController } from '@ionic/angular';
 import { environment } from '../../../src/environments/environment';  
 import axios from 'axios';
+import { TravelComponent } from '../modals/travel/travel.component';
 
 @Component({
   selector: 'app-translist',
@@ -20,7 +21,8 @@ export class TranslistPage implements OnInit {
     public loadingController: LoadingController, 
     public alertController: AlertController,
     private storage: Storage,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    public modalController: ModalController
   ) { 
     this.vehicle_id = this.route.snapshot.paramMap.get('vehicle_id');
   
@@ -109,7 +111,18 @@ export class TranslistPage implements OnInit {
 
   }
 
+  presentModal(){
+    this.showModal("Ready to use modal");  
+  }
 
+  async showModal(msg){
+    const modal = await this.modalController.create({
+      component: TravelComponent,
+      componentProps: { message : msg },
+      cssClass: 'alert-modal'
+    });
+    await modal.present();
+  }
 
 
 }

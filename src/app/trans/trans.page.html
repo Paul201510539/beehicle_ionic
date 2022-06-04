@@ -52,7 +52,7 @@
   <ion-item>
     <ion-label position="floating">Start Odometer</ion-label>
 
-    <ion-input position="floating" [(ngModel)]="odometer_start" ></ion-input>
+    <ion-input position="floating" [(ngModel)]="odometer_start" type="number"></ion-input>
     <ion-text class="error" color="danger" *ngIf="hasError('odometer_start')">
       {{errors['odometer_start'][0]}}
     </ion-text>
@@ -67,13 +67,11 @@
     </ion-text>
   </ion-item>
 
-
-
   <ion-item>
     <ion-label position="floating">Succeeding Odometer 
     </ion-label>
 
-    <ion-input position="floating" [(ngModel)]="odometer_end" ></ion-input>
+    <ion-input position="floating" [(ngModel)]="odometer_end" type="number"></ion-input>
     <span item-end>{{travelled()}}</span>
     <ion-text class="error" color="danger" *ngIf="hasError('odometer_end')">
       {{errors['odometer_end'][0]}}

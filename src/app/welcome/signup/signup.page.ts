@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import axios from 'axios';
 import { environment } from '../../../../src/environments/environment';  
 import { LoadingController, AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +16,8 @@ export class SignupPage implements OnInit {
   errors : Array<Object>
   constructor(
     public loadingController: LoadingController, 
-    public alertController: AlertController
+    public alertController: AlertController,
+    public router: Router
   ) {
     this.initForm();
     this.errors = [];
@@ -59,7 +62,13 @@ export class SignupPage implements OnInit {
         const alert = await this.alertController.create({
           header: 'Success',
           message: 'Success. Please check your email and verify your account',
-          buttons: ['OK'] 
+          buttons: [ {
+            text: 'Ok',
+            cssClass: 'secondary',
+            handler: () => {
+              this.router.navigate(['/welcome'])
+            }
+          }]    
         })
         await alert.present();
       }

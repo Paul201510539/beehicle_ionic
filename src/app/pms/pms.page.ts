@@ -71,11 +71,6 @@ export class PmsPage implements OnInit {
             value: false
           },
           {
-            code: 'cost',
-            label: 'Cost',
-            value: false
-          },
-          {
             code :'notes',
             label: 'Notes',
             value: false

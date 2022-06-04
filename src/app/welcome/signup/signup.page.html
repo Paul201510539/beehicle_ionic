@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/welcome" color="dark"></ion-back-button>
     </ion-buttons>
-
+    <h1> Sign Up</h1>
     <ion-buttons slot="end">
       <ion-button routerLink="/welcome/signin" fill="clear" strong="true" color="dark">Login</ion-button>
     </ion-buttons>
@@ -29,9 +29,9 @@
             Please enter your Name
           </ion-text> -->
         </ion-item-group>
-
+        <ion-item style="color: gray; padding-bottom: 0; margin-bottom: 0;">Date of birth</ion-item>
         <ion-item>
-          <ion-datetime slot="left" placeholder="Birthday" slot="end" value="2019-10-01T15:43:40.394Z" display-timezone="utc" formControlName="birthday"></ion-datetime>
+          <ion-datetime slot="left" slot="end" value="2019-10-01T15:43:40.394Z" display-timezone="utc" formControlName="birthday">Date of birth</ion-datetime>
           <ion-text class="error" color="danger" *ngIf="hasError('birthday')">
             {{errors['birthday'][0]}}
           </ion-text>
@@ -51,7 +51,7 @@
 
         <ion-item-group class="formUser">
           <ion-item color="light">
-            <ion-select required placeholder="Gender (Select One)" class="ion-margin-horizontal" formControlName="gender">
+            <ion-select required placeholder="Sex (Select One)" class="ion-margin-horizontal" formControlName="gender">
               <ion-select-option value="Female">Female</ion-select-option>
               <ion-select-option value="Male">Male</ion-select-option>
             </ion-select>
@@ -138,7 +138,10 @@
           </ion-text>
         </ion-item-group>
 
-        
+        <ion-item class="term_conditions">
+          <ion-checkbox color="primary"></ion-checkbox>
+          <ion-label style=" padding-left: 10px;">I agree to <a href="#">terms & conditions</a> of Beehicle</ion-label>
+        </ion-item>
 
         <ion-button size="large" expand="block" shape="round" color="dark" (click)="onSubmit()">
 

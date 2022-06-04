@@ -1,14 +1,19 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="primary">
     <ion-title class="ion-text-center">
-      <p class="centered-p">Other Service List</p>
+      <p class="centered-p">Other Service</p>
     </ion-title>
 
 
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/vinfo" name="arrow-back-outline"></ion-back-button>
     </ion-buttons>
-
+    <ion-buttons slot="end">
+      
+      <ion-button fill="clear" (click)="presentModal()">
+        <ion-icon slot="icon-only" name="information-circle" style="padding-top: 10px; color: #f6e8b1;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 
 

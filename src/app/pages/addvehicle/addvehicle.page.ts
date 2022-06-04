@@ -72,6 +72,12 @@ export class AddvehiclePage implements OnInit {
       if (res.data.code==200){
         // await this.storage.set('access_token',res.data.data.access_token)
         this.router.navigate(["/home"])
+        const alert = await this.alertController.create({
+          cssClass: 'Success-alert',
+          header: 'Success',
+          message: 'Vehicle information created',
+          buttons: ['OK']
+        });
       }
     }catch(err){
       await loading.dismiss();

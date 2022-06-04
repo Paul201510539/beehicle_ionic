@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import axios from 'axios';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { LoadingController, AlertController, ToastController } from '@ionic/angular';
 import { environment } from '../../../../src/environments/environment';  
 
 
@@ -18,7 +18,13 @@ export class SigninPage implements OnInit {
 
   form: FormGroup
   state: String;
-  constructor(private router: Router, private storage: Storage, public loadingController: LoadingController, public alertController: AlertController) { 
+  constructor(
+    private router: Router, 
+    private storage: Storage, 
+    public loadingController: LoadingController, 
+    public alertController: AlertController,
+    public toastController: ToastController
+    ) { 
     this.initForm();
     this.state = 'sign_in';
   }
@@ -76,7 +82,13 @@ export class SigninPage implements OnInit {
           // await this.storage.set('vehicles', res.data.data.vehicles)
           await loading.dismiss();
 
-          this.router.navigate(["/home"])
+          this.router.navigate(["/home"]);
+          const toast = await this.toastController.create({
+            message: 'Logged in successful',
+            color: 'success',
+            duration: 3000
+          });
+          toast.present();
         }
     }catch(err){
       await loading.dismiss();

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
+import { ServiceComponent } from '../modals/service/service.component';
 
 @Component({
   selector: 'app-slist',
@@ -14,7 +15,8 @@ export class SlistPage implements OnInit {
   constructor(
     private route : ActivatedRoute,
     private storage: Storage,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    public modalController: ModalController
     ) { 
     this.id =  parseInt(this.route.snapshot.paramMap.get('id'));
   }
@@ -29,6 +31,19 @@ export class SlistPage implements OnInit {
   async ionViewDidEnter(){
     const sData  = await this.storage.get("data")
     this.services = sData.vehicles.find(x => x.id == this.id).service_summary;
+  }
+
+  presentModal(){
+    this.showModal("Ready to use modal");  
+  }
+
+  async showModal(msg){
+    const modal = await this.modalController.create({
+      component: ServiceComponent,
+      componentProps: { message : msg },
+      cssClass: 'alert-modal'
+    });
+    await modal.present();
   }
 
 }
