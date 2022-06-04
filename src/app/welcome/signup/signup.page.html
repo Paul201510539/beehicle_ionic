@@ -75,8 +75,8 @@
             <ion-input class="ion-margin-horizontal" placeholder="Phone No." type="number" required formControlName="phone_number"> 
             </ion-input>
           </ion-item>
-          <ion-text class="error" color="danger" *ngIf="hasError('number')">
-            {{errors['number'][0]}}
+          <ion-text class="error" color="danger" *ngIf="hasError('phone_number')">
+            {{errors['phone_number'][0]}}
           </ion-text>
           <!-- <ion-text class="error" color="danger" *ngIf="!form.get('phoneno').valid && form.get('phoneno').touched">
             Please enter your Number
@@ -139,7 +139,7 @@
         </ion-item-group>
 
         <ion-item class="term_conditions">
-          <ion-checkbox color="primary"></ion-checkbox>
+          <ion-checkbox color="primary" formControlName="agreed"></ion-checkbox>
           <ion-label style=" padding-left: 10px;">I agree to <a href="#">terms & conditions</a> of Beehicle</ion-label>
         </ion-item>
 

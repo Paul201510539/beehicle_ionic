@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class SignupPage implements OnInit {
   form: FormGroup;
   errors : Array<Object>
+  agreed: boolean;
   constructor(
     public loadingController: LoadingController, 
     public alertController: AlertController,
@@ -26,6 +27,7 @@ export class SignupPage implements OnInit {
   ngOnInit() {}
 
   initForm() {
+    this.agreed = false;
     this.form = new FormGroup({
       name: new FormControl('', { validators: [Validators.required] }),
       email: new FormControl('', { validators: [Validators.required] }),
@@ -41,10 +43,22 @@ export class SignupPage implements OnInit {
       phone_number: new FormControl('', {
         validators: [Validators.required, Validators.minLength(11)],
       }),
+      agreed : new FormControl(false)
+
     });
   }
 
   async onSubmit() {
+    console.log(this.form.value['agreed']);
+    if(!this.form.value['agreed']){
+      const alert = await this.alertController.create({
+        header: 'Alert',
+        message: 'You must agree to our Terms & Conditions',
+        buttons: ['OK'] 
+      })
+      await alert.present();
+      return;
+    }
     const config = {
       headers: {
         'Access-Control-Allow-Origin': '*',
