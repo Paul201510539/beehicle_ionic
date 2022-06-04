@@ -76,7 +76,7 @@ export class HomePage implements OnInit {
   }
 
   async ionViewDidEnter(){
-    await this.loadVehicles()
+    this.loadVehicles()
   }
   
   ngAfterViewInit() {

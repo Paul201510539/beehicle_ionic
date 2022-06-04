@@ -47,13 +47,7 @@
     <ion-label>{{field.label}}</ion-label>
 
     <ion-label *ngIf="field.code=='date'">{{field.label}}</ion-label>
-    <ion-datetime 
-      autogrow  
-      [(ngModel)]="field.value" 
-      *ngIf="field.code=='date'"
-      displayFormat="DD.MM.YYYY"
-      presentation="date" 
-    ></ion-datetime>
+    <ion-datetime autogrow  [(ngModel)]="field.value" *ngIf="field.code=='date'"></ion-datetime>
     
   </ion-item>
 

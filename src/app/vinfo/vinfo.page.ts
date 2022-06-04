@@ -6,7 +6,8 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { environment } from '../../../src/environments/environment';  
 import axios from 'axios';
 import { FileService } from '../services/file.service';
-import * as moment from 'moment';
+
+
 @Component({
   selector: 'app-vinfo',
   templateUrl: './vinfo.page.html',
@@ -20,7 +21,7 @@ export class VinfoPage implements OnInit {
 
   id: any;
   pms_badge: any;
-  date: any;
+  
 
   public vehicle: {
     brand: '',
@@ -29,9 +30,7 @@ export class VinfoPage implements OnInit {
     date_purchased: '',
     chasis: '',
     coding: '',
-    notes: '',
-    vehicle_image_car: '',
-    vehicle_image_orcr:''
+    notes: ''
 
   };
   public vehicles;
@@ -58,37 +57,20 @@ export class VinfoPage implements OnInit {
     const sData  = await this.storage.get("data")
 
     this.vehicle = sData.vehicles.find(x=>x.id==this.id)
+    console.log(sData.vehicles.find(x=>x.id==this.id));
     this.pms_badge = sData.vehicles.find(x=>x.id==this.id).pms_records.filter(x=> x.alert == true && x.done == false).length
 
-    this.date = new Date(this.vehicle.date_purchased).toISOString();
+    console.log(this.vehicle);
 
-    // this.form = new FormGroup({
-    //   brand: new FormControl(this.vehicle.brand, { validators: [Validators.required] }),
-    //   plate_number: new FormControl(this.vehicle.plate_number, { validators: [Validators.required] }),
-    //   vehicle_type: new FormControl(this.vehicle.vehicle_type, { validators: [Validators.required] }),
-    //   // date_purchased: new FormControl(new Date(this.vehicle.date_purchased).toJSON(), { validators: [Validators.required] }),
-      
-    //   chasis: new FormControl(this.vehicle.chasis, { validators: [Validators.required] }),
-    //   coding: new FormControl(this.vehicle.coding, { validators: [Validators.required] }),
-    //   notes: new FormControl(this.vehicle.notes, { validators: [Validators.required] }),
-    // })
-    this.form.patchValue({
-      brand: this.vehicle.brand,
-      plate_number: this.vehicle.plate_number,
-      vehicle_type: this.vehicle.vehicle_type,
-      date_purchased: new Date(this.vehicle.date_purchased).toISOString(),
-      chasis: this.vehicle.chasis,
-      coding: this.vehicle.coding,
-      notes: this.vehicle.notes,
-      vehicle_image_orcr: this.vehicle.vehicle_image_orcr,
-      vehicle_image_car: this.vehicle.vehicle_image_car,
-    })
-
-    this.vehicle_image_ORCR = this.vehicle.vehicle_image_orcr;
-    this.vehicle_image_car = this.vehicle.vehicle_image_car;
-    console.log(this.vehicle)
-
-
+    this.form = new FormGroup({
+      brand: new FormControl(this.vehicle.brand, { validators: [Validators.required] }),
+      plate_number: new FormControl(this.vehicle.plate_number, { validators: [Validators.required] }),
+      vehicle_type: new FormControl(this.vehicle.vehicle_type, { validators: [Validators.required] }),
+      date_purchased: new FormControl(new Date(this.vehicle.date_purchased).toISOString(), { validators: [Validators.required] }),
+      chasis: new FormControl(this.vehicle.chasis, { validators: [Validators.required] }),
+      coding: new FormControl(this.vehicle.coding, { validators: [Validators.required] }),
+      notes: new FormControl(this.vehicle.notes, { validators: [Validators.required] }),
+    })  
 
     loading.dismiss();
   }
@@ -102,13 +84,6 @@ export class VinfoPage implements OnInit {
       chasis: new FormControl('', { validators: [Validators.required] }),
       coding: new FormControl('', { validators: [Validators.required] }),
       notes: new FormControl('', { validators: [Validators.required] }),
-      
-    })
-
-
-    this.form.patchValue({
-      vehicle_image_car: "",
-      vehicle_image_orcr: "",
     })
 
   }
@@ -142,14 +117,16 @@ export class VinfoPage implements OnInit {
           message: 'Changes saved',
           buttons: ['OK']
         })
-
-
-        await this.storage.set('data', res.data.data )
+        var vehicles = await this.storage.get('vehicles')
+        const index = vehicles.findIndex(x=>x.id == vehicle.id)
+        console.log(vehicles)
+        vehicles[index] = vehicle
+        await this.storage.set('vehicles', vehicles )
+        console.log(vehicles)
         await alert.present();
         this.router.navigate(["/home"])
       
   }catch(err){
-    console.log(err)
     await loading.dismiss();
     const alert = await this.alertController.create({
       header: 'Alert',

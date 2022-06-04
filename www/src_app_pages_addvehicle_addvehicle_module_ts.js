@@ -155,12 +155,6 @@ let AddvehiclePage = class AddvehiclePage {
       }),
       notes: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl('', {
         validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-      }),
-      vehicle_image_orcr: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl('', {
-        validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-      }),
-      vehicle_image_car: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl('', {
-        validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
       })
     });
   }
@@ -185,12 +179,6 @@ let AddvehiclePage = class AddvehiclePage {
 
       try {
         const sData = yield _this.storage.get("data");
-
-        _this.form.patchValue({
-          "vehicle_image_orcr": _this.vehicle_image_ORCR,
-          "vehicle_image_car": _this.vehicle_image_car
-        });
-
         const res = yield axios__WEBPACK_IMPORTED_MODULE_4___default().post(URL, _this.form.value, config); // const vehicles = await this.storage.get("vehicles")
         // sData.vehicles.push(res.data.data.vehicle);
 
