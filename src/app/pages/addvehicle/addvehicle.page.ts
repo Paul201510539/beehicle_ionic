@@ -42,7 +42,8 @@ export class AddvehiclePage implements OnInit {
       chasis: new FormControl('', { validators: [Validators.required] }),
       coding: new FormControl('', { validators: [Validators.required] }),
       notes: new FormControl('', { validators: [Validators.required] }),
-
+      vehicle_image_orcr: new FormControl(''),
+      vehicle_image_car: new FormControl(''),
     });
   }
 
@@ -59,9 +60,15 @@ export class AddvehiclePage implements OnInit {
     };
     const URL = environment.API_HOST + '/vehicles/create';
     console.log(environment, environment.API_HOST)
+    this.form.patchValue({
+      vehicle_image_orcr: this.vehicle_image_ORCR,
+      vehicle_image_car: this.vehicle_image_car
+    })
+    
     try{
       const sData = await this.storage.get("data");
-
+  
+      console.log(this.form.value);
       const res = await axios.post(URL, this.form.value, config);
       // const vehicles = await this.storage.get("vehicles")
       

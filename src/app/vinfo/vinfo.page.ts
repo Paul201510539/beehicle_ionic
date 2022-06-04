@@ -30,7 +30,9 @@ export class VinfoPage implements OnInit {
     date_purchased: '',
     chasis: '',
     coding: '',
-    notes: ''
+    notes: '',
+    vehicle_image_car: '',
+    vehicle_image_orcr: ''
 
   };
   public vehicles;
@@ -70,21 +72,26 @@ export class VinfoPage implements OnInit {
       chasis: new FormControl(this.vehicle.chasis, { validators: [Validators.required] }),
       coding: new FormControl(this.vehicle.coding, { validators: [Validators.required] }),
       notes: new FormControl(this.vehicle.notes, { validators: [Validators.required] }),
+      vehicle_image_orcr: new FormControl(this.vehicle.vehicle_image_orcr),
+      vehicle_image_car: new FormControl(this.vehicle.vehicle_image_car),
     })  
+    this.vehicle_image_ORCR = this.vehicle.vehicle_image_orcr;
+    this.vehicle_image_car = this.vehicle.vehicle_image_car;
 
     loading.dismiss();
   }
   async ngOnInit() {
     this.getVehicle()
-    this.form = new FormGroup({
-      brand: new FormControl('', { validators: [Validators.required] }),
-      plate_number: new FormControl('', { validators: [Validators.required] }),
-      vehicle_type: new FormControl('', { validators: [Validators.required] }),
-      date_purchased: new FormControl('', { validators: [Validators.required] }),
-      chasis: new FormControl('', { validators: [Validators.required] }),
-      coding: new FormControl('', { validators: [Validators.required] }),
-      notes: new FormControl('', { validators: [Validators.required] }),
-    })
+    // this.form = new FormGroup({
+    //   brand: new FormControl('', { validators: [Validators.required] }),
+    //   plate_number: new FormControl('', { validators: [Validators.required] }),
+    //   vehicle_type: new FormControl('', { validators: [Validators.required] }),
+    //   date_purchased: new FormControl('', { validators: [Validators.required] }),
+    //   chasis: new FormControl('', { validators: [Validators.required] }),
+    //   coding: new FormControl('', { validators: [Validators.required] }),
+    //   notes: new FormControl('', { validators: [Validators.required] }),
+      
+    // })
 
   }
 
@@ -110,19 +117,19 @@ export class VinfoPage implements OnInit {
     const URL = environment.API_HOST;
     try{
         const res = await axios.put(`${URL}/vehicles/${this.id}/update`,this.form.value, config)
-        const vehicle = res.data.data.vehicle;
+        const data = res.data.data;
         await loading.dismiss();
         const alert = await this.alertController.create({
           header: 'Success',
           message: 'Changes saved',
           buttons: ['OK']
         })
-        var vehicles = await this.storage.get('vehicles')
-        const index = vehicles.findIndex(x=>x.id == vehicle.id)
-        console.log(vehicles)
-        vehicles[index] = vehicle
-        await this.storage.set('vehicles', vehicles )
-        console.log(vehicles)
+        // var vehicles = await this.storage.get('data')
+        // const index = vehicles.findIndex(x=>x.id == vehicle.id)
+        // console.log(vehicles)
+        // vehicles[index] = vehicle
+        await this.storage.set('data', data )
+        // console.log(vehicles)
         await alert.present();
         this.router.navigate(["/home"])
       

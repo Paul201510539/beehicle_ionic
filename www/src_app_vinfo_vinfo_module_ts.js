@@ -166,8 +166,12 @@ let VinfoPage = class VinfoPage {
         }),
         notes: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(_this.vehicle.notes, {
           validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        })
+        }),
+        vehicle_image_orcr: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(_this.vehicle.vehicle_image_orcr),
+        vehicle_image_car: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(_this.vehicle.vehicle_image_car)
       });
+      _this.vehicle_image_ORCR = _this.vehicle.vehicle_image_orcr;
+      _this.vehicle_image_car = _this.vehicle.vehicle_image_car;
       loading.dismiss();
     })();
   }
@@ -176,31 +180,16 @@ let VinfoPage = class VinfoPage {
     var _this2 = this;
 
     return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
-      _this2.getVehicle();
+      _this2.getVehicle(); // this.form = new FormGroup({
+      //   brand: new FormControl('', { validators: [Validators.required] }),
+      //   plate_number: new FormControl('', { validators: [Validators.required] }),
+      //   vehicle_type: new FormControl('', { validators: [Validators.required] }),
+      //   date_purchased: new FormControl('', { validators: [Validators.required] }),
+      //   chasis: new FormControl('', { validators: [Validators.required] }),
+      //   coding: new FormControl('', { validators: [Validators.required] }),
+      //   notes: new FormControl('', { validators: [Validators.required] }),
+      // })
 
-      _this2.form = new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormGroup({
-        brand: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl('', {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        }),
-        plate_number: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl('', {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        }),
-        vehicle_type: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl('', {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        }),
-        date_purchased: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl('', {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        }),
-        chasis: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl('', {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        }),
-        coding: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl('', {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        }),
-        notes: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl('', {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        })
-      });
     })();
   }
 
@@ -230,19 +219,19 @@ let VinfoPage = class VinfoPage {
 
       try {
         const res = yield axios__WEBPACK_IMPORTED_MODULE_4___default().put(`${URL}/vehicles/${_this3.id}/update`, _this3.form.value, config);
-        const vehicle = res.data.data.vehicle;
+        const data = res.data.data;
         yield loading.dismiss();
         const alert = yield _this3.alertController.create({
           header: 'Success',
           message: 'Changes saved',
           buttons: ['OK']
-        });
-        var vehicles = yield _this3.storage.get('vehicles');
-        const index = vehicles.findIndex(x => x.id == vehicle.id);
-        console.log(vehicles);
-        vehicles[index] = vehicle;
-        yield _this3.storage.set('vehicles', vehicles);
-        console.log(vehicles);
+        }); // var vehicles = await this.storage.get('data')
+        // const index = vehicles.findIndex(x=>x.id == vehicle.id)
+        // console.log(vehicles)
+        // vehicles[index] = vehicle
+
+        yield _this3.storage.set('data', data); // console.log(vehicles)
+
         yield alert.present();
 
         _this3.router.navigate(["/home"]);
