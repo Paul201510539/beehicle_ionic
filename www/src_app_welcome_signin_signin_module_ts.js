@@ -116,11 +116,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let SigninPage = class SigninPage {
-  constructor(router, storage, loadingController, alertController) {
+  constructor(router, storage, loadingController, alertController, toastController) {
     this.router = router;
     this.storage = storage;
     this.loadingController = loadingController;
     this.alertController = alertController;
+    this.toastController = toastController;
     this.initForm();
     this.state = 'sign_in';
   }
@@ -190,6 +191,13 @@ let SigninPage = class SigninPage {
           yield loading.dismiss();
 
           _this2.router.navigate(["/home"]);
+
+          const toast = yield _this2.toastController.create({
+            message: 'Logged in successful',
+            color: 'success',
+            duration: 3000
+          });
+          toast.present();
         }
       } catch (err) {
         yield loading.dismiss();
@@ -265,6 +273,8 @@ SigninPage.ctorParameters = () => [{
   type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.LoadingController
 }, {
   type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.AlertController
+}, {
+  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.ToastController
 }];
 
 SigninPage = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.Component)({
