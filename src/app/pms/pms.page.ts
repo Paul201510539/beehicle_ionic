@@ -30,6 +30,7 @@ export class PmsPage implements OnInit {
   }
   
   async ngOnInit() {
+   
     const sData = await this.storage.get('data');
     this.vehicle_id = (this.route.snapshot.paramMap.get('vehicle_id'));
 
@@ -294,6 +295,7 @@ export class PmsPage implements OnInit {
     this.mode = pms_data === undefined ? 'create' : 'update';
     if(this.mode=='update'){
       this.pms_data = JSON.parse(pms_data.data);
+      console.log(this.pms_data);
       this.loadFields();
     }
     
@@ -301,6 +303,7 @@ export class PmsPage implements OnInit {
   }
 
   loadFields(){
+    
    Object.keys(this.pms_data).map((key)=>{
      if(key=='date' || key=='cost' || key=='pms' || key =='vehicle_id'){
 
@@ -313,6 +316,8 @@ export class PmsPage implements OnInit {
         this.fields.find(x=>x.code == key).value = this.pms_data[key];
       }
     }
+    this.fields.find(x=>x.code == "date").value = new Date(this.pms_data['date']).toISOString();
+
    })
 
   //  console.log('fields are',this.fields);
@@ -416,7 +421,9 @@ export class PmsPage implements OnInit {
         message: res.data.message,
         buttons: ['OK'] 
       })
-      await this.storage.set('data', res.data.data)
+      await this.storage.set("data", res.data.data)
+      const data = await this.storage.get("data")
+      console.log(data)
       await alert.present();
 
       this.navCtrl.back();

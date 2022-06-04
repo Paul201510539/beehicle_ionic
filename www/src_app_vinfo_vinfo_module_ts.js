@@ -142,32 +142,32 @@ let VinfoPage = class VinfoPage {
       _this.vehicle_id = parseInt(_this.route.snapshot.paramMap.get('id'));
       const sData = yield _this.storage.get("data");
       _this.vehicle = sData.vehicles.find(x => x.id == _this.id);
-      console.log(sData.vehicles.find(x => x.id == _this.id));
       _this.pms_badge = sData.vehicles.find(x => x.id == _this.id).pms_records.filter(x => x.alert == true && x.done == false).length;
-      console.log(_this.vehicle);
-      _this.form = new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormGroup({
-        brand: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(_this.vehicle.brand, {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        }),
-        plate_number: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(_this.vehicle.plate_number, {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        }),
-        vehicle_type: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(_this.vehicle.vehicle_type, {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        }),
-        date_purchased: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(new Date(_this.vehicle.date_purchased).toISOString(), {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        }),
-        chasis: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(_this.vehicle.chasis, {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        }),
-        coding: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(_this.vehicle.coding, {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        }),
-        notes: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(_this.vehicle.notes, {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        })
+      _this.date = new Date(_this.vehicle.date_purchased).toISOString(); // this.form = new FormGroup({
+      //   brand: new FormControl(this.vehicle.brand, { validators: [Validators.required] }),
+      //   plate_number: new FormControl(this.vehicle.plate_number, { validators: [Validators.required] }),
+      //   vehicle_type: new FormControl(this.vehicle.vehicle_type, { validators: [Validators.required] }),
+      //   // date_purchased: new FormControl(new Date(this.vehicle.date_purchased).toJSON(), { validators: [Validators.required] }),
+      //   chasis: new FormControl(this.vehicle.chasis, { validators: [Validators.required] }),
+      //   coding: new FormControl(this.vehicle.coding, { validators: [Validators.required] }),
+      //   notes: new FormControl(this.vehicle.notes, { validators: [Validators.required] }),
+      // })
+
+      _this.form.patchValue({
+        brand: _this.vehicle.brand,
+        plate_number: _this.vehicle.plate_number,
+        vehicle_type: _this.vehicle.vehicle_type,
+        date_purchased: new Date(_this.vehicle.date_purchased).toISOString(),
+        chasis: _this.vehicle.chasis,
+        coding: _this.vehicle.coding,
+        notes: _this.vehicle.notes,
+        vehicle_image_orcr: _this.vehicle.vehicle_image_orcr,
+        vehicle_image_car: _this.vehicle.vehicle_image_car
       });
+
+      _this.vehicle_image_ORCR = _this.vehicle.vehicle_image_orcr;
+      _this.vehicle_image_car = _this.vehicle.vehicle_image_car;
+      console.log(_this.vehicle);
       loading.dismiss();
     })();
   }
@@ -200,6 +200,11 @@ let VinfoPage = class VinfoPage {
         notes: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl('', {
           validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
         })
+      });
+
+      _this2.form.patchValue({
+        vehicle_image_car: "",
+        vehicle_image_orcr: ""
       });
     })();
   }
@@ -237,16 +242,12 @@ let VinfoPage = class VinfoPage {
           message: 'Success',
           buttons: ['OK']
         });
-        var vehicles = yield _this3.storage.get('vehicles');
-        const index = vehicles.findIndex(x => x.id == vehicle.id);
-        console.log(vehicles);
-        vehicles[index] = vehicle;
-        yield _this3.storage.set('vehicles', vehicles);
-        console.log(vehicles);
+        yield _this3.storage.set('data', res.data.data);
         yield alert.present();
 
         _this3.router.navigate(["/home"]);
       } catch (err) {
+        console.log(err);
         yield loading.dismiss();
         const alert = yield _this3.alertController.create({
           header: 'Alert',
@@ -335,7 +336,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header class=\"ion-no-border\">\n  <ion-toolbar color=\"primary\">\n    <ion-title>\n      <p class=\"centered-p\">Vehicle Info</p>\n    </ion-title>\n\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/home\" name=\"arrow-back-outline\"></ion-back-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <form [formGroup]=\"form\" (ngSubmit)=\"submitForm()\" novalidate>\n\n    <ion-item>\n      <ion-label position=\"floating\">Vehicle Brand</ion-label>\n      <ion-input formControlName=\"brand\" type=\"text\" required></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-img [src]=\"vehicle_image_ORCR\"></ion-img>\n    </ion-item>\n      \n    <ion-item class=\"photoPicker\">\n      <ion-label position=\"floating\">*upload a photo of your OR/CR</ion-label>\n      <ion-button (click)=\"OraddPhotoToGallery()\" class=\"button\">Select Images</ion-button>\n    </ion-item>\n  \n    <ion-item>\n      <ion-img [src]=\"vehicle_image_car\"></ion-img>\n    </ion-item>\n  \n    <ion-item class=\"photoPicker\">\n      <ion-label position=\"floating\">*upload a photo of your Car</ion-label>\n      <ion-button (click)=\"CaraddPhotoToGallery()\" class=\"button\">Select Images</ion-button>\n    </ion-item>\n\n    <ion-item>\n      <ion-label position=\"floating\">Plate Number</ion-label>\n      <ion-input formControlName=\"plate_number\" type=\"text\" required></ion-input>\n    </ion-item>\n\n\n    <!-- <ion-item >\n    <ion-label>Vehicle type</ion-label>\n    <ion-select  formControlName=\"vehicle_type\">\n      <ion-select-option value=\"4 wheels\">4 wheels</ion-select-option>\n      <ion-select-option value=\"3 wheels\">3 wheels</ion-select-option>\n      <ion-select-option value=\"2 wheels\">2 wheels</ion-select-option>\n    </ion-select>\n  </ion-item> -->\n\n\n  <ion-item>Date</ion-item>\n  <ion-item>\n    <ion-datetime formControlName=\"date_purchased\" presentation=\"date\" [(ngModel)]=\"date\">Date</ion-datetime>\n  </ion-item>\n\n\n    <ion-item>\n      <ion-label position=\"floating\">Chasis</ion-label>\n      <ion-input formControlName=\"chasis\" type=\"text\" required></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label position=\"floating\">Coding</ion-label>\n      <ion-input formControlName=\"coding\" type=\"text\" required [(ngModel)]='coding' value=\"{{coding}}\"></ion-input>\n    </ion-item>\n\n    <!-- <ion-item >\n    <ion-label>coding</ion-label>\n    <ion-select multiple=\"true\" [value]=\"['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']\" formControlName=\"vehicle_coding\">\n      <ion-select-option value=\"Monday\">monday</ion-select-option>\n      <ion-select-option value=\"tuesday\">tuesday</ion-select-option>\n      <ion-select-option value=\"wednesday\">wednesday</ion-select-option>\n      <ion-select-option value=\"thursday\">thursday</ion-select-option>\n      <ion-select-option value=\"friday\">friday</ion-select-option>\n      <ion-select-option value=\"saturday\">saturday</ion-select-option>\n      <ion-select-option value=\"sunday\">sunday</ion-select-option>\n    </ion-select>\n  </ion-item> -->\n\n\n    <ion-item>\n      <ion-label>Notes</ion-label>\n      <ion-textarea rows=\"6\" cols=\"20\" placeholder=\"Enter any notes here...\" formControlName=\"notes\"></ion-textarea>\n    </ion-item>\n\n    <ion-button type=\"submit\" color=\"warning\" expand=\"block\">\n      <ion-label color=\"light\">Submit</ion-label>\n\n    </ion-button>\n  </form>\n\n</ion-content>\n\n<ion-toolbar>\n  <ion-tabs>\n    <ion-tab-bar slot=\"bottom\">\n      <ion-tab-button [routerLink]=\"['/slist', id]\">\n        <ion-icon name=\"car-outline\"></ion-icon>\n        <ion-label>Services</ion-label>\n        <ion-badge>6</ion-badge>\n      </ion-tab-button>\n      <ion-tab-button [routerLink]=\"['/translist', id]\">\n        <ion-icon name=\"book-outline\"></ion-icon>\n        <ion-label>Travel</ion-label>\n      </ion-tab-button>\n      <ion-tab-button [routerLink]=\"['/pmslist', id]\">\n        <ion-icon name=\"speedometer-outline\"></ion-icon>\n        <ion-label>PMS</ion-label>\n        <ion-badge *ngIf=\"pms_badge > 0\">{{pms_badge}}</ion-badge>\n\n      </ion-tab-button>\n    </ion-tab-bar>\n  </ion-tabs>\n</ion-toolbar>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header class=\"ion-no-border\">\n  <ion-toolbar color=\"primary\">\n    <ion-title>\n      <p class=\"centered-p\">Vehicle Info</p>\n    </ion-title>\n\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/home\" name=\"arrow-back-outline\"></ion-back-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <form [formGroup]=\"form\" (ngSubmit)=\"submitForm()\" novalidate>\n\n    <ion-item>\n      <ion-label position=\"floating\">Vehicle Brand</ion-label>\n      <ion-input formControlName=\"brand\" type=\"text\" required></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-img [src]=\"vehicle_image_ORCR\"></ion-img>\n    </ion-item>\n      \n    <ion-item class=\"photoPicker\">\n      <ion-label position=\"floating\">*upload a photo of your OR/CR</ion-label>\n      <ion-button (click)=\"OraddPhotoToGallery()\" class=\"button\">Select Images</ion-button>\n    </ion-item>\n  \n    <ion-item>\n      <ion-img [src]=\"vehicle_image_car\"></ion-img>\n    </ion-item>\n  \n    <ion-item class=\"photoPicker\">\n      <ion-label position=\"floating\">*upload a photo of your Car</ion-label>\n      <ion-button (click)=\"CaraddPhotoToGallery()\" class=\"button\">Select Images</ion-button>\n    </ion-item>\n\n    <ion-item>\n      <ion-label position=\"floating\">Plate Number</ion-label>\n      <ion-input formControlName=\"plate_number\" type=\"text\" required></ion-input>\n    </ion-item>\n\n\n    <!-- <ion-item >\n    <ion-label>Vehicle type</ion-label>\n    <ion-select  formControlName=\"vehicle_type\">\n      <ion-select-option value=\"4 wheels\">4 wheels</ion-select-option>\n      <ion-select-option value=\"3 wheels\">3 wheels</ion-select-option>\n      <ion-select-option value=\"2 wheels\">2 wheels</ion-select-option>\n    </ion-select>\n  </ion-item> -->\n\n\n  <ion-item>Date</ion-item>\n  <ion-item>\n    <ion-datetime formControlName=\"date_purchased\"     displayFormat=\"DD.MM.YYYY\"\n    presentation=\"date\" >Date</ion-datetime>\n  </ion-item>\n\n\n    <ion-item>\n      <ion-label position=\"floating\">Chasis</ion-label>\n      <ion-input formControlName=\"chasis\" type=\"text\" required></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label position=\"floating\">Coding</ion-label>\n      <ion-input formControlName=\"coding\" type=\"text\" required [(ngModel)]='coding' value=\"{{coding}}\"></ion-input>\n    </ion-item>\n\n    <!-- <ion-item >\n    <ion-label>coding</ion-label>\n    <ion-select multiple=\"true\" [value]=\"['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']\" formControlName=\"vehicle_coding\">\n      <ion-select-option value=\"Monday\">monday</ion-select-option>\n      <ion-select-option value=\"tuesday\">tuesday</ion-select-option>\n      <ion-select-option value=\"wednesday\">wednesday</ion-select-option>\n      <ion-select-option value=\"thursday\">thursday</ion-select-option>\n      <ion-select-option value=\"friday\">friday</ion-select-option>\n      <ion-select-option value=\"saturday\">saturday</ion-select-option>\n      <ion-select-option value=\"sunday\">sunday</ion-select-option>\n    </ion-select>\n  </ion-item> -->\n\n\n    <ion-item>\n      <ion-label>Notes</ion-label>\n      <ion-textarea rows=\"6\" cols=\"20\" placeholder=\"Enter any notes here...\" formControlName=\"notes\"></ion-textarea>\n    </ion-item>\n\n    <ion-button type=\"submit\" color=\"warning\" expand=\"block\">\n      <ion-label color=\"light\">Submit</ion-label>\n\n    </ion-button>\n  </form>\n\n</ion-content>\n\n<ion-toolbar>\n  <ion-tabs>\n    <ion-tab-bar slot=\"bottom\">\n      <ion-tab-button [routerLink]=\"['/slist', id]\">\n        <ion-icon name=\"car-outline\"></ion-icon>\n        <ion-label>Services</ion-label>\n        <ion-badge>6</ion-badge>\n      </ion-tab-button>\n      <ion-tab-button [routerLink]=\"['/translist', id]\">\n        <ion-icon name=\"book-outline\"></ion-icon>\n        <ion-label>Travel</ion-label>\n      </ion-tab-button>\n      <ion-tab-button [routerLink]=\"['/pmslist', id]\">\n        <ion-icon name=\"speedometer-outline\"></ion-icon>\n        <ion-label>PMS</ion-label>\n        <ion-badge *ngIf=\"pms_badge > 0\">{{pms_badge}}</ion-badge>\n\n      </ion-tab-button>\n    </ion-tab-bar>\n  </ion-tabs>\n</ion-toolbar>");
 
 /***/ })
 
