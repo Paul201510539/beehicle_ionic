@@ -31,9 +31,10 @@ export class UserupdatePage implements OnInit {
       name: '',
       phone_number: '',
       email: '',
-      birthday : null,
+      birthday : new Date().toISOString(),
       address: ''
     }
+    this.populate()
   }
 
 
@@ -48,10 +49,11 @@ export class UserupdatePage implements OnInit {
       name : data.name,
       phone_number: data.phone_number,
       email: data.email,
+      // birthday: '1994-11-26',
       birthday: new Date(data.birthday).toISOString(),
       address: data.address
     }
-    console.log(data.name,data.birthday);
+    console.log(data.name, new Date(data.birthday).toISOString());
   }
 
   async submit()
@@ -72,6 +74,7 @@ export class UserupdatePage implements OnInit {
         }
       };
       const URL = `${environment.API_HOST}/profile/${data.id}`;
+      console.log(form);
       const response = await axios.put(URL, form, config);
 
       await this.storage.set('data', response.data.data)

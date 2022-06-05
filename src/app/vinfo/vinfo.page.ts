@@ -48,10 +48,23 @@ export class VinfoPage implements OnInit {
     public alertController: AlertController,
     public fileService: FileService
     ) {
-    this.getVehicle();
+      this.form = new FormGroup({
+        brand: new FormControl('',  { validators: [Validators.required] }),
+        plate_number: new FormControl('', { validators: [Validators.required] }),
+        vehicle_type: new FormControl('', { validators: [Validators.required] }),
+        date_purchased: new FormControl(new Date().toISOString(), { validators: [Validators.required] }),
+        chasis: new FormControl('', { validators: [Validators.required] }),
+        coding: new FormControl('', { validators: [Validators.required] }),
+        notes: new FormControl('', { validators: [Validators.required] }),
+        vehicle_image_orcr: new FormControl(''),
+        vehicle_image_car: new FormControl('')
+      }
+    )
   }
 
   async getVehicle(){
+
+
     const loading = await this.loadingController.create({message: 'Please wait'})
     await loading.present()
     this.id = parseInt(this.route.snapshot.paramMap.get('id'));
@@ -59,22 +72,36 @@ export class VinfoPage implements OnInit {
     const sData  = await this.storage.get("data")
 
     this.vehicle = sData.vehicles.find(x=>x.id==this.id)
-    console.log(sData.vehicles.find(x=>x.id==this.id));
     this.pms_badge = sData.vehicles.find(x=>x.id==this.id).pms_records.filter(x=> x.alert == true && x.done == false).length
+    console.log('vehicle is')
+    console.log('-----')
+    console.log(this.vehicle.date_purchased)
+    console.log('-----')
+    console.log('vehicle is')
 
-    console.log(this.vehicle);
+    // this.form = new FormGroup({
+    //   brand: new FormControl(this.vehicle.brand, { validators: [Validators.required] }),
+    //   plate_number: new FormControl(this.vehicle.plate_number, { validators: [Validators.required] }),
+    //   vehicle_type: new FormControl(this.vehicle.vehicle_type, { validators: [Validators.required] }),
+    //   date_purchased: (new Date(this.vehicle.date_purchased), { validators: [Validators.required] }),
+    //   chasis: new FormControl(this.vehicle.chasis, { validators: [Validators.required] }),
+    //   coding: new FormControl(this.vehicle.coding, { validators: [Validators.required] }),
+    //   notes: new FormControl(this.vehicle.notes, { validators: [Validators.required] }),
+    //   vehicle_image_orcr: new FormControl(this.vehicle.vehicle_image_orcr),
+    //   vehicle_image_car: new FormControl(this.vehicle.vehicle_image_car),
+    // })  
 
-    this.form = new FormGroup({
-      brand: new FormControl(this.vehicle.brand, { validators: [Validators.required] }),
-      plate_number: new FormControl(this.vehicle.plate_number, { validators: [Validators.required] }),
-      vehicle_type: new FormControl(this.vehicle.vehicle_type, { validators: [Validators.required] }),
-      date_purchased: new FormControl(new Date(this.vehicle.date_purchased).toISOString(), { validators: [Validators.required] }),
-      chasis: new FormControl(this.vehicle.chasis, { validators: [Validators.required] }),
-      coding: new FormControl(this.vehicle.coding, { validators: [Validators.required] }),
-      notes: new FormControl(this.vehicle.notes, { validators: [Validators.required] }),
-      vehicle_image_orcr: new FormControl(this.vehicle.vehicle_image_orcr),
-      vehicle_image_car: new FormControl(this.vehicle.vehicle_image_car),
-    })  
+    this.form.patchValue({
+      brand: this.vehicle.brand,
+      plate_number: this.vehicle.plate_number, 
+      vehicle_type: this.vehicle.vehicle_type,
+      date_purchased: new Date(this.vehicle.date_purchased).toISOString(),
+      chasis: this.vehicle.chasis, 
+      coding: this.vehicle.coding, 
+      notes: this.vehicle.notes,
+      vehicle_image_orcr: this.vehicle.vehicle_image_orcr,
+      vehicle_image_car: this.vehicle.vehicle_image_car,
+    })
     this.vehicle_image_ORCR = this.vehicle.vehicle_image_orcr;
     this.vehicle_image_car = this.vehicle.vehicle_image_car;
 
@@ -96,7 +123,7 @@ export class VinfoPage implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.getVehicle()
+    // this.getVehicle()
   }
 
   // ionViewDidEnter(){

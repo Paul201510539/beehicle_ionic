@@ -16,21 +16,28 @@ export class ProfilePage implements OnInit {
     // this.ngOnInit()
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     const data = this.router.url.split('/');
-    const sData = await this.storage.get('data');
-    this.user = sData;
-
+    this.loadData();
     console.log('hey from ngOnInit')
 
     if(data[1] == 'home') this.back = true;
     else this.back = false;
   }
+  async loadData(){
+    const data = this.router.url.split('/');
+    const sData = await this.storage.get('data');
+    this.user = sData;
 
+  }
   ionOnViewWillEnter(){
+    this.loadData();
+
     console.log('hey from ionOnViewWillEnter')
   }
   IonViewDidLeave(){
+    this.loadData();
+
     console.log('hey from IonViewDidLeave')
   }
  
