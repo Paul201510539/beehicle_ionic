@@ -93,7 +93,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "VinfoPage": () => (/* binding */ VinfoPage)
 /* harmony export */ });
-/* harmony import */ var _Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ 6304);
+/* harmony import */ var D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ 6304);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_vinfo_page_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !raw-loader!./vinfo.page.html */ 8872);
 /* harmony import */ var _vinfo_page_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./vinfo.page.scss */ 4163);
@@ -127,13 +127,37 @@ let VinfoPage = class VinfoPage {
     this.loadingController = loadingController;
     this.alertController = alertController;
     this.fileService = fileService;
-    this.getVehicle();
+    this.form = new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormGroup({
+      brand: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl('', {
+        validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
+      }),
+      plate_number: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl('', {
+        validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
+      }),
+      vehicle_type: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl('', {
+        validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
+      }),
+      date_purchased: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(new Date().toISOString(), {
+        validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
+      }),
+      chasis: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl('', {
+        validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
+      }),
+      coding: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl('', {
+        validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
+      }),
+      notes: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl('', {
+        validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
+      }),
+      vehicle_image_orcr: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(''),
+      vehicle_image_car: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl('')
+    });
   }
 
   getVehicle() {
     var _this = this;
 
-    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+    return (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
       const loading = yield _this.loadingController.create({
         message: 'Please wait'
       });
@@ -142,34 +166,35 @@ let VinfoPage = class VinfoPage {
       _this.vehicle_id = parseInt(_this.route.snapshot.paramMap.get('id'));
       const sData = yield _this.storage.get("data");
       _this.vehicle = sData.vehicles.find(x => x.id == _this.id);
-      console.log(sData.vehicles.find(x => x.id == _this.id));
       _this.pms_badge = sData.vehicles.find(x => x.id == _this.id).pms_records.filter(x => x.alert == true && x.done == false).length;
-      console.log(_this.vehicle);
-      _this.form = new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormGroup({
-        brand: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(_this.vehicle.brand, {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        }),
-        plate_number: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(_this.vehicle.plate_number, {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        }),
-        vehicle_type: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(_this.vehicle.vehicle_type, {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        }),
-        date_purchased: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(new Date(_this.vehicle.date_purchased).toISOString(), {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        }),
-        chasis: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(_this.vehicle.chasis, {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        }),
-        coding: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(_this.vehicle.coding, {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        }),
-        notes: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(_this.vehicle.notes, {
-          validators: [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]
-        }),
-        vehicle_image_orcr: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(_this.vehicle.vehicle_image_orcr),
-        vehicle_image_car: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(_this.vehicle.vehicle_image_car)
+      console.log('vehicle is');
+      console.log('-----');
+      console.log(_this.vehicle.date_purchased);
+      console.log('-----');
+      console.log('vehicle is'); // this.form = new FormGroup({
+      //   brand: new FormControl(this.vehicle.brand, { validators: [Validators.required] }),
+      //   plate_number: new FormControl(this.vehicle.plate_number, { validators: [Validators.required] }),
+      //   vehicle_type: new FormControl(this.vehicle.vehicle_type, { validators: [Validators.required] }),
+      //   date_purchased: (new Date(this.vehicle.date_purchased), { validators: [Validators.required] }),
+      //   chasis: new FormControl(this.vehicle.chasis, { validators: [Validators.required] }),
+      //   coding: new FormControl(this.vehicle.coding, { validators: [Validators.required] }),
+      //   notes: new FormControl(this.vehicle.notes, { validators: [Validators.required] }),
+      //   vehicle_image_orcr: new FormControl(this.vehicle.vehicle_image_orcr),
+      //   vehicle_image_car: new FormControl(this.vehicle.vehicle_image_car),
+      // })  
+
+      _this.form.patchValue({
+        brand: _this.vehicle.brand,
+        plate_number: _this.vehicle.plate_number,
+        vehicle_type: _this.vehicle.vehicle_type,
+        date_purchased: new Date(_this.vehicle.date_purchased).toISOString(),
+        chasis: _this.vehicle.chasis,
+        coding: _this.vehicle.coding,
+        notes: _this.vehicle.notes,
+        vehicle_image_orcr: _this.vehicle.vehicle_image_orcr,
+        vehicle_image_car: _this.vehicle.vehicle_image_car
       });
+
       _this.vehicle_image_ORCR = _this.vehicle.vehicle_image_orcr;
       _this.vehicle_image_car = _this.vehicle.vehicle_image_car;
       loading.dismiss();
@@ -179,7 +204,7 @@ let VinfoPage = class VinfoPage {
   ngOnInit() {
     var _this2 = this;
 
-    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+    return (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
       _this2.getVehicle(); // this.form = new FormGroup({
       //   brand: new FormControl('', { validators: [Validators.required] }),
       //   plate_number: new FormControl('', { validators: [Validators.required] }),
@@ -193,8 +218,7 @@ let VinfoPage = class VinfoPage {
     })();
   }
 
-  ionViewWillEnter() {
-    this.getVehicle();
+  ionViewWillEnter() {// this.getVehicle()
   } // ionViewDidEnter(){
   //   console.log('ionViewDidEnter')
   // }
@@ -203,7 +227,7 @@ let VinfoPage = class VinfoPage {
   submitForm() {
     var _this3 = this;
 
-    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+    return (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
       const loading = yield _this3.loadingController.create({
         message: 'Please wait'
       });
@@ -254,7 +278,7 @@ let VinfoPage = class VinfoPage {
   OraddPhotoToGallery() {
     var _this4 = this;
 
-    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+    return (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
       const base64 = yield _this4.fileService.addNewToGallery();
       _this4.vehicle_image_ORCR = `data:image/jpeg;base64, ${base64}`;
     })();
@@ -263,7 +287,7 @@ let VinfoPage = class VinfoPage {
   CaraddPhotoToGallery() {
     var _this5 = this;
 
-    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+    return (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
       const base64 = yield _this5.fileService.addNewToGallery();
       _this5.vehicle_image_car = `data:image/jpeg;base64, ${base64}`;
     })();
@@ -309,7 +333,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (".md .centered-p {\n  text-align: center;\n  margin-left: -25%;\n}\n\nion-item ion-label {\n  color: #949494;\n}\n\n.photoPicker ion-label {\n  font-size: 14px;\n  font-style: italic;\n  color: gray;\n}\n\n.photoPicker .button {\n  margin-top: 10%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInZpbmZvLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFBO0VBQ0EsaUJBQUE7QUFDSjs7QUFJRTtFQUNFLGNBQUE7QUFESjs7QUFNSTtFQUNFLGVBQUE7RUFDQSxrQkFBQTtFQUNBLFdBQUE7QUFITjs7QUFLSTtFQUNFLGVBQUE7QUFITiIsImZpbGUiOiJ2aW5mby5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubWQgLmNlbnRlcmVkLXAge1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBtYXJnaW4tbGVmdDogLTI1JTtcbiAgICBcbiAgfVxuXG5pb24taXRlbXtcbiAgaW9uLWxhYmVse1xuICAgIGNvbG9yOiAjOTQ5NDk0O1xuICB9XG59XG5cbiAgLnBob3RvUGlja2Vye1xuICAgIGlvbi1sYWJlbHtcbiAgICAgIGZvbnQtc2l6ZTogMTRweDtcbiAgICAgIGZvbnQtc3R5bGU6IGl0YWxpYztcbiAgICAgIGNvbG9yOiBncmF5O1xuICAgIH1cbiAgICAuYnV0dG9ue1xuICAgICAgbWFyZ2luLXRvcDogMTAlO1xuICAgIH1cbiAgfVxuXG4gICJdfQ== */");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (".md .centered-p {\n  text-align: center;\n  margin-left: -25%;\n}\n\nion-item ion-label {\n  color: #949494;\n}\n\n.photoPicker ion-label {\n  font-size: 14px;\n  font-style: italic;\n  color: gray;\n}\n\n.photoPicker .button {\n  margin-top: 10%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInZpbmZvLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFBO0VBQ0EsaUJBQUE7QUFDSjs7QUFJRTtFQUNFLGNBQUE7QUFESjs7QUFNSTtFQUNFLGVBQUE7RUFDQSxrQkFBQTtFQUNBLFdBQUE7QUFITjs7QUFLSTtFQUNFLGVBQUE7QUFITiIsImZpbGUiOiJ2aW5mby5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubWQgLmNlbnRlcmVkLXAge1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gICAgbWFyZ2luLWxlZnQ6IC0yNSU7XHJcbiAgICBcclxuICB9XHJcblxyXG5pb24taXRlbXtcclxuICBpb24tbGFiZWx7XHJcbiAgICBjb2xvcjogIzk0OTQ5NDtcclxuICB9XHJcbn1cclxuXHJcbiAgLnBob3RvUGlja2Vye1xyXG4gICAgaW9uLWxhYmVse1xyXG4gICAgICBmb250LXNpemU6IDE0cHg7XHJcbiAgICAgIGZvbnQtc3R5bGU6IGl0YWxpYztcclxuICAgICAgY29sb3I6IGdyYXk7XHJcbiAgICB9XHJcbiAgICAuYnV0dG9ue1xyXG4gICAgICBtYXJnaW4tdG9wOiAxMCU7XHJcbiAgICB9XHJcbiAgfVxyXG5cclxuICAiXX0= */");
 
 /***/ }),
 
@@ -324,7 +348,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header class=\"ion-no-border\">\n  <ion-toolbar color=\"primary\">\n    <ion-title>\n      <p class=\"centered-p\">Vehicle Info</p>\n    </ion-title>\n\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/home\" name=\"arrow-back-outline\"></ion-back-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <form [formGroup]=\"form\" (ngSubmit)=\"submitForm()\" novalidate>\n\n    <ion-item>\n      <ion-label position=\"floating\">Vehicle Brand</ion-label>\n      <ion-input formControlName=\"brand\" type=\"text\" required></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-img [src]=\"vehicle_image_ORCR\"></ion-img>\n    </ion-item>\n      \n    <ion-item class=\"photoPicker\">\n      <ion-label position=\"floating\">*upload a photo of your OR/CR</ion-label>\n      <ion-button (click)=\"OraddPhotoToGallery()\" class=\"button\">Select Images</ion-button>\n    </ion-item>\n  \n    <ion-item>\n      <ion-img [src]=\"vehicle_image_car\"></ion-img>\n    </ion-item>\n  \n    <ion-item class=\"photoPicker\">\n      <ion-label position=\"floating\">*upload a photo of your Car</ion-label>\n      <ion-button (click)=\"CaraddPhotoToGallery()\" class=\"button\">Select Images</ion-button>\n    </ion-item>\n\n    <ion-item>\n      <ion-label position=\"floating\">Plate Number</ion-label>\n      <ion-input formControlName=\"plate_number\" type=\"text\" required></ion-input>\n    </ion-item>\n\n\n    <!-- <ion-item >\n    <ion-label>Vehicle type</ion-label>\n    <ion-select  formControlName=\"vehicle_type\">\n      <ion-select-option value=\"4 wheels\">4 wheels</ion-select-option>\n      <ion-select-option value=\"3 wheels\">3 wheels</ion-select-option>\n      <ion-select-option value=\"2 wheels\">2 wheels</ion-select-option>\n    </ion-select>\n  </ion-item> -->\n\n\n  <ion-item>Date of purchased</ion-item>\n  <ion-item>\n    <ion-datetime formControlName=\"date_purchased\" presentation=\"date\" [(ngModel)]=\"date\">Date</ion-datetime>\n  </ion-item>\n\n\n    <ion-item>\n      <ion-label position=\"floating\">Chassis number</ion-label>\n      <ion-input formControlName=\"chasis\" type=\"text\" required></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label position=\"floating\">Number Coding</ion-label>\n      <ion-input formControlName=\"coding\" type=\"text\" required [(ngModel)]='coding' value=\"{{coding}}\"></ion-input>\n    </ion-item>\n\n    <!-- <ion-item >\n    <ion-label>coding</ion-label>\n    <ion-select multiple=\"true\" [value]=\"['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']\" formControlName=\"vehicle_coding\">\n      <ion-select-option value=\"Monday\">monday</ion-select-option>\n      <ion-select-option value=\"tuesday\">tuesday</ion-select-option>\n      <ion-select-option value=\"wednesday\">wednesday</ion-select-option>\n      <ion-select-option value=\"thursday\">thursday</ion-select-option>\n      <ion-select-option value=\"friday\">friday</ion-select-option>\n      <ion-select-option value=\"saturday\">saturday</ion-select-option>\n      <ion-select-option value=\"sunday\">sunday</ion-select-option>\n    </ion-select>\n  </ion-item> -->\n\n\n    <ion-item>\n      <ion-label>Notes</ion-label>\n      <ion-textarea rows=\"6\" cols=\"20\" placeholder=\"Enter any notes here...\" formControlName=\"notes\"></ion-textarea>\n    </ion-item>\n\n    <ion-button type=\"submit\" color=\"warning\" expand=\"block\">\n      <ion-label color=\"light\">Update</ion-label>\n\n    </ion-button>\n  </form>\n\n</ion-content>\n\n<ion-toolbar>\n  <ion-tabs>\n    <ion-tab-bar slot=\"bottom\">\n      <ion-tab-button [routerLink]=\"['/slist', id]\">\n        <ion-icon name=\"car-outline\"></ion-icon>\n        <ion-label>Services</ion-label>\n        <ion-badge>6</ion-badge>\n      </ion-tab-button>\n      <ion-tab-button [routerLink]=\"['/translist', id]\">\n        <ion-icon name=\"book-outline\"></ion-icon>\n        <ion-label>Travel</ion-label>\n      </ion-tab-button>\n      <ion-tab-button [routerLink]=\"['/pmslist', id]\">\n        <ion-icon name=\"speedometer-outline\"></ion-icon>\n        <ion-label>PMS</ion-label>\n        <ion-badge *ngIf=\"pms_badge > 0\">{{pms_badge}}</ion-badge>\n\n      </ion-tab-button>\n    </ion-tab-bar>\n  </ion-tabs>\n</ion-toolbar>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header class=\"ion-no-border\">\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-title>\r\n      <p class=\"centered-p\">Vehicle Info</p>\r\n    </ion-title>\r\n\r\n    <ion-buttons slot=\"start\">\r\n      <ion-back-button defaultHref=\"/home\" name=\"arrow-back-outline\"></ion-back-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n<ion-content>\r\n\r\n  <form [formGroup]=\"form\" (ngSubmit)=\"submitForm()\" novalidate>\r\n\r\n    <ion-item>\r\n      <ion-label position=\"floating\">Vehicle Brand</ion-label>\r\n      <ion-input formControlName=\"brand\" type=\"text\" required></ion-input>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-img [src]=\"vehicle_image_ORCR\"></ion-img>\r\n    </ion-item>\r\n      \r\n    <ion-item class=\"photoPicker\">\r\n      <ion-label position=\"floating\">*upload a photo of your OR/CR</ion-label>\r\n      <ion-button (click)=\"OraddPhotoToGallery()\" class=\"button\">Select Images</ion-button>\r\n    </ion-item>\r\n  \r\n    <ion-item>\r\n      <ion-img [src]=\"vehicle_image_car\"></ion-img>\r\n    </ion-item>\r\n  \r\n    <ion-item class=\"photoPicker\">\r\n      <ion-label position=\"floating\">*upload a photo of your Car</ion-label>\r\n      <ion-button (click)=\"CaraddPhotoToGallery()\" class=\"button\">Select Images</ion-button>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label position=\"floating\">Plate Number</ion-label>\r\n      <ion-input formControlName=\"plate_number\" type=\"text\" required></ion-input>\r\n    </ion-item>\r\n\r\n\r\n    <!-- <ion-item >\r\n    <ion-label>Vehicle type</ion-label>\r\n    <ion-select  formControlName=\"vehicle_type\">\r\n      <ion-select-option value=\"4 wheels\">4 wheels</ion-select-option>\r\n      <ion-select-option value=\"3 wheels\">3 wheels</ion-select-option>\r\n      <ion-select-option value=\"2 wheels\">2 wheels</ion-select-option>\r\n    </ion-select>\r\n  </ion-item> -->\r\n\r\n\r\n  <ion-item>Date of purchased</ion-item>\r\n  <ion-item>\r\n    <ion-datetime formControlName=\"date_purchased\"  presentation=\"time-date\" displayFormat=\"MMM DD, h:mm A\">Date</ion-datetime>\r\n  </ion-item>\r\n\r\n\r\n    <ion-item>\r\n      <ion-label position=\"floating\">Chassis number</ion-label>\r\n      <ion-input formControlName=\"chasis\" type=\"text\" required></ion-input>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label position=\"floating\">Number Coding</ion-label>\r\n      <ion-input formControlName=\"coding\" type=\"text\" required [(ngModel)]='coding' value=\"{{coding}}\"></ion-input>\r\n    </ion-item>\r\n\r\n    <!-- <ion-item >\r\n    <ion-label>coding</ion-label>\r\n    <ion-select multiple=\"true\" [value]=\"['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']\" formControlName=\"vehicle_coding\">\r\n      <ion-select-option value=\"Monday\">monday</ion-select-option>\r\n      <ion-select-option value=\"tuesday\">tuesday</ion-select-option>\r\n      <ion-select-option value=\"wednesday\">wednesday</ion-select-option>\r\n      <ion-select-option value=\"thursday\">thursday</ion-select-option>\r\n      <ion-select-option value=\"friday\">friday</ion-select-option>\r\n      <ion-select-option value=\"saturday\">saturday</ion-select-option>\r\n      <ion-select-option value=\"sunday\">sunday</ion-select-option>\r\n    </ion-select>\r\n  </ion-item> -->\r\n\r\n\r\n    <ion-item>\r\n      <ion-label>Notes</ion-label>\r\n      <ion-textarea rows=\"6\" cols=\"20\" placeholder=\"Enter any notes here...\" formControlName=\"notes\"></ion-textarea>\r\n    </ion-item>\r\n\r\n    <ion-button type=\"submit\" color=\"warning\" expand=\"block\">\r\n      <ion-label color=\"light\">Update</ion-label>\r\n\r\n    </ion-button>\r\n  </form>\r\n\r\n</ion-content>\r\n\r\n<ion-toolbar>\r\n  <ion-tabs>\r\n    <ion-tab-bar slot=\"bottom\">\r\n      <ion-tab-button [routerLink]=\"['/slist', id]\">\r\n        <ion-icon name=\"car-outline\"></ion-icon>\r\n        <ion-label>Services</ion-label>\r\n        <ion-badge>6</ion-badge>\r\n      </ion-tab-button>\r\n      <ion-tab-button [routerLink]=\"['/translist', id]\">\r\n        <ion-icon name=\"book-outline\"></ion-icon>\r\n        <ion-label>Travel</ion-label>\r\n      </ion-tab-button>\r\n      <ion-tab-button [routerLink]=\"['/pmslist', id]\">\r\n        <ion-icon name=\"speedometer-outline\"></ion-icon>\r\n        <ion-label>PMS</ion-label>\r\n        <ion-badge *ngIf=\"pms_badge > 0\">{{pms_badge}}</ion-badge>\r\n\r\n      </ion-tab-button>\r\n    </ion-tab-bar>\r\n  </ion-tabs>\r\n</ion-toolbar>");
 
 /***/ })
 

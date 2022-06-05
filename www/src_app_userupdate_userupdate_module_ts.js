@@ -93,7 +93,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "UserupdatePage": () => (/* binding */ UserupdatePage)
 /* harmony export */ });
-/* harmony import */ var _Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ 6304);
+/* harmony import */ var D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ 6304);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_userupdate_page_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !raw-loader!./userupdate.page.html */ 1047);
 /* harmony import */ var _userupdate_page_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userupdate.page.scss */ 7432);
@@ -133,15 +133,16 @@ let UserupdatePage = class UserupdatePage {
       name: '',
       phone_number: '',
       email: '',
-      birthday: null,
+      birthday: new Date().toISOString(),
       address: ''
     };
+    this.populate();
   }
 
   ngOnInit() {
     var _this = this;
 
-    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+    return (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
       yield _this.populate();
     })();
   }
@@ -149,23 +150,24 @@ let UserupdatePage = class UserupdatePage {
   populate() {
     var _this2 = this;
 
-    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+    return (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
       const data = yield _this2.storage.get("data");
       _this2.user = {
         name: data.name,
         phone_number: data.phone_number,
         email: data.email,
+        // birthday: '1994-11-26',
         birthday: new Date(data.birthday).toISOString(),
         address: data.address
       };
-      console.log(data.name, data.birthday);
+      console.log(data.name, new Date(data.birthday).toISOString());
     })();
   }
 
   submit() {
     var _this3 = this;
 
-    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+    return (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
       const loading = yield _this3.loadingController.create({
         message: 'Please wait'
       });
@@ -182,6 +184,7 @@ let UserupdatePage = class UserupdatePage {
           }
         };
         const URL = `${_src_environments_environment__WEBPACK_IMPORTED_MODULE_3__.environment.API_HOST}/profile/${data.id}`;
+        console.log(form);
         const response = yield axios__WEBPACK_IMPORTED_MODULE_4___default().put(URL, form, config);
         yield _this3.storage.set('data', response.data.data);
         loading.dismiss();
@@ -246,7 +249,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (".profile {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  margin-top: 500px;\n}\n\n.pname {\n  font-size: 2em;\n  width: 200px;\n  text-align: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVzZXJ1cGRhdGUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksY0FBQTtFQUNBLGlCQUFBO0VBQ0Esa0JBQUE7RUFDQSxpQkFBQTtBQUNKOztBQUVBO0VBQ0ksY0FBQTtFQUNBLFlBQUE7RUFDQSxrQkFBQTtBQUNKIiwiZmlsZSI6InVzZXJ1cGRhdGUucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnByb2ZpbGUge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICAgIG1hcmdpbi1sZWZ0OiBhdXRvO1xuICAgIG1hcmdpbi1yaWdodDogYXV0bztcbiAgICBtYXJnaW4tdG9wOiA1MDBweDtcbn1cblxuLnBuYW1le1xuICAgIGZvbnQtc2l6ZTogMmVtO1xuICAgIHdpZHRoOiAyMDBweDtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59Il19 */");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (".profile {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  margin-top: 500px;\n}\n\n.pname {\n  font-size: 2em;\n  width: 200px;\n  text-align: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVzZXJ1cGRhdGUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksY0FBQTtFQUNBLGlCQUFBO0VBQ0Esa0JBQUE7RUFDQSxpQkFBQTtBQUNKOztBQUVBO0VBQ0ksY0FBQTtFQUNBLFlBQUE7RUFDQSxrQkFBQTtBQUNKIiwiZmlsZSI6InVzZXJ1cGRhdGUucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnByb2ZpbGUge1xyXG4gICAgZGlzcGxheTogYmxvY2s7XHJcbiAgICBtYXJnaW4tbGVmdDogYXV0bztcclxuICAgIG1hcmdpbi1yaWdodDogYXV0bztcclxuICAgIG1hcmdpbi10b3A6IDUwMHB4O1xyXG59XHJcblxyXG4ucG5hbWV7XHJcbiAgICBmb250LXNpemU6IDJlbTtcclxuICAgIHdpZHRoOiAyMDBweDtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxufSJdfQ== */");
 
 /***/ }),
 
@@ -261,7 +264,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-title class=\"\">\n      Update Profile\n    </ion-title>\n\n    <ion-buttons slot=\"start\">\n      <ion-back-button name=\"arrow-back-outline\"></ion-back-button>\n    </ion-buttons>\n\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n\n\n  <ion-content class=\"profile\">\n    <div align=\"center\">\n      <ion-avatar>\n        <img src=\"assets/imgs/pic1.jpg\" />\n        <ion-label><strong>\n            <h1>Aaron Paul</h1>\n          </strong></ion-label>\n      </ion-avatar>\n    </div>\n    <ion-item>\n      <ion-input placeholder=\"Name\" [(ngModel)] = \"user.name\"></ion-input>\n    </ion-item>\n\n\n    <ion-item>\n      <ion-input type=\"string\" placeholder=\"Phone Number\" [(ngModel)] = \"user.phone_number\"></ion-input>\n    </ion-item>\n\n\n    <ion-item>\n      <ion-input type=\"email\" placeholder=\"E-mail\" [(ngModel)] = \"user.email\"></ion-input>\n    </ion-item>\n<ion-item>Birthday</ion-item>\n    <ion-item>\n      <ion-datetime [(ngModel)]=\"user.birthday\" presentation=\"date\"></ion-datetime>\n      <!-- <ion-datetime ></ion-datetime> -->\n      <!-- <ion-input type=\"number\" placeholder=\"B\" [(ngModel)] = \"birthday\"></ion-input> -->\n    </ion-item>\n    \n    <ion-item>\n      <ion-input  placeholder=\"Address\" [(ngModel)] = \"user.address\"></ion-input>\n    </ion-item>\n\n    <!-- <ion-item>\n      <ion-label>birthday</ion-label>\n      <ion-datetime formControlName=\"bday\"\n        displayFormat=\"DD.MM.YYYY\"\n        presentation=\"date\"\n        [(ngModel)]=\"date\"\n      ></ion-datetime>\n    </ion-item> -->\n\n    \n\n    \n\n    \n    \n\n    <!-- <ion-list>\n      <ion-radio-group value=\"gender\">\n        <ion-list-header>\n          <ion-label>gender</ion-label>\n        </ion-list-header>\n\n        <ion-item>\n          <ion-label>Male</ion-label>\n          <ion-radio slot=\"start\" value=\"male\"></ion-radio>\n        </ion-item>\n\n        <ion-item>\n          <ion-label>Female</ion-label>\n          <ion-radio slot=\"start\" value=\"female\"></ion-radio>\n        </ion-item>\n      </ion-radio-group>\n    </ion-list> -->\n\n    \n\n\n    \n      <ion-button expand=\"block\" type=\"submit\" (click) = \"submit()\">\n        <!-- <ion-icon name=\"add\"></ion-icon> -->\n        Update\n      </ion-button>\n  \n\n  </ion-content>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-title class=\"\">\r\n      Update Profile\r\n    </ion-title>\r\n\r\n    <ion-buttons slot=\"start\">\r\n      <ion-back-button name=\"arrow-back-outline\"></ion-back-button>\r\n    </ion-buttons>\r\n\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n\r\n\r\n\r\n  <ion-content class=\"profile\">\r\n    <div align=\"center\">\r\n      <ion-avatar>\r\n        <img src=\"assets/imgs/pic1.jpg\" />\r\n        <ion-label><strong>\r\n            <h1>Aaron Paul</h1>\r\n          </strong></ion-label>\r\n      </ion-avatar>\r\n    </div>\r\n    <ion-item>\r\n      <ion-input placeholder=\"Name\" [(ngModel)] = \"user.name\"></ion-input>\r\n    </ion-item>\r\n\r\n\r\n    <ion-item>\r\n      <ion-input type=\"string\" placeholder=\"Phone Number\" [(ngModel)] = \"user.phone_number\"></ion-input>\r\n    </ion-item>\r\n\r\n\r\n    <ion-item>\r\n      <ion-input type=\"email\" placeholder=\"E-mail\" [(ngModel)] = \"user.email\"></ion-input>\r\n    </ion-item>\r\n<ion-item>Birthday</ion-item>\r\n    <ion-item>\r\n      <ion-datetime [(ngModel)]=\"user.birthday\" presentation=\"date\"></ion-datetime>\r\n      <!-- <ion-datetime ></ion-datetime> -->\r\n      <!-- <ion-input type=\"number\" placeholder=\"B\" [(ngModel)] = \"birthday\"></ion-input> -->\r\n    </ion-item>\r\n    \r\n    <ion-item>\r\n      <ion-input  placeholder=\"Address\" [(ngModel)] = \"user.address\"></ion-input>\r\n    </ion-item>\r\n\r\n    <!-- <ion-item>\r\n      <ion-label>birthday</ion-label>\r\n      <ion-datetime formControlName=\"bday\"\r\n        displayFormat=\"DD.MM.YYYY\"\r\n        presentation=\"date\"\r\n        [(ngModel)]=\"date\"\r\n      ></ion-datetime>\r\n    </ion-item> -->\r\n\r\n    \r\n\r\n    \r\n\r\n    \r\n    \r\n\r\n    <!-- <ion-list>\r\n      <ion-radio-group value=\"gender\">\r\n        <ion-list-header>\r\n          <ion-label>gender</ion-label>\r\n        </ion-list-header>\r\n\r\n        <ion-item>\r\n          <ion-label>Male</ion-label>\r\n          <ion-radio slot=\"start\" value=\"male\"></ion-radio>\r\n        </ion-item>\r\n\r\n        <ion-item>\r\n          <ion-label>Female</ion-label>\r\n          <ion-radio slot=\"start\" value=\"female\"></ion-radio>\r\n        </ion-item>\r\n      </ion-radio-group>\r\n    </ion-list> -->\r\n\r\n    \r\n\r\n\r\n    \r\n      <ion-button expand=\"block\" type=\"submit\" (click) = \"submit()\">\r\n        <!-- <ion-icon name=\"add\"></ion-icon> -->\r\n        Update\r\n      </ion-button>\r\n  \r\n\r\n  </ion-content>");
 
 /***/ })
 

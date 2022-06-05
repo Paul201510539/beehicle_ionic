@@ -144,7 +144,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header class=\"ion-no-border\">\n  <ion-toolbar color =\"primary\">\n    <ion-title class=\"ion-text-center\">\n Odometer\n    </ion-title>\n  <ion-buttons slot=\"start\">\n    <ion-menu-button menuId=\"custom-menu\"></ion-menu-button>\n  </ion-buttons>\n    <ion-buttons slot=\"end\">\n      <ion-button fill=\"clear\" (click)=\"presentAlert()\">\n        <ion-icon slot=\"icon-only\" name=\"ellipsis-vertical-outline\"></ion-icon>\n      </ion-button>  \n    </ion-buttons>\n  </ion-toolbar>\n  </ion-header>\n<div></div>\n\n\n\n<ion-content>\n\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header class=\"ion-no-border\">\r\n  <ion-toolbar color =\"primary\">\r\n    <ion-title class=\"ion-text-center\">\r\n Odometer\r\n    </ion-title>\r\n  <ion-buttons slot=\"start\">\r\n    <ion-menu-button menuId=\"custom-menu\"></ion-menu-button>\r\n  </ion-buttons>\r\n    <ion-buttons slot=\"end\">\r\n      <ion-button fill=\"clear\" (click)=\"presentAlert()\">\r\n        <ion-icon slot=\"icon-only\" name=\"ellipsis-vertical-outline\"></ion-icon>\r\n      </ion-button>  \r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n  </ion-header>\r\n<div></div>\r\n\r\n\r\n\r\n<ion-content>\r\n\r\n</ion-content>\r\n");
 
 /***/ })
 

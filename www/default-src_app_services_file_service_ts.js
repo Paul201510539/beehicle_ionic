@@ -90,7 +90,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "registerWebPlugin": () => (/* binding */ registerWebPlugin),
 /* harmony export */   "setPlatform": () => (/* binding */ setPlatform)
 /* harmony export */ });
-/* harmony import */ var _Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ 6304);
+/* harmony import */ var D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ 6304);
 
 
 /*! Capacitor: https://capacitorjs.com/ - MIT License */
@@ -276,7 +276,7 @@ const createCapacitor = win => {
     let jsImplementation;
 
     const loadPluginImplementation = /*#__PURE__*/function () {
-      var _ref = (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+      var _ref = (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
         if (!jsImplementation && platform in jsImplementations) {
           jsImplementation = typeof jsImplementations[platform] === 'function' ? jsImplementation = yield jsImplementations[platform]() : jsImplementation = jsImplementations[platform];
         } else if (capCustomPlatform !== null && !jsImplementation && 'web' in jsImplementations) {
@@ -330,7 +330,7 @@ const createCapacitor = win => {
         });
 
         if (prop === 'addListener') {
-          p.remove = /*#__PURE__*/(0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+          p.remove = /*#__PURE__*/(0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
             return remove();
           });
         }
@@ -358,7 +358,7 @@ const createCapacitor = win => {
       }, callback);
 
       const remove = /*#__PURE__*/function () {
-        var _ref3 = (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+        var _ref3 = (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
           const callbackId = yield call;
           removeListener({
             eventName,
@@ -374,7 +374,7 @@ const createCapacitor = win => {
       const p = new Promise(resolve => call.then(() => resolve({
         remove
       })));
-      p.remove = /*#__PURE__*/(0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+      p.remove = /*#__PURE__*/(0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
         console.warn(`Using addListener() without 'await' is deprecated.`);
         yield remove();
       });
@@ -493,7 +493,7 @@ class WebPlugin {
     }
 
     const remove = /*#__PURE__*/function () {
-      var _ref5 = (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+      var _ref5 = (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
         return _this.removeListener(eventName, listenerFunc);
       });
 
@@ -507,7 +507,7 @@ class WebPlugin {
     });
     Object.defineProperty(p, 'remove', {
       value: function () {
-        var _ref6 = (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+        var _ref6 = (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
           console.warn(`Using addListener() without 'await' is deprecated.`);
           yield remove();
         });
@@ -523,7 +523,7 @@ class WebPlugin {
   removeAllListeners() {
     var _this2 = this;
 
-    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+    return (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
       _this2.listeners = {};
 
       for (const listener in _this2.windowListeners) {
@@ -568,7 +568,7 @@ class WebPlugin {
   removeListener(eventName, listenerFunc) {
     var _this3 = this;
 
-    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+    return (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
       const listeners = _this3.listeners[eventName];
 
       if (!listeners) {
@@ -619,7 +619,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "FileService": () => (/* binding */ FileService)
 /* harmony export */ });
-/* harmony import */ var _Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ 6304);
+/* harmony import */ var D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ 6304);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7716);
 /* harmony import */ var _capacitor_camera__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/camera */ 7673);
@@ -631,7 +631,7 @@ let FileService = class FileService {
   constructor() {}
 
   addNewToGallery() {
-    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+    return (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
       // Take a photo
       const capturedPhoto = yield _capacitor_camera__WEBPACK_IMPORTED_MODULE_1__.Camera.getPhoto({
         resultType: _capacitor_camera__WEBPACK_IMPORTED_MODULE_1__.CameraResultType.Base64,

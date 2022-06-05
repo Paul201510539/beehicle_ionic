@@ -92,7 +92,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "PmsPage": () => (/* binding */ PmsPage)
 /* harmony export */ });
-/* harmony import */ var _Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ 6304);
+/* harmony import */ var D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ 6304);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_pms_page_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !raw-loader!./pms.page.html */ 7600);
 /* harmony import */ var _pms_page_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pms.page.scss */ 8396);
@@ -126,7 +126,7 @@ let PmsPage = class PmsPage {
   ngOnInit() {
     var _this = this;
 
-    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+    return (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
       const sData = yield _this.storage.get('data');
       _this.vehicle_id = _this.route.snapshot.paramMap.get('vehicle_id');
       _this.pms_kms = _this.route.snapshot.paramMap.get('odometer').toString();
@@ -373,7 +373,7 @@ let PmsPage = class PmsPage {
   create() {
     var _this2 = this;
 
-    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+    return (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
       const sData = yield _this2.storage.get('data');
       const loading = yield _this2.loadingController.create({
         message: 'Please wait'
@@ -426,7 +426,7 @@ let PmsPage = class PmsPage {
   update() {
     var _this3 = this;
 
-    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+    return (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
       const sData = yield _this3.storage.get('data');
       const loading = yield _this3.loadingController.create({
         message: 'Please wait'
@@ -512,7 +512,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (".md .centered-p {\n  text-align: center;\n  margin-left: -25%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBtcy5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxrQkFBQTtFQUNBLGlCQUFBO0FBQ0oiLCJmaWxlIjoicG1zLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tZCAuY2VudGVyZWQtcCB7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIG1hcmdpbi1sZWZ0OiAtMjUlXG4gIH0iXX0= */");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (".md .centered-p {\n  text-align: center;\n  margin-left: -25%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBtcy5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxrQkFBQTtFQUNBLGlCQUFBO0FBQ0oiLCJmaWxlIjoicG1zLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tZCAuY2VudGVyZWQtcCB7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgICBtYXJnaW4tbGVmdDogLTI1JVxyXG4gIH0iXX0= */");
 
 /***/ }),
 
@@ -527,7 +527,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header class=\"ion-no-border\">\n  <ion-toolbar color=\"primary\">\n    <ion-title>\n      <p class=\"centered-p\">PMS</p>\n    </ion-title>\n\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/home\" name=\"arrow-back-outline\"></ion-back-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <!-- <ion-item>\n    <ion-label><strong>First 1000km</strong></ion-label>\n  </ion-item>\n  <ion-item  *ngIf =\"show('break_system')\">\n    <ion-label position=\"floating\">Break System</ion-label>\n    <ion-textarea autogrow></ion-textarea>\n  </ion-item>\n  <ion-item *ngIf =\"show('engine')\">\n    <ion-label position=\"floating\">Engine</ion-label>\n    <ion-textarea autogrow></ion-textarea>\n  </ion-item>\n  <ion-item *ngIf =\"show('oil')\">\n    <ion-label position=\"floating\">Oil</ion-label>\n    <ion-textarea auto-grow></ion-textarea>\n  </ion-item>\n  <ion-item *ngIf =\"show('filters')\">\n    <ion-label position=\"floating\">Filters</ion-label>\n    <ion-textarea autogrow></ion-textarea>\n  </ion-item>\n  <ion-item *ngIf =\"show('washer_fluid')\">\n    <ion-label position=\"floating\">Washer Fluid</ion-label>\n    <ion-textarea autogrow></ion-textarea>\n  </ion-item>\n  <ion-item *ngIf =\"show('engine_coolant')\">\n    <ion-label position=\"floating\">Engine Coolant</ion-label>\n    <ion-textarea autogrow></ion-textarea>\n  </ion-item> -->\n  <ion-item *ngFor=\"let field of fields\" >\n    \n    <!-- <ion-label *ngIf=\"field.code!='date'\">{{field.label}}</ion-label>\n    <ion-textarea autogrow [(ngModel)]=\"field.value\" *ngIf=\"field.code!='date'\"></ion-textarea> -->\n    <ion-checkbox slot=\"start\" [(ngModel)]=\"field.value\"  *ngIf=\"field.code!='date'\"></ion-checkbox>\n\n    <ion-label>{{field.label}}</ion-label>\n\n    <ion-label *ngIf=\"field.code=='date'\">{{field.label}}</ion-label>\n    <ion-datetime autogrow  [(ngModel)]=\"field.value\" *ngIf=\"field.code=='date'\"></ion-datetime>\n    \n  </ion-item>\n\n  <!-- <ion-list *ngFor=\"let field of fields\"></ion-list> -->\n  <ion-item *ngIf =\"show('amount')\">\n    <ion-label>Cost</ion-label>\n    <ion-input placeholder=\"0.00\" inputmode=\"decimal\" [(ngModel)]=\"field.amount\" name=\"amount\"></ion-input>\n  </ion-item>\n\n  <ion-item *ngIf =\"show('notes')\">\n    <ion-label>Notes</ion-label>\n    <ion-textarea rows=\"6\" cols=\"20\" placeholder=\"Enter any notes here...\" ></ion-textarea>\n  </ion-item>\n\n  <ion-button type=\"submit\" color=\"warning\" expand=\"block\" (click)=\"submit()\">\n    <ion-label color=\"light\">Update</ion-label>\n\n  </ion-button>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header class=\"ion-no-border\">\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-title>\r\n      <p class=\"centered-p\">PMS</p>\r\n    </ion-title>\r\n\r\n    <ion-buttons slot=\"start\">\r\n      <ion-back-button defaultHref=\"/home\" name=\"arrow-back-outline\"></ion-back-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <!-- <ion-item>\r\n    <ion-label><strong>First 1000km</strong></ion-label>\r\n  </ion-item>\r\n  <ion-item  *ngIf =\"show('break_system')\">\r\n    <ion-label position=\"floating\">Break System</ion-label>\r\n    <ion-textarea autogrow></ion-textarea>\r\n  </ion-item>\r\n  <ion-item *ngIf =\"show('engine')\">\r\n    <ion-label position=\"floating\">Engine</ion-label>\r\n    <ion-textarea autogrow></ion-textarea>\r\n  </ion-item>\r\n  <ion-item *ngIf =\"show('oil')\">\r\n    <ion-label position=\"floating\">Oil</ion-label>\r\n    <ion-textarea auto-grow></ion-textarea>\r\n  </ion-item>\r\n  <ion-item *ngIf =\"show('filters')\">\r\n    <ion-label position=\"floating\">Filters</ion-label>\r\n    <ion-textarea autogrow></ion-textarea>\r\n  </ion-item>\r\n  <ion-item *ngIf =\"show('washer_fluid')\">\r\n    <ion-label position=\"floating\">Washer Fluid</ion-label>\r\n    <ion-textarea autogrow></ion-textarea>\r\n  </ion-item>\r\n  <ion-item *ngIf =\"show('engine_coolant')\">\r\n    <ion-label position=\"floating\">Engine Coolant</ion-label>\r\n    <ion-textarea autogrow></ion-textarea>\r\n  </ion-item> -->\r\n  <ion-item *ngFor=\"let field of fields\" >\r\n    \r\n    <!-- <ion-label *ngIf=\"field.code!='date'\">{{field.label}}</ion-label>\r\n    <ion-textarea autogrow [(ngModel)]=\"field.value\" *ngIf=\"field.code!='date'\"></ion-textarea> -->\r\n    <ion-checkbox slot=\"start\" [(ngModel)]=\"field.value\"  *ngIf=\"field.code!='date'\"></ion-checkbox>\r\n\r\n    <ion-label>{{field.label}}</ion-label>\r\n\r\n    <ion-label *ngIf=\"field.code=='date'\">{{field.label}}</ion-label>\r\n    <ion-datetime autogrow  [(ngModel)]=\"field.value\" *ngIf=\"field.code=='date'\"></ion-datetime>\r\n    \r\n  </ion-item>\r\n\r\n  <!-- <ion-list *ngFor=\"let field of fields\"></ion-list> -->\r\n  <ion-item *ngIf =\"show('amount')\">\r\n    <ion-label>Cost</ion-label>\r\n    <ion-input placeholder=\"0.00\" inputmode=\"decimal\" [(ngModel)]=\"field.amount\" name=\"amount\"></ion-input>\r\n  </ion-item>\r\n\r\n  <ion-item *ngIf =\"show('notes')\">\r\n    <ion-label>Notes</ion-label>\r\n    <ion-textarea rows=\"6\" cols=\"20\" placeholder=\"Enter any notes here...\" ></ion-textarea>\r\n  </ion-item>\r\n\r\n  <ion-button type=\"submit\" color=\"warning\" expand=\"block\" (click)=\"submit()\">\r\n    <ion-label color=\"light\">Update</ion-label>\r\n\r\n  </ion-button>\r\n</ion-content>\r\n");
 
 /***/ })
 
