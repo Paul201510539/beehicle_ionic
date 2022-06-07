@@ -59,13 +59,26 @@
 
 
     <ion-item>
-      <ion-label position="floating">Chassis number</ion-label>
+      <ion-label position="floating">Chasis number</ion-label>
       <ion-input formControlName="chasis" type="text" required></ion-input>
     </ion-item>
 
-    <ion-item>
+    <!-- <ion-item>
       <ion-label position="floating">Number Coding</ion-label>
       <ion-input formControlName="coding" type="text" required [(ngModel)]='coding' value="{{coding}}"></ion-input>
+    </ion-item> -->
+
+    <ion-item >
+      <ion-label>Coding</ion-label>
+      <ion-select  formControlName="coding">
+        <ion-select-option value="Monday">Monday</ion-select-option>
+        <ion-select-option value="Tuesday">Tuesday</ion-select-option>
+        <ion-select-option value="Wednesday">Wednesday</ion-select-option>
+        <ion-select-option value="Thursday">Thursday</ion-select-option>
+        <ion-select-option value="Friday">Friday</ion-select-option>
+        <ion-select-option value="Saturday">Saturday</ion-select-option>
+        <ion-select-option value="Sunday">Sunday</ion-select-option>
+      </ion-select>
     </ion-item>
 
     <!-- <ion-item >
@@ -101,7 +114,7 @@
       <ion-tab-button [routerLink]="['/slist', id]">
         <ion-icon name="car-outline"></ion-icon>
         <ion-label>Services</ion-label>
-        <ion-badge>6</ion-badge>
+        <!-- <ion-badge>6</ion-badge> -->
       </ion-tab-button>
       <ion-tab-button [routerLink]="['/translist', id]">
         <ion-icon name="book-outline"></ion-icon>

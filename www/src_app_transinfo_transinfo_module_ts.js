@@ -92,7 +92,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "TransinfoPage": () => (/* binding */ TransinfoPage)
 /* harmony export */ });
-/* harmony import */ var D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ 6304);
+/* harmony import */ var _Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ 6304);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_transinfo_page_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !raw-loader!./transinfo.page.html */ 4774);
 /* harmony import */ var _transinfo_page_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./transinfo.page.scss */ 1297);
@@ -151,7 +151,7 @@ let TransinfoPage = class TransinfoPage {
   loadTransaction() {
     var _this = this;
 
-    return (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
       const sData = yield _this.storage.get("data");
       const transaction = sData.vehicles.find(x => x.id == _this.vehicle_id).travels.find(x => x.id == _this.transaction_id);
       _this.transaction['address_start'] = transaction.address_start;
@@ -170,7 +170,7 @@ let TransinfoPage = class TransinfoPage {
   loadTransactionOld() {
     var _this2 = this;
 
-    return (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
       const sData = yield _this2.storage.get("data");
       _this2.transaction = sData.vehicles.find(x => x.id == _this2.vehicle_id).transactions.find(x => x.id == _this2.transaction_id);
       _this2.location['from'] = _this2.transaction['from_address'];
@@ -193,7 +193,7 @@ let TransinfoPage = class TransinfoPage {
     // const vehicles = await this.storage.get("vehicles")
     // console.log(vehicles);
 
-    return (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {})();
+    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {})();
   } //LOADING THE MAP HAS 2 PARTS.
 
 
@@ -278,7 +278,7 @@ let TransinfoPage = class TransinfoPage {
   SelectSearchResult(item) {
     var _this3 = this;
 
-    return (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
       ///WE CAN CONFIGURE MORE COMPLEX FUNCTIONS SUCH AS UPLOAD DATA TO FIRESTORE OR LINK IT TO SOMETHING
       const geocoder = new google.maps.Geocoder();
       const {
@@ -315,7 +315,7 @@ let TransinfoPage = class TransinfoPage {
   submit() {
     var _this4 = this;
 
-    return (0,D_projects_ionic_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
+    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
       if (_this4.from == undefined || _this4.to == undefined || _this4.odometer == '' || _this4.name == '') {
         const alert = yield _this4.alertController.create({
           header: 'Alert',
@@ -425,7 +425,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (".md .centered-p {\n  text-align: center;\n  margin-left: -25%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRyYW5zaW5mby5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxrQkFBQTtFQUNBLGlCQUFBO0FBQ0oiLCJmaWxlIjoidHJhbnNpbmZvLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tZCAuY2VudGVyZWQtcCB7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgICBtYXJnaW4tbGVmdDogLTI1JVxyXG4gIH0iXX0= */");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (".md .centered-p {\n  text-align: center;\n  margin-left: -25%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRyYW5zaW5mby5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxrQkFBQTtFQUNBLGlCQUFBO0FBQ0oiLCJmaWxlIjoidHJhbnNpbmZvLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tZCAuY2VudGVyZWQtcCB7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIG1hcmdpbi1sZWZ0OiAtMjUlXG4gIH0iXX0= */");
 
 /***/ }),
 
@@ -440,7 +440,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-title class=\"ion-text-center\">\r\n      <p class=\"centered-p\">Transaction</p>\r\n    </ion-title>\r\n    <ion-buttons slot=\"start\">\r\n      <ion-back-button defaultHref=\"/translist\" name=\"arrow-back-outline\"></ion-back-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n\r\n  \r\n    \r\n    <!-- <ion-searchbar [(ngModel)]=\"autocomplete.input\" debounce = \"500\" (ionChange)=\"UpdateSearchResults('from')\" placeholder=\"From\"\r\n      (ionClear)=\"ClearAutocomplete()\"></ion-searchbar>\r\n    <ion-searchbar [(ngModel)]=\"autocomplete.input\" debounce = \"500\" (ionChange)=\"UpdateSearchResults('to')\" placeholder=\"To\"\r\n      (ionClear)=\"ClearAutocomplete()\"></ion-searchbar> -->\r\n    <!-- <ion-searchbar [(ngModel)]=\"location.from\" debounce = \"500\" (ionChange)=\"UpdateSearchResults('from')\" placeholder=\"From\"\r\n      (ionClear)=\"ClearAutocomplete('from')\"></ion-searchbar>\r\n    <ion-searchbar [(ngModel)]=\"location.to\" debounce = \"500\" (ionChange)=\"UpdateSearchResults('to')\" placeholder=\"To\"\r\n      (ionClear)=\"ClearAutocomplete('to')\"></ion-searchbar> -->\r\n  \r\n<!-- \r\n  <ion-list [hidden]=\"autocompleteItems.length == 0\">\r\n    <ion-item *ngFor=\"let item of autocompleteItems\" tappable (click)=\"SelectSearchResult(item)\">\r\n      {{ item.description }}\r\n    </ion-item>\r\n  </ion-list> -->\r\n\r\n  <ion-row>\r\n    <!-- <ion-col size=\"6\">\r\n      <ion-text>Google & Ionic Map</ion-text>\r\n    </ion-col> -->\r\n    <!-- <ion-toolbar>\r\n      <ion-button style=\"background:#FFFFFF\" (click)=\"loadMap()\" shape=\"round\" fill=\"outline\">\r\n        <ion-icon slot=\"secondary\" name=\"locate\"></ion-icon>\r\n        Where i am\r\n      </ion-button>\r\n    </ion-toolbar>  -->\r\n    \r\n  </ion-row>\r\n</ion-header>\r\n<ion-content>\r\n  <!-- <ion-input [(ngModel)] = \"odometer\" placeholder=\"odometer\"></ion-input>\r\n  <ion-button (click) = \"submit()\" color=\"light\">Submit</ion-button> -->\r\n\r\n  <!-- \r\n    \r\n    <ion-fab-button (click)=\"ShowCords()\" ion-fab color=\"tertiary\">\r\n      <ion-icon name=\"information-circle-outline\"></ion-icon>\r\n    </ion-fab-button>\r\n  </ion-fab>\r\n  <div class=\"map-wrapper\" style=\"height: 100%;\">\r\n    <div id=\"map_center\">\r\n      <ion-icon name=\"pin\" size=\"large\" color=\"danger\"></ion-icon>\r\n    </div>\r\n    <div #map id=\"map\" style=\"height: 100%;\"></div>\r\n  </div> -->\r\n\r\n  <ion-item>\r\n    <ion-label position=\"floating\">Starting point</ion-label>\r\n    <ion-input [(ngModel)]='transaction.address_start' ></ion-input>\r\n  </ion-item>\r\n  <ion-item>\r\n    <ion-label position=\"floating\">Starting odometer</ion-label>\r\n    <ion-input [(ngModel)]='transaction.odometer_start'></ion-input>\r\n  </ion-item>\r\n  <ion-item>\r\n    <ion-label position=\"floating\">Destination</ion-label>\r\n    <ion-input [(ngModel)]='transaction.address_end'></ion-input>\r\n  </ion-item>\r\n  <ion-item>\r\n    <ion-label position=\"floating\">Succeeding Odometer</ion-label>\r\n    <ion-input [(ngModel)]='transaction.odometer_end'></ion-input>\r\n  </ion-item>\r\n  \r\n  <ion-item>Date</ion-item>\r\n<ion-item>\r\n  <ion-datetime  presentation=\"time-date\" [(ngModel)]=\"transaction.datetime\">Date</ion-datetime>\r\n</ion-item>\r\n\r\n<!-- <ion-button slot=\"\" (click)=\"submit()\" color=\"warning\" expand=\"block\">Submit\r\n  <ion-icon slot=\"end\" name=\"add\"></ion-icon>\r\n</ion-button> -->\r\n\r\n  \r\n</ion-content>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-title class=\"ion-text-center\">\n      <p class=\"centered-p\">Transaction</p>\n    </ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/translist\" name=\"arrow-back-outline\"></ion-back-button>\n    </ion-buttons>\n  </ion-toolbar>\n\n  \n    \n    <!-- <ion-searchbar [(ngModel)]=\"autocomplete.input\" debounce = \"500\" (ionChange)=\"UpdateSearchResults('from')\" placeholder=\"From\"\n      (ionClear)=\"ClearAutocomplete()\"></ion-searchbar>\n    <ion-searchbar [(ngModel)]=\"autocomplete.input\" debounce = \"500\" (ionChange)=\"UpdateSearchResults('to')\" placeholder=\"To\"\n      (ionClear)=\"ClearAutocomplete()\"></ion-searchbar> -->\n    <!-- <ion-searchbar [(ngModel)]=\"location.from\" debounce = \"500\" (ionChange)=\"UpdateSearchResults('from')\" placeholder=\"From\"\n      (ionClear)=\"ClearAutocomplete('from')\"></ion-searchbar>\n    <ion-searchbar [(ngModel)]=\"location.to\" debounce = \"500\" (ionChange)=\"UpdateSearchResults('to')\" placeholder=\"To\"\n      (ionClear)=\"ClearAutocomplete('to')\"></ion-searchbar> -->\n  \n<!-- \n  <ion-list [hidden]=\"autocompleteItems.length == 0\">\n    <ion-item *ngFor=\"let item of autocompleteItems\" tappable (click)=\"SelectSearchResult(item)\">\n      {{ item.description }}\n    </ion-item>\n  </ion-list> -->\n\n  <ion-row>\n    <!-- <ion-col size=\"6\">\n      <ion-text>Google & Ionic Map</ion-text>\n    </ion-col> -->\n    <!-- <ion-toolbar>\n      <ion-button style=\"background:#FFFFFF\" (click)=\"loadMap()\" shape=\"round\" fill=\"outline\">\n        <ion-icon slot=\"secondary\" name=\"locate\"></ion-icon>\n        Where i am\n      </ion-button>\n    </ion-toolbar>  -->\n    \n  </ion-row>\n</ion-header>\n<ion-content>\n  <!-- <ion-input [(ngModel)] = \"odometer\" placeholder=\"odometer\"></ion-input>\n  <ion-button (click) = \"submit()\" color=\"light\">Submit</ion-button> -->\n\n  <!-- \n    \n    <ion-fab-button (click)=\"ShowCords()\" ion-fab color=\"tertiary\">\n      <ion-icon name=\"information-circle-outline\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n  <div class=\"map-wrapper\" style=\"height: 100%;\">\n    <div id=\"map_center\">\n      <ion-icon name=\"pin\" size=\"large\" color=\"danger\"></ion-icon>\n    </div>\n    <div #map id=\"map\" style=\"height: 100%;\"></div>\n  </div> -->\n\n  <ion-item>\n    <ion-label position=\"floating\">Starting point</ion-label>\n    <ion-input [(ngModel)]='transaction.address_start' ></ion-input>\n  </ion-item>\n  <ion-item>\n    <ion-label position=\"floating\">Starting odometer</ion-label>\n    <ion-input [(ngModel)]='transaction.odometer_start'></ion-input>\n  </ion-item>\n  <ion-item>\n    <ion-label position=\"floating\">Destination</ion-label>\n    <ion-input [(ngModel)]='transaction.address_end'></ion-input>\n  </ion-item>\n  <ion-item>\n    <ion-label position=\"floating\">Succeeding Odometer</ion-label>\n    <ion-input [(ngModel)]='transaction.odometer_end'></ion-input>\n  </ion-item>\n  \n  <ion-item>Date</ion-item>\n<ion-item>\n  <ion-datetime  presentation=\"time-date\" [(ngModel)]=\"transaction.datetime\">Date</ion-datetime>\n</ion-item>\n\n<!-- <ion-button slot=\"\" (click)=\"submit()\" color=\"warning\" expand=\"block\">Submit\n  <ion-icon slot=\"end\" name=\"add\"></ion-icon>\n</ion-button> -->\n\n  \n</ion-content>");
 
 /***/ })
 

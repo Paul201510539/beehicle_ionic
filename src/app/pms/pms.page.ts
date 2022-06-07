@@ -193,11 +193,11 @@ export class PmsPage implements OnInit {
             label: 'Engine Coolant',
             value: false
           },
-          {
-            code: 'cost',
-            label: 'Cost',
-            value: false
-          },
+          // {
+          //   code: 'cost',
+          //   label: 'Cost',
+          //   value: false
+          // },
           // {
           //   code :'notes',
           //   label: 'Notes',
