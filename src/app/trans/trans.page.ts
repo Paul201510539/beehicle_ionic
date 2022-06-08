@@ -9,7 +9,7 @@ import { environment } from '../../../src/environments/environment';
 import { Storage } from '@ionic/storage-angular';
 
 
-declare var google;
+// declare var google;
 
 
 @Component({
@@ -28,7 +28,7 @@ export class TransPage implements OnInit {
   autocompleteItems: any[];
   location: Object;
   placeid: any;
-  GoogleAutocomplete: any;
+  // GoogleAutocomplete: any;
   from : string;
   to: Object;
   mode: string;
@@ -56,7 +56,7 @@ export class TransPage implements OnInit {
     private navCtrl: NavController
     
   ) {
-    this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
+    // this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
     this.autocomplete = { input: '' };
     this.autocompleteItems = [];
     this.location = {
@@ -91,30 +91,7 @@ export class TransPage implements OnInit {
   }
 
     //LOADING THE MAP HAS 2 PARTS.
-    loadMap() {
-    
-      //FIRST GET THE LOCATION FROM THE DEVICE.
-      this.geolocation.getCurrentPosition().then((resp) => {
-        let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
-        let mapOptions = {
-          center: latLng,
-          zoom: 15,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        } 
-
-         //LOAD THE MAP WITH THE PREVIOUS VALUES AS PARAMETERS.
-      this.getAddressFromCoords(resp.coords.latitude, resp.coords.longitude); 
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions); 
-      this.map.addListener('tilesloaded', () => {
-        console.log('accuracy',this.map, this.map.center.lat());
-        this.getAddressFromCoords(this.map.center.lat(), this.map.center.lng())
-        this.lat = this.map.center.lat()
-        this.long = this.map.center.lng()
-      }); 
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
-  }
+  //  
 
   getAddressFromCoords(lattitude, longitude) {
     console.log("getAddressFromCoords "+lattitude+" "+longitude);
@@ -147,44 +124,44 @@ export class TransPage implements OnInit {
   }
   
   //AUTOCOMPLETE, SIMPLY LOAD THE PLACE USING GOOGLE PREDICTIONS AND RETURNING THE ARRAY.
-  UpdateSearchResults( type :string ){
-    const input = this.location[type]
-    this.mode = type;
-    if (input== '') {
-      this.autocompleteItems = [];
-      return;
-    }
-    this.GoogleAutocomplete.getPlacePredictions({ input: input, componentRestrictions: {country: 'ph'}},
-    (predictions, status) => {
-      this.autocompleteItems = [];
-      this.zone.run(() => {
-        predictions.forEach((prediction) => {
-          this.autocompleteItems.push(prediction);
-        });
-      });
-    });
+  // UpdateSearchResults( type :string ){
+  //   const input = this.location[type]
+  //   this.mode = type;
+  //   if (input== '') {
+  //     this.autocompleteItems = [];
+  //     return;
+  //   }
+  //   this.GoogleAutocomplete.getPlacePredictions({ input: input, componentRestrictions: {country: 'ph'}},
+  //   (predictions, status) => {
+  //     this.autocompleteItems = [];
+  //     this.zone.run(() => {
+  //       predictions.forEach((prediction) => {
+  //         this.autocompleteItems.push(prediction);
+  //       });
+  //     });
+  //   });
 
-  }
+  // }
   
   //wE CALL THIS FROM EACH ITEM.
-  async SelectSearchResult(item) {
-    ///WE CAN CONFIGURE MORE COMPLEX FUNCTIONS SUCH AS UPLOAD DATA TO FIRESTORE OR LINK IT TO SOMETHING
-    const geocoder = new google.maps.Geocoder();
-    const {results} = await geocoder.geocode({placeId: item.place_id})
+  // async SelectSearchResult(item) {
+  //   ///WE CAN CONFIGURE MORE COMPLEX FUNCTIONS SUCH AS UPLOAD DATA TO FIRESTORE OR LINK IT TO SOMETHING
+  //   const geocoder = new google.maps.Geocoder();
+  //   const {results} = await geocoder.geocode({placeId: item.place_id})
 
-    console.log(results)
-    this[this.mode] = {
-      lat: results[0].geometry.location.lat(),
-      lng: results[0].geometry.location.lng(),
-    }
-    // console.log(item.place_id);
-    // alert(JSON.stringify(item))      
-    this.placeid = item.place_id
-    this.location[this.mode] = item.description;
-    this.autocompleteItems = [];
-    console.log(this.autocompleteItems);
-    // this.GoTo();
-  }
+  //   console.log(results)
+  //   this[this.mode] = {
+  //     lat: results[0].geometry.location.lat(),
+  //     lng: results[0].geometry.location.lng(),
+  //   }
+  //   // console.log(item.place_id);
+  //   // alert(JSON.stringify(item))      
+  //   this.placeid = item.place_id
+  //   this.location[this.mode] = item.description;
+  //   this.autocompleteItems = [];
+  //   console.log(this.autocompleteItems);
+  //   // this.GoTo();
+  // }
   
   
   //lET'S BE CLEAN! THIS WILL JUST CLEAN THE LIST WHEN WE CLOSE THE SEARCH BAR.

@@ -134,6 +134,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // declare var google;
 
 let TransPage = class TransPage {
   constructor(geolocation, nativeGeocoder, zone, loadingController, alertController, storage, route, navCtrl) {
@@ -144,8 +145,8 @@ let TransPage = class TransPage {
     this.alertController = alertController;
     this.storage = storage;
     this.route = route;
-    this.navCtrl = navCtrl;
-    this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
+    this.navCtrl = navCtrl; // this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
+
     this.autocomplete = {
       input: ''
     };
@@ -180,30 +181,8 @@ let TransPage = class TransPage {
       _this.odometer_start = vehicle.last_odometer;
     })();
   } //LOADING THE MAP HAS 2 PARTS.
+  //  
 
-
-  loadMap() {
-    //FIRST GET THE LOCATION FROM THE DEVICE.
-    this.geolocation.getCurrentPosition().then(resp => {
-      let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
-      let mapOptions = {
-        center: latLng,
-        zoom: 15,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      }; //LOAD THE MAP WITH THE PREVIOUS VALUES AS PARAMETERS.
-
-      this.getAddressFromCoords(resp.coords.latitude, resp.coords.longitude);
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-      this.map.addListener('tilesloaded', () => {
-        console.log('accuracy', this.map, this.map.center.lat());
-        this.getAddressFromCoords(this.map.center.lat(), this.map.center.lng());
-        this.lat = this.map.center.lat();
-        this.long = this.map.center.lng();
-      });
-    }).catch(error => {
-      console.log('Error getting location', error);
-    });
-  }
 
   getAddressFromCoords(lattitude, longitude) {
     console.log("getAddressFromCoords " + lattitude + " " + longitude);
@@ -234,57 +213,42 @@ let TransPage = class TransPage {
 
   ShowCords() {// alert('lat' +this.lat+', long'+this.long )
   } //AUTOCOMPLETE, SIMPLY LOAD THE PLACE USING GOOGLE PREDICTIONS AND RETURNING THE ARRAY.
-
-
-  UpdateSearchResults(type) {
-    const input = this.location[type];
-    this.mode = type;
-
-    if (input == '') {
-      this.autocompleteItems = [];
-      return;
-    }
-
-    this.GoogleAutocomplete.getPlacePredictions({
-      input: input,
-      componentRestrictions: {
-        country: 'ph'
-      }
-    }, (predictions, status) => {
-      this.autocompleteItems = [];
-      this.zone.run(() => {
-        predictions.forEach(prediction => {
-          this.autocompleteItems.push(prediction);
-        });
-      });
-    });
-  } //wE CALL THIS FROM EACH ITEM.
-
-
-  SelectSearchResult(item) {
-    var _this2 = this;
-
-    return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
-      ///WE CAN CONFIGURE MORE COMPLEX FUNCTIONS SUCH AS UPLOAD DATA TO FIRESTORE OR LINK IT TO SOMETHING
-      const geocoder = new google.maps.Geocoder();
-      const {
-        results
-      } = yield geocoder.geocode({
-        placeId: item.place_id
-      });
-      console.log(results);
-      _this2[_this2.mode] = {
-        lat: results[0].geometry.location.lat(),
-        lng: results[0].geometry.location.lng()
-      }; // console.log(item.place_id);
-      // alert(JSON.stringify(item))      
-
-      _this2.placeid = item.place_id;
-      _this2.location[_this2.mode] = item.description;
-      _this2.autocompleteItems = [];
-      console.log(_this2.autocompleteItems); // this.GoTo();
-    })();
-  } //lET'S BE CLEAN! THIS WILL JUST CLEAN THE LIST WHEN WE CLOSE THE SEARCH BAR.
+  // UpdateSearchResults( type :string ){
+  //   const input = this.location[type]
+  //   this.mode = type;
+  //   if (input== '') {
+  //     this.autocompleteItems = [];
+  //     return;
+  //   }
+  //   this.GoogleAutocomplete.getPlacePredictions({ input: input, componentRestrictions: {country: 'ph'}},
+  //   (predictions, status) => {
+  //     this.autocompleteItems = [];
+  //     this.zone.run(() => {
+  //       predictions.forEach((prediction) => {
+  //         this.autocompleteItems.push(prediction);
+  //       });
+  //     });
+  //   });
+  // }
+  //wE CALL THIS FROM EACH ITEM.
+  // async SelectSearchResult(item) {
+  //   ///WE CAN CONFIGURE MORE COMPLEX FUNCTIONS SUCH AS UPLOAD DATA TO FIRESTORE OR LINK IT TO SOMETHING
+  //   const geocoder = new google.maps.Geocoder();
+  //   const {results} = await geocoder.geocode({placeId: item.place_id})
+  //   console.log(results)
+  //   this[this.mode] = {
+  //     lat: results[0].geometry.location.lat(),
+  //     lng: results[0].geometry.location.lng(),
+  //   }
+  //   // console.log(item.place_id);
+  //   // alert(JSON.stringify(item))      
+  //   this.placeid = item.place_id
+  //   this.location[this.mode] = item.description;
+  //   this.autocompleteItems = [];
+  //   console.log(this.autocompleteItems);
+  //   // this.GoTo();
+  // }
+  //lET'S BE CLEAN! THIS WILL JUST CLEAN THE LIST WHEN WE CLOSE THE SEARCH BAR.
 
 
   ClearAutocomplete(param) {
@@ -299,11 +263,11 @@ let TransPage = class TransPage {
   }
 
   submitOld() {
-    var _this3 = this;
+    var _this2 = this;
 
     return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
-      if (_this3.from == undefined || _this3.to == undefined || _this3.odometer == '' || _this3.name == '') {
-        const alert = yield _this3.alertController.create({
+      if (_this2.from == undefined || _this2.to == undefined || _this2.odometer == '' || _this2.name == '') {
+        const alert = yield _this2.alertController.create({
           header: 'Alert',
           message: 'Please fill all fields',
           buttons: ['OK']
@@ -312,17 +276,17 @@ let TransPage = class TransPage {
         return;
       }
 
-      _this3.from['address'] = _this3.location['from'];
-      _this3.to['address'] = _this3.location['to'];
+      _this2.from['address'] = _this2.location['from'];
+      _this2.to['address'] = _this2.location['to'];
       const form = {
-        from: _this3.from,
-        to: _this3.to,
-        odometer: _this3.odometer,
-        vehicle_id: _this3.vehicle_id,
-        name: _this3.name
+        from: _this2.from,
+        to: _this2.to,
+        odometer: _this2.odometer,
+        vehicle_id: _this2.vehicle_id,
+        name: _this2.name
       };
       console.log(form);
-      const token = yield _this3.storage.get('access_token');
+      const token = yield _this2.storage.get('access_token');
       const config = {
         headers: {
           'Access-Control-Allow-Origin': '*',
@@ -330,7 +294,7 @@ let TransPage = class TransPage {
         }
       };
       const URL = `${_src_environments_environment__WEBPACK_IMPORTED_MODULE_6__.environment.API_HOST}/transaction`;
-      const loading = yield _this3.loadingController.create({
+      const loading = yield _this2.loadingController.create({
         message: 'Please wait'
       });
       yield loading.present();
@@ -339,21 +303,21 @@ let TransPage = class TransPage {
         let {
           data
         } = yield axios__WEBPACK_IMPORTED_MODULE_5___default().post(URL, form, config);
-        let sData = yield _this3.storage.get("data");
-        sData.vehicles.find(x => x.id == _this3.vehicle_id).transactions.push(data.data);
-        yield _this3.storage.set('data', sData);
+        let sData = yield _this2.storage.get("data");
+        sData.vehicles.find(x => x.id == _this2.vehicle_id).transactions.push(data.data);
+        yield _this2.storage.set('data', sData);
         yield loading.dismiss();
-        const alert = yield _this3.alertController.create({
+        const alert = yield _this2.alertController.create({
           header: 'Success',
           message: 'Transaction Added',
           buttons: ['OK']
         });
         yield alert.present();
 
-        _this3.navCtrl.back();
+        _this2.navCtrl.back();
       } catch (error) {
         yield loading.dismiss();
-        const alert = yield _this3.alertController.create({
+        const alert = yield _this2.alertController.create({
           header: 'Alert',
           message: 'Error',
           buttons: ['OK']
@@ -368,24 +332,24 @@ let TransPage = class TransPage {
   }
 
   submit() {
-    var _this4 = this;
+    var _this3 = this;
 
     return (0,_Users_johnashbeemorgado_node_beehicle_ionic_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)(function* () {
-      const loading = yield _this4.loadingController.create({
+      const loading = yield _this3.loadingController.create({
         message: 'Please wait'
       });
       yield loading.present();
       const form = {
-        address_start: _this4.address_start,
-        address_end: _this4.address_end,
-        odometer_start: _this4.odometer_start,
-        odometer_end: _this4.odometer_end,
-        datetime: _this4.datetime,
-        vehicle_id: _this4.vehicle_id
+        address_start: _this3.address_start,
+        address_end: _this3.address_end,
+        odometer_start: _this3.odometer_start,
+        odometer_end: _this3.odometer_end,
+        datetime: _this3.datetime,
+        vehicle_id: _this3.vehicle_id
       };
 
       try {
-        const token = yield _this4.storage.get('access_token');
+        const token = yield _this3.storage.get('access_token');
         const config = {
           headers: {
             'Access-Control-Allow-Origin': '*',
@@ -394,20 +358,20 @@ let TransPage = class TransPage {
         };
         const URL = `${_src_environments_environment__WEBPACK_IMPORTED_MODULE_6__.environment.API_HOST}/travels`;
         const response = yield axios__WEBPACK_IMPORTED_MODULE_5___default().post(URL, form, config);
-        yield _this4.storage.set('data', response.data.data);
+        yield _this3.storage.set('data', response.data.data);
         loading.dismiss();
-        const alert = yield _this4.alertController.create({
+        const alert = yield _this3.alertController.create({
           header: 'Success',
           message: response.data.message,
           buttons: ['OK']
         });
         yield alert.present();
 
-        _this4.navCtrl.back();
+        _this3.navCtrl.back();
       } catch (error) {
         loading.dismiss();
-        _this4.errors = error.response.data.data;
-        const alert = yield _this4.alertController.create({
+        _this3.errors = error.response.data.data;
+        const alert = yield _this3.alertController.create({
           header: 'Failed',
           message: 'Please check values',
           buttons: ['OK']
