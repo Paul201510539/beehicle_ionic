@@ -38,7 +38,7 @@
 
     <ion-item>
       <ion-label position="floating">Plate Number</ion-label>
-      <ion-input formControlName="plate_number" type="text" required></ion-input>
+      <ion-input formControlName="plate_number" type="text" required (ionBlur)="autoCoding()"></ion-input>
     </ion-item>
 
 

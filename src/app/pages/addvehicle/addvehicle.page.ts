@@ -46,7 +46,31 @@ export class AddvehiclePage implements OnInit {
       vehicle_image_car: new FormControl(''),
     });
   }
+  autoCoding(){
+    var plate_number = this.form.value['plate_number']
+    var code = plate_number.substr(plate_number.length - 1); // => "1"
+    
+    var coding;
+    if(code == 1 || code == 2){
+      coding = "Monday"
+    }
+    if(code == 3 || code == 4){
+      coding = "Tuesday"
+    }
+    if(code == 5 || code == 6){
+      coding = "Wednesday"
+    }
+    if(code == 7 || code == 8){
+      coding = "Thursday"
+    }
+    if(code == 9 || code == 0){
+      coding = "Friday"
+    }
 
+    this.form.patchValue({
+      coding : coding
+    })
+  }
   async submitForm(){
     const loading = await this.loadingController.create({message: 'Please wait'})
     await loading.present()
